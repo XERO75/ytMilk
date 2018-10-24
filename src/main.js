@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import FastClick from 'fastclick'
 import Vum from './vum.js'
+import 'vue-easytable/libs/themes-base/index.css'
 // import 'lib-flexible/flexible.js'
+import {VTable, VPagination} from 'vue-easytable'
 
 // demos
 import Index from './demos/Index'
@@ -34,6 +36,8 @@ import '../src/assets/css/base.css' /* 引入公共样式 */
 
 Vue.use(Router)
 Vue.use(Vum)
+Vue.component(VTable.name, VTable)
+Vue.component(VPagination.name, VPagination)
 
 let router = new Router({
   routes: [
