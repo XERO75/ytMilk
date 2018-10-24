@@ -6,7 +6,7 @@
         <label>客户管理</label>
       </footer-item>
       <footer-item v-bind:class="{ 'active' : currentView === 'search' }" @click.native="changeView('search')">
-        <span class="icon demo-icon-home"></span>
+        <span class="icon demo-icon-deliverPaper"></span>
         <label>送货单</label>
       </footer-item>
       <footer-item v-bind:class="{ 'active' : currentView === 'Ohome' }" @click.native="changeView('Ohome')">
@@ -71,19 +71,28 @@ export default {
   bottom: 2.8rem;
 }
 .demo-icon-home {
-  background-image: url("../assets/images/home/home.png");
+  background-image: url("../assets/images/index/u76.png");
+  background-repeat:no-repeat; 
+  background-size: 100%;
+}
+.demo-icon-deliverPaper {
+  background-image: url("../assets/images/index/u104.png");
+  background-repeat:no-repeat; 
   background-size: 100%;
 }
 .demo-icon-search {
-  background-image: url("../assets/images/home/search.png");
+  background-image: url("../assets/images/index/u118.png");
+  background-repeat:no-repeat; 
   background-size: 100%;
 }
 .demo-icon-noti {
-  background-image: url("../assets/images/home/button.png");
+  background-image: url("../assets/images/index/u120.png");
+  background-repeat:no-repeat; 
   background-size: 100%;
 }
 .demo-icon-me {
-  background-image: url("../assets/images/home/person.png");
+  background-image: url("../assets/images/index/u122.png");
+  background-repeat:no-repeat;
   background-size: 100%;
 }
 </style>

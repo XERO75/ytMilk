@@ -3,9 +3,30 @@
     <!-- <page-header>
     </page-header> -->
     <page-content>
-      <div class="page-received__comment">
-        林和西服务部
+      <div class="home-received__comment">
+        <a href="#">林和西服务部</a>
         <span>收到的评价 12345</span>
+      </div>
+      <div class="home-data">
+        <div class="home-data__total">
+          当前共<span>234</span>条数据
+        </div>
+        <div class="home-data__wrapper">
+          <a target="_blank" class="home-data__action" href="#">
+            <i class="home-data__reIcon icon icon-error"></i>刷新
+          </a>
+          <a target="_blank" class="home-data__action" href="#">
+            <i class="home-data__exIcon icon icon-success"></i>导出
+          </a>
+        </div>
+      </div>
+      <div class="home-order">
+        <div class="home-order__total active">所有订单</div>
+        <div class="home-order__sending">配送中订单</div>
+        <div class="home-order__unhandle">未处理订单</div>
+      </div>
+      <div class="home-table">
+        
       </div>
     </page-content>
   </div>
@@ -26,20 +47,97 @@ export default {
 }
 </script>
 <style lang="less">
-.page-received__comment{
-  font-size: 16px;
-  height: 50px;
+.home-received__comment{
   width: auto;
-  margin: 10px;
-  padding-right: 10px;
+  height: 2.5rem;
+  line-height:2.5rem;
+  font-size: .75rem;
+  margin: .625rem;
+  padding-right: .625rem;
   text-align: right;
-  line-height: 50px;
-  border-radius: 2%;
-  border: 1px dashed transparent;
-  background: linear-gradient(white,white) padding-box,repeating-linear-gradient(-45deg,#ccc 0, #ccc 0.4em,white 0,white 0.75em);
+  border-radius: .5rem;
+  border: .07rem dashed transparent;
+  background: linear-gradient(white,white) padding-box,
+  repeating-linear-gradient(-45deg,#ccc 0, #ccc 0.4em,white 0,white 0.75em);
 }
-.page-received__comment span{
+.home-received__comment a {
+  display: inline-block;
+  background: url("../assets/images/index/u15.png") no-repeat;
+  background-position: -.1rem .6rem;
+  padding-left: 1.4rem;
+  background-size: 1.2rem 1.2rem;
+  margin-left: 1.2rem;
+}
+.home-received__comment span{
   background:rgba(255, 209, 0, 1);
-  padding: 5px;
+  padding: .3125rem;
 }
+.home-data {
+  display: flex;
+  justify-content:space-between;
+  margin: .625rem;
+  font-size: .75rem;
+}
+.home-data__total{
+  font-size: .75rem;
+  font-weight: bold;
+  margin-top: .25rem;
+  // float: left;
+}
+.home-data__total span{
+  color:#0FC80B;
+  margin: .25rem;
+}
+.home-data__wrapper{
+  display: flex;
+}
+.home-data__action{
+  width: 3.5rem;
+  height: 1.2rem;
+  font-size: 1rem;
+  padding: 0 .35rem;
+  display: inline-block;
+  line-height: 1.2rem;
+  background:rgb(240, 240, 240);
+  font-size: .75rem;
+  color: rgb(53, 53, 53);
+  border-radius: 4px;
+  margin-left: .625rem;
+}
+.home-data__reIcon{
+  font-size: .65rem;
+  color: #fff;
+  padding-right: .3rem;
+  padding-left: .125rem;
+  position: relative;
+}
+.home-data__exIcon{
+  font-size: .65rem;
+  color: #fff;
+  padding-right: .3rem;
+  padding-left: .125rem;
+  position: relative;
+}
+.home-order {
+  display: flex;
+  justify-content: space-between;
+  font-size: .75rem;
+  text-align: center;
+  line-height: 1.8rem;
+  color:#fff;
+  // font-weight: bold;
+  padding: .625rem;
+}
+.home-order__sending, .home-order__unhandle{
+  width: 5rem;
+  height: 1.8rem;
+  color: gray;
+  background:#F2F2F2;
+}
+.home-order__total{
+  width: 5rem;
+  height: 1.8rem;
+  background:#54A93E;
+}
+
 </style>

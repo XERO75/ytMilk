@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import FastClick from 'fastclick'
-
 import Vum from './vum.js'
+// import 'lib-flexible/flexible.js'
 
 // demos
 import Index from './demos/Index'
@@ -30,6 +30,7 @@ import SidePanel from './demos/SidePanel'
 import Popover from './demos/Popover'
 import Stars from './demos/Stars'
 import CircleProgress from './demos/CircleProgress'
+import '../src/assets/css/base.css' /* 引入公共样式 */
 
 Vue.use(Router)
 Vue.use(Vum)
