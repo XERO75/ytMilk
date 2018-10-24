@@ -1,5 +1,4 @@
 <template>
-  <div class="my-page">
     <!-- <page-header>
       </page-header> -->
     <page-content>
@@ -30,7 +29,6 @@
         <v-pagination class="home-pagination" :total="10" :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
       </div>
     </page-content>
-  </div>
 </template>
 
 <script>

@@ -5,8 +5,8 @@
         <span class="icon demo-icon-home"></span>
         <label>客户管理</label>
       </footer-item>
-      <footer-item v-bind:class="{ 'active' : currentView === 'search' }" @click.native="changeView('search')">
-        <span class="icon demo-icon-deliverPaper"></span>
+      <footer-item v-bind:class="{ 'active' : currentView === 'deliever-order' }" @click.native="changeView('deliever-order')">
+        <span class="icon demo-icon-deliveryOrder"></span>
         <label>送货单</label>
       </footer-item>
       <footer-item v-bind:class="{ 'active' : currentView === 'Ohome' }" @click.native="changeView('Ohome')">
@@ -33,6 +33,7 @@
 import Page from '../components/page'
 import { Footer, Item, FooterItem } from '../components/footer'
 import Home from './Home'
+import DeliveryOrder from './DeliveryOrder.vue'
 import Search from './Search'
 import Noti from './Noti'
 import About from './About'
@@ -44,6 +45,7 @@ export default {
     'page-footer': Footer,
     'footer-item': Item,
     'home': Home,
+    'deliever-order':DeliveryOrder,
     'Ohome': OHome,
     'search': Search,
     'noti': Noti,
@@ -75,7 +77,7 @@ export default {
   background-repeat:no-repeat; 
   background-size: 100%;
 }
-.demo-icon-deliverPaper {
+.demo-icon-deliveryOrder {
   background-image: url("../assets/images/index/u104.png");
   background-repeat:no-repeat; 
   background-size: 100%;
