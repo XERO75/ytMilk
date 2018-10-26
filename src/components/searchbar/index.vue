@@ -24,11 +24,11 @@ export default {
     },
     searchText: {
       type: String,
-      default: 'Search'
+      default: '输入手机号码、姓名、地址搜索订单'
     },
     cancelText: {
       type: String,
-      default: 'Cancel'
+      default: '取消'
     }
   },
   data () {

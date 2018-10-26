@@ -9,17 +9,17 @@
         <span class="icon demo-icon-deliveryOrder"></span>
         <label>送货单</label>
       </footer-item>
-      <footer-item v-bind:class="{ 'active' : currentView === 'Ohome' }" @click.native="changeView('Ohome')">
+      <footer-item v-bind:class="{ 'active' : currentView === 'search' }" @click.native="changeView('search')">
         <span class="icon demo-icon-search"></span>
         <label>搜索</label>
       </footer-item>
-      <footer-item v-bind:class="{ 'active' : currentView === 'noti' }" @click.native="changeView('noti')">
-        <span class="icon demo-icon-noti"></span>
+      <footer-item v-bind:class="{ 'active' : currentView === 'order-detail' }" @click.native="changeView('order-detail')">
+        <span class="icon demo-icon-orderOetail"></span>
         <!-- <span class="badge">2</span> -->
         <label>订单细明</label>
       </footer-item>
-      <footer-item v-bind:class="{ 'active' : currentView === 'about' }" @click.native="changeView('about')">
-        <span class="icon demo-icon-me"></span>
+      <footer-item v-bind:class="{ 'active' : currentView === 'courier' }" @click.native="changeView('courier')">
+        <span class="icon demo-icon-courier"></span>
         <label>配送员</label>
       </footer-item>
     </page-footer>
@@ -35,9 +35,11 @@ import { Footer, Item, FooterItem } from '../components/footer'
 import Home from './Home'
 import DeliveryOrder from './DeliveryOrder.vue'
 import Search from './Search'
+import OrderDetail from './OrderDetail'
 import Noti from './Noti'
 import About from './About'
-import OHome from './OHome'
+import Courier from './Courier'
+// import OHome from './OHome'
 console.log(FooterItem)
 export default {
   components: {
@@ -46,10 +48,12 @@ export default {
     'footer-item': Item,
     'home': Home,
     'deliever-order':DeliveryOrder,
-    'Ohome': OHome,
+    'order-detail':OrderDetail,
+    // 'Ohome': OHome,
     'search': Search,
     'noti': Noti,
-    'about': About
+    'about': About,
+    'courier':Courier
   },
   data () {
     return {
@@ -87,12 +91,12 @@ export default {
   background-repeat:no-repeat; 
   background-size: 100%;
 }
-.demo-icon-noti {
+.demo-icon-orderOetail {
   background-image: url("../assets/images/index/u120.png");
   background-repeat:no-repeat; 
   background-size: 100%;
 }
-.demo-icon-me {
+.demo-icon-courier {
   background-image: url("../assets/images/index/u122.png");
   background-repeat:no-repeat;
   background-size: 100%;

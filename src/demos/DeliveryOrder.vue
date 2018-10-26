@@ -23,13 +23,15 @@
         row-hover-color="#eee" 
         row-click-color="#edf7ff"
       ></v-table>
-      <v-pagination class="home-pagination" :total="10" :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
     </div>
   </page-content>
 </template>
 <script>
-  
+  import Content from '../components/content'
   export default {
+    components: {
+      'page-content': Content
+    },
     data() {
       return {
         tableData: [
@@ -45,7 +47,7 @@
         columns: [{
             field: 'product',
             title: '产品',
-            width: 160,
+            width: 180,
             titleAlign: 'center',
             columnAlign: 'left',
             isResize: true
@@ -53,7 +55,7 @@
           {
             field: 'number',
             title: '数量',
-            width: 80,
+            width: 60,
             titleAlign: 'center',
             columnAlign: 'center',
             isResize: true

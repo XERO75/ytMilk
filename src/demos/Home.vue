@@ -116,7 +116,7 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .home-received__comment {
     width: auto;
     height: 2.5rem;
