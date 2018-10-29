@@ -4,6 +4,7 @@ import FastClick from 'fastclick'
 import Vum from './vum.js'
 import 'vue-easytable/libs/themes-base/index.css'
 import {VTable, VPagination} from 'vue-easytable'
+import './assets/iconfont/iconfont.css'
 
 // demos
 import Index from './demos/Index'
@@ -31,7 +32,10 @@ import SidePanel from './demos/SidePanel'
 import Popover from './demos/Popover'
 import Stars from './demos/Stars'
 import CircleProgress from './demos/CircleProgress'
-// import '../src/assets/css/base.css' /* 引入公共样式 */
+import '../src/assets/css/base.css' /* 引入公共样式 */
+import Comment from './demos/Comment'
+import AcceptOrder from './demos/AcceptOrder'
+import Checkout from './demos/Checkout'
 
 Vue.use(Router)
 Vue.use(Vum)
@@ -148,6 +152,22 @@ let router = new Router({
       path: '/circle',
       name: 'circle',
       component: CircleProgress
+    },
+    // ytmilk
+    {
+      path: '/comment',
+      name: 'comment',
+      component: Comment
+    },
+    {
+      path: '/acceptOrder',
+      name: 'acceptOrder',
+      component: AcceptOrder
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: Checkout
     }
   ]
 })

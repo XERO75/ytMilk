@@ -1,34 +1,40 @@
 <template>
-    <!-- <page-header>
-      </page-header> -->
-    <page-content>
+  <!-- <page-header>
+        </page-header> -->
+  <page-content>
+    <router-link :to="{ path: 'comment' }">
       <div class="home-received__comment">
         <a href="#">林和西服务部</a>
         <span>收到的评价 12345</span>
       </div>
-      <div class="home-data">
-        <div class="home-data__total">
-          当前共<span>234</span>条数据
-        </div>
-        <div class="home-data__wrapper">
+    </router-link>
+    <div class="home-data">
+      <div class="home-data__total">
+        当前共<span>234</span>条数据
+      </div>
+      <div class="home-data__wrapper">
+        <router-link :to="{ path: 'acceptOrder' }">
           <a target="_blank" class="home-data__action" href="#">
-            <i class="home-data__reIcon icon icon-error"></i>刷新
+            <i class="home-data__reIcon icon icon-success"></i>刷新
           </a>
+        </router-link>
+        <router-link :to="{ path: 'checkout' }">
           <a target="_blank" class="home-data__action" href="#">
-            <i class="home-data__exIcon icon icon-success"></i>导出
+            <i class="home-data__exIcon icon icon-error"></i>导出
           </a>
-        </div>
+        </router-link>
       </div>
-      <div class="home-order">
-        <div class="home-order__total active">所有订单</div>
-        <div class="home-order__sending">配送中订单</div>
-        <div class="home-order__unhandle">未处理订单</div>
-      </div>
-      <div class="home-table" style="margin:.625rem; font-size: .7rem">
-        <v-table :width="750" title-row-height='35' row-height='65' title-bg-color='#F2F2F2' is-vertical-resize style="width:100%" is-horizontal-resize :vertical-resize-offset='5' :columns="columns" :table-data="tableData" row-hover-color="#eee" row-click-color="#edf7ff"></v-table>
-        <v-pagination class="home-pagination" :total="10" :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
-      </div>
-    </page-content>
+    </div>
+    <div class="home-order">
+      <div class="home-order__total active">所有订单</div>
+      <div class="home-order__sending">配送中订单</div>
+      <div class="home-order__unhandle">未处理订单</div>
+    </div>
+    <div class="home-table" style="margin:.625rem; font-size: .7rem">
+      <v-table :width="750"  title-row-height='35' row-height='65' title-bg-color='#F2F2F2' is-vertical-resize style="width:100%" is-horizontal-resize :vertical-resize-offset='5' :columns="columns" :table-data="tableData" row-hover-color="#eee" row-click-color="#edf7ff"></v-table>
+      <v-pagination class="home-pagination" :total="10" :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
+    </div>
+  </page-content>
 </template>
 
 <script>
@@ -53,7 +59,7 @@
         tableData: [{
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "拒绝  接受",
+            "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
@@ -68,23 +74,33 @@
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "拒绝  接受",
+            "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "拒绝  接受",
+            "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "拒绝  接受",
+            "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "拒绝  接受",
+            "action": "查看",
           },
+          {
+            "address": "上海市黄浦区金陵东路",
+            "status": "未处理",
+            "action": "查看",
+          },
+          {
+            "address": "上海市黄浦区金陵东路",
+            "status": "未处理",
+            "action": "查看",
+          }
         ],
         columns: [{
             field: 'address',
@@ -221,7 +237,8 @@
     height: 1.8rem;
     background: #54A93E;
   }
-  .home-pagination{
+  
+  .home-pagination {
     display: flex;
     justify-content: space-between;
     margin-top: .325rem;

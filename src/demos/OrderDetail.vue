@@ -79,7 +79,6 @@
           { text: '已对账', value: 3 },
           { text: '有异议', value: 4 }
         ],
-        selected: '',
         orderTotal: 112,
         orderStatus: '已对账',
         orderSum: '1000w',
@@ -107,7 +106,7 @@
     font-size: .75rem;
   }
   .orderDetail-list__status{
-    margin: 0 1rem;;
+    margin: 0 1rem;
   }
   .orderDetail-list__month{
     width: 8rem;
@@ -125,7 +124,8 @@
     background: rgb(226, 226, 226);
   }
   .orderDetail-list__selectbox{
-    border: .1rem solid gray;
+    // border: .1rem solid gray;
+    border-radius:5px;
     width: 6.25rem;
     height: 1.2rem;
     margin: .8rem 0;
