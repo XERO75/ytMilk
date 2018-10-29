@@ -1,6 +1,4 @@
 <template>
-  <!-- <page-header>
-        </page-header> -->
   <page-content>
     <router-link :to="{ path: 'comment' }">
       <div class="home-received__comment">
@@ -31,7 +29,7 @@
       <div class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table" style="margin:.625rem; font-size: .7rem">
-      <v-table :width="750"  title-row-height='35' row-height='65' title-bg-color='#F2F2F2' is-vertical-resize style="width:100%" is-horizontal-resize :vertical-resize-offset='5' :columns="columns" :table-data="tableData" row-hover-color="#eee" row-click-color="#edf7ff"></v-table>
+      <v-table :width="750" title-row-height='35' row-height='65' title-bg-color='#F2F2F2' is-vertical-resize style="width:100%" is-horizontal-resize :vertical-resize-offset='5' :columns="columns" :table-data="tableData" row-hover-color="#eee" row-click-color="#edf7ff"></v-table>
       <v-pagination class="home-pagination" :total="10" :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
     </div>
   </page-content>

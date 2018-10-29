@@ -40,7 +40,7 @@ import Noti from './Noti'
 import About from './About'
 import Courier from './Courier'
 // import OHome from './OHome'
-console.log(FooterItem)
+// console.log(FooterItem)
 export default {
   components: {
     Page,
