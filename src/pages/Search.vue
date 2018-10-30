@@ -103,35 +103,7 @@ export default {
     }
   }
 }
-// Vue.component('tb-operation',{
-//         template:`<span>
-//         <router-link :to="{ path: 'checkout' }">查看</router-link>&nbsp;
-//         </span>`,
-//         props:{
-//             rowData:{
-//                 type:Object
-//             },
-//             field:{
-//                 type:String
-//             },
-//             index:{
-//                 type:Number
-//             }
-//         },
-//         methods:{
-//             update(){
-//                // 参数根据业务场景随意构造
-//                let params = {type:'edit',index:this.index,rowData:this.rowData};
-//                this.$emit('on-custom-comp',params);
-//             },
 
-//             deleteRow(){
-//                 // 参数根据业务场景随意构造
-//                 let params = {type:'delete',index:this.index};
-//                 this.$emit('on-custom-comp',params);
-//             }
-//         }
-//     })
 </script>
 <style lang="less" scoped>
   .search-page{
