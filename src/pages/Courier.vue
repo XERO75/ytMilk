@@ -51,7 +51,7 @@
       <div class="courier-count__grids">
         <v-table 
           :width="750" 
-          row-height='55' 
+          :row-height='55' 
           title-bg-color='#F2F2F2' 
           is-vertical-resize 
           style="width:100%" 

@@ -10,8 +10,8 @@
           <div class="orderDetail-list__status">
             <p>选择状态</p>
             <select class="orderDetail-list__selectbox" v-model="selected">
-                    <option v-for="opt in options" :key="opt.value" >{{opt.text}}</option>
-                  </select>
+              <option v-for="opt in options" :key="opt.value" >{{opt.text}}</option>
+            </select>
           </div>
           <div class="orderDetail-list__detail">
             <div class="orderDetail-list__total">
@@ -128,7 +128,8 @@
       return {
         type: 1,
         selected: 1,
-        options: [{
+        options: [
+          {
             text: '全部',
             value: 1
           },
@@ -167,7 +168,7 @@
       }
     },
     created: function() {
-      this.options = options;
+      // this.options = options;
     }
   }
 </script>

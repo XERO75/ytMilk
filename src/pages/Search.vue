@@ -5,7 +5,7 @@
       <div class="search-grids">
         <v-table 
           :width="750" 
-          row-height='55' 
+          :row-height='55' 
           title-bg-color='#F2F2F2' 
           is-vertical-resize 
           style="width:100%" 
@@ -77,14 +77,23 @@ export default {
             columnAlign: 'center',
             isResize: true
           },
+          // {
+          //   field: 'action',
+          //   title: '操作',
+          //   width: 100,
+          //   titleAlign: 'center',
+          //   columnAlign: 'center',
+          //   isResize: true
+          // },
           {
-            field: 'action',
+            field: 'custome-adv',
             title: '操作',
             width: 100,
             titleAlign: 'center',
             columnAlign: 'center',
+            componentName: 'tb-operation',
             isResize: true
-          },
+          }
         ]
     }
   },
@@ -94,6 +103,35 @@ export default {
     }
   }
 }
+// Vue.component('tb-operation',{
+//         template:`<span>
+//         <router-link :to="{ path: 'checkout' }">查看</router-link>&nbsp;
+//         </span>`,
+//         props:{
+//             rowData:{
+//                 type:Object
+//             },
+//             field:{
+//                 type:String
+//             },
+//             index:{
+//                 type:Number
+//             }
+//         },
+//         methods:{
+//             update(){
+//                // 参数根据业务场景随意构造
+//                let params = {type:'edit',index:this.index,rowData:this.rowData};
+//                this.$emit('on-custom-comp',params);
+//             },
+
+//             deleteRow(){
+//                 // 参数根据业务场景随意构造
+//                 let params = {type:'delete',index:this.index};
+//                 this.$emit('on-custom-comp',params);
+//             }
+//         }
+//     })
 </script>
 <style lang="less" scoped>
   .search-page{

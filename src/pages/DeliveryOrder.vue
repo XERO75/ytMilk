@@ -11,8 +11,8 @@
     <div class="del-grids">
       <v-table 
         :width="750" 
-        title-row-height='35' 
-        row-height='65' 
+        :title-row-height='35' 
+        :row-height='65' 
         title-bg-color='#F2F2F2' 
         is-vertical-resize 
         style="width:100%" 

@@ -36,11 +36,8 @@ import Home from './Home'
 import DeliveryOrder from './DeliveryOrder.vue'
 import Search from './Search'
 import OrderDetail from './OrderDetail'
-import Noti from './Noti'
 import About from './About'
 import Courier from './Courier'
-// import OHome from './OHome'
-// console.log(FooterItem)
 export default {
   components: {
     Page,
@@ -49,9 +46,7 @@ export default {
     'home': Home,
     'deliever-order':DeliveryOrder,
     'order-detail':OrderDetail,
-    // 'Ohome': OHome,
     'search': Search,
-    'noti': Noti,
     'about': About,
     'courier':Courier
   },

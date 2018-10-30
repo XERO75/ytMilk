@@ -4,8 +4,8 @@
       <div class="comment-courierList">
         <p>选择配送员</p>
         <select class="comment-courierList__selectbox" v-model="selected">
-              <option v-for="item in couriers" :key="item.value" >{{item.text}}</option>
-            </select>
+          <option v-for="item in couriers" :key="item.value" >{{item.text}}</option>
+        </select>
       </div>
       <div class="orderDetail-list__detail">
         <div class="orderDetail-list__total">

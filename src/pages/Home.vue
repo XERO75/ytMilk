@@ -11,16 +11,12 @@
         当前共<span>234</span>条数据
       </div>
       <div class="home-data__wrapper">
-        <router-link :to="{ path: 'acceptOrder' }">
           <a target="_blank" class="home-data__action" href="#">
-            <i class="home-data__reIcon icon icon-success"></i>刷新
+            <i class="home-data__reIcon"><img src="../assets/images/index/u110.png" alt=""></i> 刷新
           </a>
-        </router-link>
-        <router-link :to="{ path: 'checkout' }">
           <a target="_blank" class="home-data__action" href="#">
-            <i class="home-data__exIcon icon icon-error"></i>导出
+            <i class="home-data__exIcon"><img src="../assets/images/index/u108.png" alt=""></i> 导出
           </a>
-        </router-link>
       </div>
     </div>
     <div class="home-order">
@@ -29,13 +25,26 @@
       <div class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table" style="margin:.625rem; font-size: .7rem">
-      <v-table :width="750" title-row-height='35' row-height='65' title-bg-color='#F2F2F2' is-vertical-resize style="width:100%" is-horizontal-resize :vertical-resize-offset='5' :columns="columns" :table-data="tableData" row-hover-color="#eee" row-click-color="#edf7ff"></v-table>
+      <v-table 
+        :width="750" 
+        :title-row-height='35'
+        :row-height='65' 
+        title-bg-color='#F2F2F2' 
+        is-vertical-resize style="width:100%" 
+        is-horizontal-resize 
+        :vertical-resize-offset='5' 
+        :columns="columns" 
+        :table-data="tableData" 
+        row-hover-color="#eee" 
+        row-click-color="#edf7ff"
+      ></v-table>
       <v-pagination class="home-pagination" :total="10" :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
     </div>
   </page-content>
 </template>
 
 <script>
+import Vue from 'vue'
   import Grid from '../components/grid'
   import {
     Header,
@@ -57,47 +66,47 @@
         tableData: [{
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "查看",
+            // "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "拒绝  接受",
+            // "action": "拒绝  接受",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "拒绝  接受",
+            // "action": "拒绝  接受",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "查看",
+            // "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "查看",
+            // "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "查看",
+            // "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "查看",
+            // "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "查看",
+            // "action": "查看",
           },
           {
             "address": "上海市黄浦区金陵东路",
             "status": "未处理",
-            "action": "查看",
+            // "action": "查看",
           }
         ],
         columns: [{
@@ -116,18 +125,81 @@
             columnAlign: 'center',
             isResize: true
           },
+          // {
+          //   field: 'action',
+          //   title: '操作',
+          //   width: 100,
+          //   titleAlign: 'center',
+          //   columnAlign: 'center',
+          //   isResize: true,
+          // },
           {
-            field: 'action',
+            field: 'custome-adv',
             title: '操作',
             width: 100,
             titleAlign: 'center',
             columnAlign: 'center',
+            componentName: 'table-operation',
             isResize: true
-          },
+          }
         ]
       }
-    }
+    },
+    methods: {
+      customCompFunc(params) {
+        
+      }
+    },
   }
+   Vue.component('table-operation',{
+        template:`<span>
+        <router-link :to="{ path: 'acceptOrder' }">接受</router-link>&nbsp;
+        <router-link :to="{ path: 'checkout' }">查看</router-link>&nbsp;
+        </span>`,
+        props:{
+            rowData:{
+                type:Object
+            },
+            field:{
+                type:String
+            },
+            index:{
+                type:Number
+            }
+        },
+        methods:{
+            update(){
+               // 参数根据业务场景随意构造
+               let params = {type:'edit',index:this.index,rowData:this.rowData};
+               this.$emit('on-custom-comp',params);
+            },
+
+            deleteRow(){
+                // 参数根据业务场景随意构造
+                let params = {type:'delete',index:this.index};
+                this.$emit('on-custom-comp',params);
+            }
+        }
+    })
+    Vue.component('tb-operation',{
+        template:`<span>
+        <router-link :to="{ path: 'checkout' }">查看</router-link>&nbsp;
+        </span>`,
+        props:{
+            rowData:{
+                type:Object
+            },
+            field:{
+                type:String
+            },
+            index:{
+                type:Number
+            }
+        },
+        methods:{
+          
+        }
+})
 </script>
 
 <style lang="less" scoped>
@@ -196,19 +268,15 @@
   }
   
   .home-data__reIcon {
-    font-size: .65rem;
-    color: #fff;
-    padding-right: .3rem;
-    padding-left: .125rem;
-    position: relative;
+    display: inline-block;
+    width: 1rem;
+    height: .73rem;
   }
   
   .home-data__exIcon {
-    font-size: .65rem;
-    color: #fff;
-    padding-right: .3rem;
-    padding-left: .125rem;
-    position: relative;
+    display: inline-block;
+    width: .8rem;
+    height: .65rem;
   }
   
   .home-order {
