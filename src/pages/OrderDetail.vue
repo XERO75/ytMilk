@@ -194,9 +194,6 @@
     width: 8rem;
     height: 1.8rem;
     line-height: 1.8rem;
-    // color: white;
-    // font-weight: bold;
-    // background: #54A93E;
     background: rgb(226, 226, 226);
   }
   
@@ -204,7 +201,6 @@
     width: 8rem;
     height: 1.8rem;
     line-height: 1.8rem;
-    // color: white;
     background: rgb(226, 226, 226);
   }
   
@@ -215,7 +211,6 @@
   }
   
   .orderDetail-list__selectbox {
-    // border: .1rem solid gray;
     border-radius: 5px;
     width: 6.25rem;
     height: 1.2rem;

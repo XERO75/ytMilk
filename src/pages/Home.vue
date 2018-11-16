@@ -45,13 +45,13 @@
 
 <script>
 import Vue from 'vue'
-  import Grid from '../components/grid'
-  import {
-    Header,
-    HeaderLink,
-    HeaderTitle
-  } from '../components/header'
-  import Content from '../components/content'
+import Grid from '../components/grid'
+import {
+  Header,
+  HeaderLink,
+  HeaderTitle
+} from '../components/header'
+import Content from '../components/content'
   
   export default {
     components: {
@@ -147,7 +147,6 @@ import Vue from 'vue'
     },
     methods: {
       customCompFunc(params) {
-        
       }
     },
   }

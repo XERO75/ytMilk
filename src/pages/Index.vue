@@ -30,9 +30,9 @@
 </template>
 
 <script>
+import Home from './Home'
 import Page from '../components/page'
 import { Footer, Item, FooterItem } from '../components/footer'
-import Home from './Home'
 import DeliveryOrder from './DeliveryOrder.vue'
 import Search from './Search'
 import OrderDetail from './OrderDetail'
@@ -41,9 +41,9 @@ import Courier from './Courier'
 export default {
   components: {
     Page,
+    'home': Home,
     'page-footer': Footer,
     'footer-item': Item,
-    'home': Home,
     'deliever-order':DeliveryOrder,
     'order-detail':OrderDetail,
     'search': Search,
