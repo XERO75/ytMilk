@@ -1,12 +1,6 @@
 <template>
   <div class="page">
-    <page-header>
-      <header-link :left="true" :edge="true" v-back-link><icon icon="back"></icon>Back</header-link>
-    </page-header>
     <page-content>
-      <!-- <div class="content-padded">
-        <p>Expressions & computed properties with transparent dependency tracking.</p>
-      </div> -->
       <div class="comment-header">
         <p style="font-size:.7rem">我的评分</p>
         <p style="color:black">{{score}}</p>

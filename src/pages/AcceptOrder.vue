@@ -1,9 +1,13 @@
 <template>
   <div class="page">
     <page-header>
-      <header-link :left="true" :edge="true" v-back-link><icon icon="back"></icon>Back</header-link>
+      <header-link :left="true"
+                   :edge="true"
+                   v-back-link>
+        <icon icon="back"></icon>Back
+      </header-link>
     </page-header>
-    <page-content >
+    <page-content>
       <div class="order-clientWrap">
         <span style="font-weight:bold; margin-bottom:.4rem; font-size:.8rem">客户</span>
         <div class="order-client__name">
@@ -27,7 +31,9 @@
         <span style="font-weight:bold; font-size:.8rem">产品</span>
         <div class="order-product__detailWrap">
           <div class="order-product__detail">
-            <img class="order-product__img" src="../assets/images/accept/u250.png" alt="">
+            <img class="order-product__img"
+                 src="../assets/images/accept/u250.png"
+                 alt="">
             <span class="order-product__desc">{{productDescription}}</span>
           </div>
           <span>共{{total}}/剩{{left}}/日送{{daily}}</span>
@@ -53,7 +59,7 @@
 </template>
 
 <script>
-import { Header, HeaderLink,SecondHeader} from '../components/header'
+import { Header, HeaderLink, SecondHeader } from '../components/header'
 import { Footer } from '../components/footer'
 import Content from '../components/content'
 import Icon from '../components/icons'
@@ -61,96 +67,97 @@ import { Button } from '../components/buttons'
 
 export default {
   components: {
-    'page-header': Header, HeaderLink,
+    'page-header': Header,
+    HeaderLink,
     'page-content': Content,
-    'btn': Button,
+    btn: Button,
     Icon,
     'm-button': Button,
-    'page-footer': Footer,
+    'page-footer': Footer
   },
-  data() {
+  data () {
     return {
-      name:"jack",
-      tel:11244444444,
-      address:"tianhe distict zhujiang new town",
-      status:'normal',
-      total:3,
-      left:1,
-      daily:1,
+      name: 'jack',
+      tel: 11244444444,
+      address: 'tianhe distict zhujiang new town',
+      status: 'normal',
+      total: 3,
+      left: 1,
+      daily: 1,
       startData: '2018/1/1',
-      deliveryCycle:'周一到周日',
-      deliveryTime:'上午',
+      deliveryCycle: '周一到周日',
+      deliveryTime: '上午',
       // productImg:"../assets/images/accept/u250.png",
-      productDescription:"谷元黑米牛奶饮品236ml"
+      productDescription: '谷元黑米牛奶饮品236ml'
     }
   }
 }
 </script>
 <style lang="less">
-  .boldFont {
-    font-weight: bold;
-  }
-  .order-clientWrap{
-    display: flex;
-    flex-direction: column;
-    margin: .8rem .6rem;
-    font-size: .75rem;
-  }
-  .order-client__name,
-  .order-client__tel,
-  .order-client__address,
-  .order-client__status {
-    display: flex;
-    justify-content: space-between;
-    padding: .4rem;
-    border: 1px solid rgb(226, 226, 226); 
-    border-bottom: none;   
-  } 
-  .order-client__status{
-    border-bottom: 1px solid rgb(226, 226, 226); 
-  }
-  .order-productWrap {
-    display: flex;
-    flex-direction: column;
-    margin: .8rem .6rem;
-    font-size: .75rem;
-  }
-  .order-product__detail {
-    display: flex;
-    justify-content: space-between;
-  }
-  .order-product__img {
-    width: auto;
-    height: 3rem;
-  }
-  .order-product__desc {
-    // display: inline-block;
-    margin-left: 1rem;
-    overflow: hidden;
-    width: 7rem;
-  }
-  .order-product__detailWrap,
-  .order-product__startData,
-  .order-product__deliveryCycle,
-  .order-product__deliveryTime {
-    display: flex;
-    justify-content: space-between;
-    padding: .4rem;
-    border: 1px solid rgb(226, 226, 226); 
-    border-bottom: none;   
-  }
-  .order-product__detailWrap {
-    height: 4rem;
-    margin-top: .5rem;
-  }
-  
-  .order-product__deliveryTime {
-    border-bottom: 1px solid rgb(226, 226, 226); 
-  }
-  .order-footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    font-size: 1rem;
-  }
+.boldFont {
+  font-weight: bold;
+}
+.order-clientWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0.8rem 0.6rem;
+  font-size: 0.75rem;
+}
+.order-client__name,
+.order-client__tel,
+.order-client__address,
+.order-client__status {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem;
+  border: 1px solid rgb(226, 226, 226);
+  border-bottom: none;
+}
+.order-client__status {
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.order-productWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0.8rem 0.6rem;
+  font-size: 0.75rem;
+}
+.order-product__detail {
+  display: flex;
+  justify-content: space-between;
+}
+.order-product__img {
+  width: auto;
+  height: 3rem;
+}
+.order-product__desc {
+  // display: inline-block;
+  margin-left: 1rem;
+  overflow: hidden;
+  width: 7rem;
+}
+.order-product__detailWrap,
+.order-product__startData,
+.order-product__deliveryCycle,
+.order-product__deliveryTime {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem;
+  border: 1px solid rgb(226, 226, 226);
+  border-bottom: none;
+}
+.order-product__detailWrap {
+  height: 4rem;
+  margin-top: 0.5rem;
+}
+
+.order-product__deliveryTime {
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.order-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  font-size: 1rem;
+}
 </style>

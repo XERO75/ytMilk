@@ -50,7 +50,7 @@ export default {
   }
   .courier-input {
     height: 2.5rem;
-    width: 10rem;
+    width: 12rem;
     border: 1px solid black;
     border-radius: 25px;
     padding: .7rem .5rem;
@@ -59,7 +59,7 @@ export default {
     margin: 1rem;
   }
   .btn {
-    width: 12rem;
+    width: 14rem;
     // margin-top: 50px;
   }
 </style>

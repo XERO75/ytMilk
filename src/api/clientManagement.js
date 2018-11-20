@@ -1,23 +1,26 @@
-// import axios from "./../../request_login.js";
 import axios from "axios";
 const baseUrl = process.env.BASE_API;
 
 const urls = {
-  login: '/app/service_department/simpleLogin.htm',
+  table: '/app/service_department/list.htm',
 }
+
 // 合并请求链接
 const apis = Object.keys(urls)
   .reduce((acc, url) => {
     acc[url] = baseUrl + urls[url]
     return acc
   }, {});
-// 登录
-export const handleLogin = () => {
+
+// 表格信息
+export const getTable = () => {
   return axios({
-    url: apis.login,
+    url: apis.table,
     method: 'get',
     params: {
-      // WX_TYPE: "OfficialAccount"
+      pageNumber : 1,
+      status: 'Dealing',
+      // WX_TYPE: 'OfficialAccount'
     },
   });
 };

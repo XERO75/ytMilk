@@ -15,7 +15,7 @@ class RouterConfig {
   config () {
     const router = this.router
     this.router.beforeEach(function (to, from, next) {
-      console.log(to, from, next)
+      // console.log(to, from, next)
       try {
         const _to = to.path
         const _from = from.path
@@ -34,7 +34,7 @@ class RouterConfig {
         }
       } catch (e) {
         // swallo error
-        console.log(e)
+        // console.log(e)
       }
       next()
     })

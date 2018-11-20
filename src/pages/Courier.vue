@@ -15,7 +15,7 @@
         </div>
         <router-link :to="{path:'courierAdd'}">
           <div class="courier-subHeader__add">
-            <i class="courier-subHeader__addIcon"></i>
+            <i class="iconfont icon-add"></i>
             <a href="javascript:;">新增配送员</a>
           </div>
         </router-link>
@@ -23,11 +23,11 @@
       <div class="courier-infoWrap">
         <router-link class="courier-info" :to="{path:'courierDetail'}">
           <p>{{courier.name}} - {{courier.tel}}</p>
-          <i class="courier-info__upIcon"></i>
+          <i class="iconfont icon-more"></i>
         </router-link>
         <div class="courier-info">
           <p>{{courier.name}} - {{courier.tel}}</p>
-          <i class="courier-info__upIcon"></i>
+          <i class="iconfont icon-more"></i>
         </div>
       </div>
     </div>
@@ -240,8 +240,9 @@
     color: gray;
   }
   
-  .courier-infoWrap :nth-last-child(1) {
-    border-bottom: 1px solid gray;
+  .courier-infoWrap :nth-child(1) {
+    border-bottom: none;
+    // border-bottom: 1px solid gray;
   }
   
   .courier-info {
@@ -251,7 +252,7 @@
     margin: 0 .65rem;
     height: 2.3rem;
     border: 1px solid gray;
-    border-bottom: none;
+    // border-bottom: none;
     padding: 0 .375rem;
   }
   
