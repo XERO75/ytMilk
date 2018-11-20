@@ -1,12 +1,5 @@
 <template>
   <div class="page">
-    <page-header>
-      <header-link :left="true"
-                   :edge="true"
-                   v-back-link>
-        <icon icon="back"></icon>Back
-      </header-link>
-    </page-header>
     <page-content>
       <div class="order-clientWrap">
         <span style="font-weight:bold; margin-bottom:.4rem; font-size:.8rem">客户</span>

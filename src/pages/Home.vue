@@ -31,9 +31,9 @@
       <div class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table"
-         style="margin:.625rem; font-size: .7rem">
-      <v-table :width="750"
-               :title-row-height='35'
+         style="margin:.6rem; font-size: 14px; width: 17.5rem">
+
+      <v-table :title-row-height='35'
                :row-height='65'
                title-bg-color='#F2F2F2'
                is-vertical-resize
@@ -44,9 +44,10 @@
                :table-data="tableData"
                row-hover-color="#eee"
                row-click-color="#edf7ff"></v-table>
+
       <v-pagination class="home-pagination"
-              :total="10"
-              :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
+                    :total="10"
+                    :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
     </div>
   </page-content>
 </template>
@@ -63,16 +64,16 @@ export default {
   },
   data () {
     return {
-      tableData: [{"address": "上海市黄浦区金陵东路","status": "未处理",}],
+      tableData: [{ "address": "上海市黄浦区金陵东路", "status": "未处理", }],
       // tableData:[],
       columns: [
         {
-        field: 'address',
-        title: '用户地址',
-        width: 160,
-        titleAlign: 'center',
-        columnAlign: 'left',
-        isResize: true
+          field: 'address',
+          title: '用户地址',
+          width: 160,
+          titleAlign: 'center',
+          columnAlign: 'left',
+          isResize: true
         },
         {
           field: 'status',
@@ -96,21 +97,23 @@ export default {
     }
   },
   methods: {
-    
+
   },
   mounted () {
     handleLogin().then((res) => {
+      console.log(res);
       getTable().then((res) => {
-        console.log(res.data.data);
-        // this.tableList = res.data.data
-        // console.log(this.tableList);
+        console.log(res);
       })
     })
+  },
+  created () {
+
   }
 }
 Vue.component('table-operation', {
-  template: 
-        `<span>
+  template:
+    `<span>
           <router-link :to="{ path: 'acceptOrder' }">接受</router-link>&nbsp;
           <router-link :to="{ path: 'checkout' }">查看</router-link>&nbsp;
         </span>

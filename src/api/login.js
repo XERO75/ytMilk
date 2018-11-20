@@ -17,7 +17,7 @@ export const handleLogin = () => {
     url: apis.login,
     method: 'get',
     params: {
-      // WX_TYPE: "OfficialAccount"
+      WX_TYPE: "OfficialAccount"
     },
   });
 };

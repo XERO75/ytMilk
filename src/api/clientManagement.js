@@ -18,9 +18,9 @@ export const getTable = () => {
     url: apis.table,
     method: 'get',
     params: {
-      pageNumber : 1,
+      pageNumber: 1,
       status: 'Dealing',
-      // WX_TYPE: 'OfficialAccount'
+      WX_TYPE: 'OfficialAccount'
     },
   });
 };

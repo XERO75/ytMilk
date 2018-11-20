@@ -4,8 +4,10 @@
       <img class="login-detail__img" src="../assets/images/login/ytlogo.jpeg" alt="">
       <!-- <div class="login-detail__img"></div> -->
       <span class="login-detail__desc">已绑定服务部或者配送达人微信直接登录</span>
+      <!-- <router-link :to="{ path: 'comment' }"> -->
       <m-button class="login-detail__but" size="medium" @click.native="loginServer">服务部登陆</m-button>
-      <m-button class="login-detail__but" size="medium" @click.native="$refs.p.open()">配送达人登陆</m-button>
+      <!-- </router-link> -->
+      <m-button class="login-detail__but" size="medium" @click.native="loginExpert">配送达人登陆</m-button>
     </div>
   </div>
 </template>
@@ -23,7 +25,12 @@
     },
     methods: {
       loginServer () {
-        
+        this.$router.push({path: '/comment'})
+      },
+      loginExpert () {
+        // this.$store.state.isLogin = true
+        // console.log(this.$store.state.isLogin);
+        // this.$router.go(0)
       }
     }
   }

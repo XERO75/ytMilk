@@ -1,8 +1,8 @@
 <template>
   <div class="page">
-    <page-header>
+    <!-- <page-header>
       <header-link :left="true" :edge="true" v-back-link><icon icon="back"></icon>Back</header-link>
-    </page-header>
+    </page-header> -->
     <page-content >
       <div class="order-courierWrap">
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
