@@ -71,14 +71,16 @@ export default {
     changeView (view) {
       this.currentView = view
     }
-  },
-  created: function () {
-
   }
 }
 </script>
 
 <style lang="less">
+.home-table {
+  .v-table-body-class {
+    height: auto !important;
+  }
+}
 .my-page {
   position: absolute;
   top: 0;

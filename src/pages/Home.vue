@@ -31,24 +31,37 @@
       <div class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table"
-         style="margin:.6rem; font-size: 14px; width: 17.5rem">
-
-      <v-table :title-row-height='35'
-               :row-height='65'
-               title-bg-color='#F2F2F2'
-               is-vertical-resize
-               style="width:100%"
-               is-horizontal-resize
-               :vertical-resize-offset='5'
-               :columns="columns"
-               :table-data="tableData"
-               row-hover-color="#eee"
-               row-click-color="#edf7ff"></v-table>
-
-      <v-pagination class="home-pagination"
-                    :total="10"
-                    :layout="['prev', 'pager', 'next', 'jumper']"></v-pagination>
+         style="margin:.6rem; font-size: 12px;">
+      <el-table :data="tableData"
+                border
+                :header-cell-style='styleObj'
+                style="width: 100%">
+        <el-table-column prop="memberAddress"
+                         label="地址">
+        </el-table-column>
+        <el-table-column label="状态"
+                         width="80"
+                         align="center">
+          <template slot-scope="scope">
+            <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:12px" >未处理</span>
+            <span v-else style="color: green; font-size:12px" @click="aaa(this)">已派单</span>
+            <!-- <span>{{scope.row.state === -1? '冻结': (scope.row.state === 0? '未认证': '已认证')}}</span> -->
+          </template>
+        </el-table-column>
+        <el-table-column label="操作"
+                         width="100"
+                         align="center">
+          <template slot-scope="scope">
+            <div v-if="scope.row.orderStatus == 'UnDeal'"  class="tableWrap">
+              <span style="color: red; font-size:12px">拒绝</span>
+              <span style="color: green; font-size:12px">接受</span>
+            </div>
+            <span v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
+
   </page-content>
 </template>
 
@@ -57,110 +70,36 @@ import Vue from 'vue'
 import Grid from '../components/grid'
 import Content from '../components/content'
 import { handleLogin } from "@/api/login.js";
-import { getTable } from "../api/clientManagement.js";
+import { getAllOrder } from "../api/clientManagement.js";
 export default {
   components: {
     'page-content': Content
   },
-  data () {
+  data() {
     return {
-      tableData: [{ "address": "上海市黄浦区金陵东路", "status": "未处理", }],
-      // tableData:[],
-      columns: [
-        {
-          field: 'address',
-          title: '用户地址',
-          width: 160,
-          titleAlign: 'center',
-          columnAlign: 'left',
-          isResize: true
-        },
-        {
-          field: 'status',
-          title: '状态',
-          width: 80,
-          titleAlign: 'center',
-          columnAlign: 'center',
-          isResize: true
-        },
-        {
-          field: 'custome-adv',
-          title: '操作',
-          width: 100,
-          titleAlign: 'center',
-          columnAlign: 'center',
-          componentName: 'table-operation',
-          isResize: true
-        }
-      ],
-      tableList: [],
+      styleObj: {'background': '#F2F2F2'},
+      tableData: []
     }
   },
   methods: {
-
+    aaa () {
+      console.log(this.$router.query);
+    }
+  },
+  created () {
   },
   mounted () {
     handleLogin().then((res) => {
-      console.log(res);
-      getTable().then((res) => {
-        console.log(res);
+      getAllOrder().then((res) => {
+        // console.log(res);
+        this.tableData = res.data.data.content
+        console.log(this.tableData);
+        
       })
     })
-  },
-  created () {
-
   }
 }
-Vue.component('table-operation', {
-  template:
-    `<span>
-          <router-link :to="{ path: 'acceptOrder' }">接受</router-link>&nbsp;
-          <router-link :to="{ path: 'checkout' }">查看</router-link>&nbsp;
-        </span>
-        `,
-  props: {
-    rowData: {
-      type: Object
-    },
-    field: {
-      type: String
-    },
-    index: {
-      type: Number
-    }
-  },
-  methods: {
-    update () {
-      // 参数根据业务场景随意构造
-      let params = { type: 'edit', index: this.index, rowData: this.rowData };
-      this.$emit('on-custom-comp', params);
-    },
-    deleteRow () {
-      // 参数根据业务场景随意构造
-      let params = { type: 'delete', index: this.index };
-      this.$emit('on-custom-comp', params);
-    }
-  }
-})
-Vue.component('tb-operation', {
-  template: `<span>
-        <router-link :to="{ path: 'checkout' }">查看</router-link>&nbsp;
-        </span>`,
-  props: {
-    rowData: {
-      type: Object
-    },
-    field: {
-      type: String
-    },
-    index: {
-      type: Number
-    }
-  },
-  methods: {
 
-  }
-})
 </script>
 
 <style lang="less" scoped>

@@ -13,13 +13,13 @@ const apis = Object.keys(urls)
   }, {});
 
 // 表格信息
-export const getTable = () => {
+export const getAllOrder = () => {
   return axios({
     url: apis.table,
     method: 'get',
     params: {
-      pageNumber: 1,
-      status: 'Dealing',
+      // pageNumber: 1,
+      // orderStatus: 'UnDeal',
       WX_TYPE: 'OfficialAccount'
     },
   });

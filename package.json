@@ -3,17 +3,17 @@
   "version": "2.0.0-rc.2",
   "description": "A Vue.js project",
   "author": "hongxun.li <hongxun.li@ge.com>",
-  "main": "./src/vum.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "unit": "jest --config test/unit/jest.conf.js --coverage",
+    "build": "node build/build.js",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "build": "node build/build.js"
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev",
+    "unit": "jest --config test/unit/jest.conf.js --coverage"
   },
   "dependencies": {
     "cssnano": "^4.1.7",
+    "element-ui": "^2.4.5",
     "lib-flexible": "^0.3.2",
     "postcss-aspect-ratio-mini": "0.0.2",
     "postcss-cssnext": "^3.1.0",
@@ -70,6 +70,7 @@
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
     "url-loader": "^0.5.8",
+    "vue-cli-plugin-element": "^1.0.0",
     "vue-easytable": "^1.7.1",
     "vue-jest": "^1.0.2",
     "vue-loader": "^13.3.0",
@@ -80,13 +81,14 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "main": "./src/vum.js"
 }
