@@ -3,40 +3,27 @@
     <page-content>
       <div class="comment-header">
         <p style="font-size:.7rem">我的评分</p>
-        <p style="color:black">{{score}}</p>
+        <p style="color:black">{{commentsData.average}}</p>
       </div>
       <div class="comment-courierList">
-        <p>送奶工</p>
+        <p>优鲜达人</p>
+        <van-button type="primary">默认按钮</van-button>
         <select class="comment-courierList__selectbox" v-model="selected">
           <option v-for="item in couriers" :key="item.value" >{{item.text}}</option>
         </select>
       </div>
-      <div class="comment-detail">
+      <div v-for="item in commentLists" :key="item.index" class="comment-detail">
         <div class="comment-detail__courier">
-          配送员：{{courier}}
+          配送员：{{item.expressServerName}}
         </div>
         <div class="comment-detail__rate">
-          评价星级：{{rate}}
+          评价星级：<i v-for="n in Number(item.stars)" :key="n.id" class="iconfont icon-xing1" style="color:#F3E857"></i>
         </div>
         <div class="comment-detail__tag">
-          评价标签：{{tag}}
+          评价标签：{{item.tag}}
         </div>
         <div class="comment-detail__content">
-          评价内容：{{comments}}
-        </div>
-      </div>
-      <div class="comment-detail">
-        <div class="comment-detail__courier">
-          配送员：{{courier}}
-        </div>
-        <div class="comment-detail__rate">
-          评价星级：{{rate}}
-        </div>
-        <div class="comment-detail__tag">
-          评价标签：{{tag}}
-        </div>
-        <div class="comment-detail__content">
-          评价内容：{{comments}}
+          评价内容：{{item.otherComment}}
         </div>
       </div>
     </page-content>
@@ -44,17 +31,17 @@
 </template>
 
 <script>
-import { Header, HeaderLink} from '../components/header'
+import Vue from 'vue'
 import Content from '../components/content'
 import Icon from '../components/icons'
-import { Button } from '../components/buttons'
-
+import { handleLogin } from "@/api/login.js";
+import { getComments } from '@/api/comment.js'
+// import Button from '../../node_modules/vant/lib/button';
+import '../../node_modules/vant/lib/button/style';
 export default {
   components: {
-    'page-header': Header, HeaderLink,
     'page-content': Content,
-    'btn': Button,
-    Icon
+    Icon,
   },
   data() {
     return {
@@ -68,9 +55,19 @@ export default {
       rate:'✨✨✨',
       courier:'jack',
       tag:'nice!!',
-      comments:'环境和空间都还不错！！！'
+      comments:'环境和空间都还不错！！！',
+      commentsData: {},
+      commentLists: []
     }
-  }
+  },
+  mounted() {
+    handleLogin().then((res) => {
+      getComments().then((res) => {
+        this.commentsData = res.data.data
+        this.commentLists = res.data.data.content
+      })
+    })
+  },
 }
 </script>
 <style lang="less">
@@ -113,6 +110,7 @@ export default {
   .comment-detail__content {
     margin: .25rem 0;
     font-size: .7rem;
+    color:#676767;
     font-weight: bold;
   }
 </style>

@@ -1,8 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
+import axios from "../api/request.js";
 const baseUrl = process.env.BASE_API;
 
 const urls = {
   table: '/app/service_department/list.htm',
+  comments: '/app/service_department/comment_list.htm',
+  details: ' /app/order/delivering_details.htm'
 }
 
 // 合并请求链接
@@ -11,16 +14,46 @@ const apis = Object.keys(urls)
     acc[url] = baseUrl + urls[url]
     return acc
   }, {});
+  
+// 评价信息
+export const getComments = () => {
+  return axios({
+    url: apis.comments,
+    method: 'get',
+    params: axios.getData({})
+  });
+};
 
-// 表格信息
+// 所有表格信息
 export const getAllOrder = () => {
   return axios({
     url: apis.table,
     method: 'get',
-    params: {
-      // pageNumber: 1,
-      // orderStatus: 'UnDeal',
-      WX_TYPE: 'OfficialAccount'
-    },
+    params: axios.getData({})
   });
 };
+
+// 配送中订单 
+export const getDealing = () => {
+  return axios({
+    url: apis.table,
+    method: 'get',
+    params: {
+      WX_TYPE: "OfficialAccount",
+      orderStatus: 'OnDelivery'
+    }
+  })
+}
+
+// 未处理订单 
+export const getUnDeal = () => {
+  return axios({
+    url: apis.table,
+    method: 'get',
+    params: {
+      WX_TYPE: "OfficialAccount",
+      orderStatus: 'UnDeal'
+    }
+  })
+}
+

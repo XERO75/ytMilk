@@ -1,17 +1,14 @@
 <template>
   <div class="page">
-    <!-- <page-header>
-      <header-link :left="true" :edge="true" v-back-link><icon icon="back"></icon>Back</header-link>
-    </page-header> -->
     <page-content >
       <div class="order-courierWrap">
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
           <div class="order-courier__detail">
-            <div class="order-courier__avatar"></div>
+            <img :src="courierData.image" class="order-courier__avatar">
             <div class="order-courier__desc">
-              {{name}}<br>
-              <span style="color:#54A93E">{{tel}}</span>
+              {{courierData.name}}<br>
+              <span style="color:#54A93E">{{courierData.phone}}</span>
             </div>
           </div>
           <m-button size="small" @click.native="$refs.p.open()">更换配送员</m-button>
@@ -21,41 +18,50 @@
         <span style="font-weight:bold; margin-bottom:.4rem; font-size:.8rem">客户</span>
         <div class="order-client__name">
           <span class="boldFont">姓名</span>
-          <span>{{name}}</span>
+          <span>{{clientData.memberName}}</span>
         </div>
         <div class="order-client__tel">
           <span class="boldFont">电话</span>
-          <span style="color:#54A93E">{{tel}}</span>
+          <span style="color:#54A93E">{{clientData.memberPhone}}</span>
         </div>
         <div class="order-client__address">
           <span class="boldFont">地址</span>
-          <span>{{address}}</span>
+          <span>{{clientData.memberAddress}}</span>
         </div>
         <div class="order-client__status">
           <span class="boldFont">状态</span>
-          <span>{{status}}</span>
+          <span>{{clientData.status}}</span>
         </div>
       </div>
       <div class="order-productWrap">
         <span style="font-weight:bold; font-size:.8rem">产品</span>
         <div class="order-product__detailWrap">
+          <div style="height:3rem;" v-for="item in itemLists" :key="item.keys">
+            <div class="order-product__detail fl">
+              <img class="order-product__img" :src="item.image" alt="">
+              <span class="order-product__desc">{{item.productName}}</span>
+            </div>
+            <span class="fr">共{{item.totalCount}}/剩{{item.remain}}/日送{{item.number}}</span>
+          </div>
+        </div>
+        <!-- <div v-for="item in itemLists" :key="item.keys" class="order-product__detailWrap">
           <div class="order-product__detail">
             <img class="order-product__img" src="../assets/images/accept/u250.png" alt="">
             <span class="order-product__desc">{{productDescription}}</span>
           </div>
           <span>共{{total}}/剩{{left}}/日送{{daily}}</span>
-        </div>
+        </div> -->
         <div class="order-product__startData">
           <span class="boldFont">起送日期</span>
-          <span>{{startData}}</span>
+          <span>{{clientData.beginDate}}</span>
         </div>
         <div class="order-product__deliveryCycle">
           <span class="boldFont">配送周期</span>
-          <span>{{deliveryCycle}}</span>
+          <span>{{clientData.deliverType}}</span>
         </div>
         <div class="order-product__deliveryTime">
           <span class="boldFont">配送时间</span>
-          <span>{{deliveryTime}}</span>
+          <span>{{clientData.halfDateType}}</span>
         </div>
       </div>
     </page-content>
@@ -73,43 +79,40 @@
 </template>
 
 <script>
-import { Header, HeaderLink,SecondHeader} from '../components/header'
-import { Footer } from '../components/footer'
 import Content from '../components/content'
-import Icon from '../components/icons'
 import { Button } from '../components/buttons'
 import PopWindow from '../components/popwindow'
+import { handleLogin } from "@/api/login.js";
+import { getDetails } from '@/api/checkout.js'
 
 
 export default {
   components: {
-    'page-header': Header, HeaderLink,
     'page-content': Content,
-    Icon,
     'm-button': Button,
     PopWindow,
   },
   data() {
     return {
-      name:"jack",
-      tel:11244444444,
-      address:"tianhe distict zhujiang new town",
-      status:'normal',
-      total:3,
-      left:1,
-      daily:1,
-      startData: '2018/1/1',
-      deliveryCycle:'周一到周日',
-      deliveryTime:'上午',
-      // productImg:"../assets/images/accept/u250.png",
-      productDescription:"谷元黑米牛奶饮品236ml",
-      selected: 1,
+      selected:1,
       couriers:[
         { text: 'lily-12580', value: 1 },
         { text: 'alice-10096', value: 2 },
         { text: 'jack-22234', value: 3 },
       ],
+      courierData: {},
+      clientData: {},
+      itemLists: {}
     }
+  },
+  mounted() {
+    handleLogin().then((res) => {
+      getDetails(this.$route.query.orderId).then((res) => {
+        this.courierData = res.data.data
+        this.clientData = res.data.data.order
+        this.itemLists = res.data.data.orderItemList
+      })
+    })
   }
 }
 </script>
@@ -170,11 +173,12 @@ export default {
   }
   .order-product__img {
     width: auto;
-    height: 3rem;
+    height: 2rem;
+    // min-width: 20px;
   }
   .order-product__desc {
     // display: inline-block;
-    margin-left: 1rem;
+    margin-left: .2rem;
     overflow: hidden;
     width: 7rem;
   }
@@ -189,7 +193,9 @@ export default {
     border-bottom: none;   
   }
   .order-product__detailWrap {
-    height: 4rem;
+    // height: 4rem;
+    display: flex;
+    flex-direction: column;
     margin-top: .5rem;
   }
   

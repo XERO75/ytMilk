@@ -3,8 +3,8 @@
     <page-content>
       <div class="orderDetail">
         <div class="orderDetail-list">
-          <div :class="{'orderDetail-list__active orderDetail-list__part': type == 1}" @click="getMonth()" class="orderDetail-list__month">月账单</div>
-          <div :class="{'orderDetail-list__active orderDetail-list__part': type == 2}" @click="getDaily()" class="orderDetail-list__day">日细明</div>
+          <div :class="{'orderDetail-list__active ': type == 1}" @click="getMonth()" class="orderDetail-list__month">月账单</div>
+          <div :class="{'orderDetail-list__active ': type == 2}" @click="getDaily()" class="orderDetail-list__day">日细明</div>
         </div>
         <div v-if="type === 1" class="orderDetail-monthWrap">
           <div class="orderDetail-list__status">
@@ -190,14 +190,8 @@
     margin: 0 1rem;
   }
   
-  .orderDetail-list__month {
-    width: 8rem;
-    height: 1.8rem;
-    line-height: 1.8rem;
-    background: rgb(226, 226, 226);
-  }
-  
-  .orderDetail-list__day {
+  .orderDetail-list__month,
+  .orderDetail-list__day  {
     width: 8rem;
     height: 1.8rem;
     line-height: 1.8rem;

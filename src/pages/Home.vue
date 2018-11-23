@@ -1,34 +1,31 @@
 <template>
-  <page-content>
-    <router-link :to="{ path: 'comment' }">
-      <div class="home-received__comment">
-        <a href="#">林和西服务部</a>
-        <span>收到的评价 12345</span>
-      </div>
-    </router-link>
+  <div class="page">
+    <page-content>
+    <div class="home-commentWrap">
+      <span class="home-received__depart"><i class="iconfont icon-shouye"></i>{{listData.serviceDepartmentName}}</span>
+      <span @click="handleComments()" class="home-received__comments">收到的评价 {{commentTotal}}</span>
+    </div>
     <div class="home-data">
       <div class="home-data__total">
-        当前共<span>234</span>条数据
+        当前共<span>{{listData.total}}</span>条数据
       </div>
       <div class="home-data__wrapper">
-        <a target="_blank"
-           class="home-data__action"
-           href="#">
-          <i class="home-data__reIcon"><img src="../assets/images/index/u110.png"
-                 alt=""></i> 刷新
+        <a class="home-data__action"
+           @click="handleRefresh()"
+           href="javascript:;">
+          <i class="home-data__reIcon"><img src="../assets/images/index/u110.png" alt=""></i> 刷新
         </a>
         <a target="_blank"
            class="home-data__action"
            href="#">
-          <i class="home-data__exIcon"><img src="../assets/images/index/u108.png"
-                 alt=""></i> 导出
+          <i class="home-data__exIcon"><img src="../assets/images/index/u108.png" alt=""></i> 导出
         </a>
       </div>
     </div>
     <div class="home-order">
-      <div class="home-order__total active">所有订单</div>
-      <div class="home-order__sending">配送中订单</div>
-      <div class="home-order__unhandle">未处理订单</div>
+      <div :class="{'home-order__active': type == 'all'}" @click="handelAllOrder()" class="home-order__total">所有订单</div>
+      <div :class="{'home-order__active ': type == 'OnDelivery'}" @click="handelDealing()" class="home-order__sending">配送中订单</div>
+      <div :class="{'home-order__active': type == 'UnDeal'}" @click="handelUnDeal()" class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table"
          style="margin:.6rem; font-size: 12px;">
@@ -37,14 +34,14 @@
                 :header-cell-style='styleObj'
                 style="width: 100%">
         <el-table-column prop="memberAddress"
-                         label="地址">
+                         label="用户地址">
         </el-table-column>
         <el-table-column label="状态"
                          width="80"
                          align="center">
           <template slot-scope="scope">
             <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:12px" >未处理</span>
-            <span v-else style="color: green; font-size:12px" @click="aaa(this)">已派单</span>
+            <span v-else style="color: green; font-size:12px">已派单</span>
             <!-- <span>{{scope.row.state === -1? '冻结': (scope.row.state === 0? '未认证': '已认证')}}</span> -->
           </template>
         </el-table-column>
@@ -56,13 +53,15 @@
               <span style="color: red; font-size:12px">拒绝</span>
               <span style="color: green; font-size:12px">接受</span>
             </div>
-            <span v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
+            <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
         </el-table-column>
       </el-table>
     </div>
 
   </page-content>
+  </div>
+  
 </template>
 
 <script>
@@ -70,32 +69,69 @@ import Vue from 'vue'
 import Grid from '../components/grid'
 import Content from '../components/content'
 import { handleLogin } from "@/api/login.js";
-import { getAllOrder } from "../api/clientManagement.js";
+import { getComments, getAllOrder, getDealing, getUnDeal, getDetails } from "../api/clientManagement.js";
+import Dialog from '../../node_modules/vant/lib/dialog';
+import '../../node_modules/vant/lib/dialog/style';
+
+Vue.use(Dialog);
 export default {
   components: {
     'page-content': Content
   },
   data() {
     return {
+      type: 'all',
       styleObj: {'background': '#F2F2F2'},
-      tableData: []
+      tableData: [],
+      listData: {},
+      commentTotal: null,
     }
   },
   methods: {
-    aaa () {
-      console.log(this.$router.query);
+    handleRefresh() {
+      this.$router.go(0)
+    },
+    handleComments() {
+      this.$router.push({path:'/comment'})
+    },
+    handleCheck(id) {
+      console.log(~~id);
+      this.$router.push({path:'/checkout',query:{orderId:id}})
+    },
+    handelAllOrder() {
+      this.type = 'all',
+      getAllOrder().then((res) => {
+        this.tableData = res.data.data.content
+        this.listData = res.data.data
+      });
+    },
+    handelDealing() {
+      this.type = 'OnDelivery'
+      getDealing().then((res) => {
+        this.tableData = res.data.data.content
+        this.listData = res.data.data
+        console.log(this.tableData);
+      })
+    },
+    handelUnDeal() {
+      this.type = 'UnDeal'
+      getUnDeal().then((res) => {
+        this.tableData = res.data.data.content
+        this.listData = res.data.data
+      })
     }
   },
   created () {
   },
   mounted () {
     handleLogin().then((res) => {
-      getAllOrder().then((res) => {
-        // console.log(res);
-        this.tableData = res.data.data.content
-        console.log(this.tableData);
-        
+      getComments().then((res) => {
+        this.commentTotal = res.data.data.total
       })
+      getAllOrder().then((res) => {
+        this.tableData = res.data.data.content
+        this.listData = res.data.data
+      });
     })
   }
 }
@@ -103,32 +139,30 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.home-received__comment {
-  width: auto;
-  height: 2.5rem;
-  line-height: 2.5rem;
-  font-size: 0.75rem;
+.home-commentWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.2rem;
+  font-size: 14px;
   margin: 0.625rem;
-  padding-right: 0.625rem;
-  text-align: right;
   border-radius: 0.5rem;
   border: 0.07rem dashed transparent;
-  background: linear-gradient(white, white) padding-box,
-    repeating-linear-gradient(-45deg, #ccc 0, #ccc 0.4em, white 0, white 0.75em);
+  background: linear-gradient(white, white) padding-box,repeating-linear-gradient(-45deg, #ccc 0, #ccc 0.4em, white 0, white 0.75em);
 }
 
-.home-received__comment a {
-  display: inline-block;
-  background: url('../assets/images/index/u15.png') no-repeat;
-  background-position: -0.1rem 0.6rem;
-  padding-left: 1.4rem;
-  background-size: 1.2rem 1.2rem;
-  margin-left: 1.2rem;
+.home-commentWrap i {
+  font-size: 14px;
+  margin-right: .2rem;
 }
-
-.home-received__comment span {
+.home-received__depart {
+  margin-right: .4rem;
+  color: rgb(128, 128, 128);
+}
+.home-received__comments {
   background: rgba(255, 209, 0, 1);
-  padding: 0.3125rem;
+  color: black;
+  padding: 0.2rem;
 }
 
 .home-data {
@@ -191,6 +225,7 @@ export default {
   padding: 0.625rem;
 }
 
+.home-order__total,
 .home-order__sending,
 .home-order__unhandle {
   width: 5rem;
@@ -199,10 +234,11 @@ export default {
   background: #f2f2f2;
 }
 
-.home-order__total {
+.home-order__active {
   width: 5rem;
   height: 1.8rem;
   background: #54a93e;
+  color: #fff;
 }
 
 .home-pagination {
