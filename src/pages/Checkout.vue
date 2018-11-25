@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <page-content >
-      <div class="order-courierWrap">
+      <div v-if="courierData.name != null" class="order-courierWrap">
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
           <div class="order-courier__detail">
@@ -109,6 +109,7 @@ export default {
     handleLogin().then((res) => {
       getDetails(this.$route.query.orderId).then((res) => {
         this.courierData = res.data.data
+        console.log(this.courierData);
         this.clientData = res.data.data.order
         this.itemLists = res.data.data.orderItemList
       })

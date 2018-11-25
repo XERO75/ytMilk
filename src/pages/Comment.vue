@@ -7,7 +7,6 @@
       </div>
       <div class="comment-courierList">
         <p>优鲜达人</p>
-        <van-button type="primary">默认按钮</van-button>
         <select class="comment-courierList__selectbox" v-model="selected">
           <option v-for="item in couriers" :key="item.value" >{{item.text}}</option>
         </select>
@@ -31,13 +30,10 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Content from '../components/content'
 import Icon from '../components/icons'
 import { handleLogin } from "@/api/login.js";
 import { getComments } from '@/api/comment.js'
-// import Button from '../../node_modules/vant/lib/button';
-import '../../node_modules/vant/lib/button/style';
 export default {
   components: {
     'page-content': Content,

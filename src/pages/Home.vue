@@ -41,7 +41,8 @@
                          align="center">
           <template slot-scope="scope">
             <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:12px" >未处理</span>
-            <span v-else style="color: green; font-size:12px">已派单</span>
+            <span v-if="scope.row.orderStatus == 'Refuse'" style="color: red; font-size:12px" >已拒绝</span>
+            <span v-if="scope.row.orderStatus == 'OnDelivery'" style="color: green; font-size:12px">已派单</span>
             <!-- <span>{{scope.row.state === -1? '冻结': (scope.row.state === 0? '未认证': '已认证')}}</span> -->
           </template>
         </el-table-column>
@@ -50,8 +51,8 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnDeal'"  class="tableWrap">
-              <span style="color: red; font-size:12px">拒绝</span>
-              <span style="color: green; font-size:12px">接受</span>
+              <span  @click="onClickCancle" style="color: red; font-size:12px">拒绝</span>
+              <span @click="handleAccept(scope.row.id)" style="color: green; font-size:12px">接受</span>
             </div>
             <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
@@ -98,6 +99,9 @@ export default {
       console.log(~~id);
       this.$router.push({path:'/checkout',query:{orderId:id}})
     },
+    handleAccept(id) {
+      this.$router.push({path:'/AcceptOrder',query:{orderId:id}})
+    },
     handelAllOrder() {
       this.type = 'all',
       getAllOrder().then((res) => {
@@ -111,14 +115,29 @@ export default {
         this.tableData = res.data.data.content
         this.listData = res.data.data
         console.log(this.tableData);
-      })
+      }).catch(() => { 
+        this.tableData = null
+      });
     },
     handelUnDeal() {
       this.type = 'UnDeal'
       getUnDeal().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
-      })
+      }).catch(() => { 
+        this.tableData = null
+      });
+    },
+    onClickCancle() {
+      this.$dialog.confirm({
+        title: '确定拒绝该订单吗'
+      }).then(() => {
+        // on confirm
+        console.log('u comfirmed');
+      }).catch(() => {
+        // on cancel
+        console.log('u cancled');
+      });
     }
   },
   created () {

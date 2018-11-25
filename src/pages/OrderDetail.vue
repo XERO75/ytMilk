@@ -26,30 +26,7 @@
               </router-link>
             </div>
             <div class="orderDetail-list__promot">
-              <p><span class="fontBold">消费:&nbsp;&nbsp;</span>{{orderPromot}}</p>
-            </div>
-            <div class="orderDetail-list__cusAmount">
-              <p><span class="fontBold">客户应收金额:&nbsp;&nbsp;</span>{{cusAmount}}</p>
-            </div>
-            <div class="orderDetail-list__fees">
-              <p><span class="fontBold">手续费:&nbsp;&nbsp;</span>{{fees}}</p>
-            </div>
-            <div class="orderDetail-list__paidAmount">
-              <p><span class="fontBold">实收金额:&nbsp;&nbsp;</span>{{paidAmount}}</p>
-              <span style="align-self:center">2018-02-25</span>
-            </div>
-          </div>
-          <div class="orderDetail-list__detail">
-            <div class="orderDetail-list__total">
-              <p><span class="fontBold">订单总数:&nbsp;&nbsp;</span>{{orderTotal}}</p>
-              <span style="align-self:center; color:#54A93E">{{orderStatus}}</span>
-            </div>
-            <div class="orderDetail-list__sum">
-              <p><span class="fontBold">订单总额:&nbsp;&nbsp;</span>{{orderSum}}</p>
-              <a href="#" style="align-self:center">{{orderDetail}}</a>
-            </div>
-            <div class="orderDetail-list__promot">
-              <p><span class="fontBold">消费:&nbsp;&nbsp;</span>{{orderPromot}}</p>
+              <p><span class="fontBold">优惠金额:&nbsp;&nbsp;</span>{{orderPromot}}</p>
             </div>
             <div class="orderDetail-list__cusAmount">
               <p><span class="fontBold">客户应收金额:&nbsp;&nbsp;</span>{{cusAmount}}</p>
