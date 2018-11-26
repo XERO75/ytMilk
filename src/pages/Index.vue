@@ -46,7 +46,6 @@ import { Footer, Item, FooterItem } from '../components/footer'
 import DeliveryOrder from './DeliveryOrder.vue'
 import Search from './Search'
 import OrderDetail from './OrderDetail'
-import About from './About'
 import Courier from './Courier'
 export default {
   components: {
@@ -57,7 +56,6 @@ export default {
     'deliever-order': DeliveryOrder,
     'order-detail': OrderDetail,
     'search': Search,
-    'about': About,
     'courier': Courier
   },
   data () {

@@ -3,7 +3,8 @@ import axios from "../api/request.js";
 const baseUrl = process.env.BASE_API;
 
 const urls = {
-  details: '/app/order/delivering_details.htm'
+  details: '/app/order/delivering_details.htm',
+  changeCourier: '/app/order/change_express.htm'
 }
 
 // 合并请求链接
@@ -21,3 +22,12 @@ export const getDetails = (id) => {
     params: axios.getData({ orderId : id })
   })
 }
+
+// 跟换配送员
+export const changeCourier = (param) => {
+  return axios({
+    url: apis.changeCourier,
+    method: 'post',
+    data: axios.postData(param)
+  });
+};

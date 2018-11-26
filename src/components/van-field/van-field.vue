@@ -7,7 +7,6 @@
         <el-option v-for="item in courierLists"
                    :key="item.id"
                    :value="item.id"
-                   :phone="item.phone"
                    >
           <span>{{ item.name }} - {{ item.phone }}</span>
         </el-option>

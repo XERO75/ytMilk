@@ -1,17 +1,27 @@
 <template>
   <div class="page">
-    <page-content >
-      <div v-if="courierData.name != null" class="order-courierWrap">
+    <page-content>
+      <div v-if="courierData.name != null"
+           class="order-courierWrap">
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
           <div class="order-courier__detail">
-            <img :src="courierData.image" class="order-courier__avatar">
+            <img :src="courierData.image"
+                 class="order-courier__avatar">
             <div class="order-courier__desc">
               {{courierData.name}}<br>
               <span style="color:#54A93E">{{courierData.phone}}</span>
             </div>
           </div>
-          <m-button size="small" @click.native="$refs.p.open()">更换配送员</m-button>
+          <van-button @click="show = true"
+                      type="primary"
+                      size="small"
+                      square>更换配送员</van-button>
+          <van-dialog v-model="show"
+                      show-cancel-button
+                      :before-close="beforeClose">
+            <van-field v-on:send-courier="getExpressId" />
+          </van-dialog>
         </div>
       </div>
       <div class="order-clientWrap">
@@ -36,9 +46,13 @@
       <div class="order-productWrap">
         <span style="font-weight:bold; font-size:.8rem">产品</span>
         <div class="order-product__detailWrap">
-          <div style="height:3rem;" v-for="item in itemLists" :key="item.keys">
+          <div style="height:3rem;"
+               v-for="item in itemLists"
+               :key="item.keys">
             <div class="order-product__detail fl">
-              <img class="order-product__img" :src="item.image" alt="">
+              <img class="order-product__img"
+                   :src="item.image"
+                   alt="">
               <span class="order-product__desc">{{item.productName}}</span>
             </div>
             <span class="fr">共{{item.totalCount}}/剩{{item.remain}}/日送{{item.number}}</span>
@@ -65,16 +79,6 @@
         </div>
       </div>
     </page-content>
-    <pop-window ref="p">
-      <h2 class="pop-change">更换配送员</h2>
-      <div class="content-padded">
-        <p style="font-size:.8rem">请选择配送员接受该订单</p>
-        <select class="selectbox" v-model="selected">
-          <option v-for="item in couriers" :key="item.value" >{{item.text}}</option>
-        </select>
-        <m-button @click.native="$refs.p.close()">确定并更换</m-button>
-      </div>
-    </pop-window>
   </div>
 </template>
 
@@ -83,7 +87,9 @@ import Content from '../components/content'
 import { Button } from '../components/buttons'
 import PopWindow from '../components/popwindow'
 import { handleLogin } from "@/api/login.js";
-import { getDetails } from '@/api/checkout.js'
+import { getDetails, changeCourier } from '@/api/checkout.js'
+import VanField from '../components/van-field/van-field'
+
 
 
 export default {
@@ -91,25 +97,40 @@ export default {
     'page-content': Content,
     'm-button': Button,
     PopWindow,
+    'van-field': VanField
   },
-  data() {
+  data () {
     return {
-      selected:1,
-      couriers:[
-        { text: 'lily-12580', value: 1 },
-        { text: 'alice-10096', value: 2 },
-        { text: 'jack-22234', value: 3 },
-      ],
+      show: false,
       courierData: {},
       clientData: {},
-      itemLists: {}
+      itemLists: {},
+      expressServerId: null
     }
   },
-  mounted() {
+  methods: {
+    getExpressId (id) {
+      this.expressServerId = id
+    },
+    beforeClose (action, done) {
+      if (action === 'confirm') {
+        let formdata = new FormData()
+        formdata.append('orderId', this.$route.query.orderId)
+        formdata.append('expressServerId', this.expressServerId)
+        changeCourier(formdata).then(res => {
+          setTimeout(done, 100)
+          console.log('done');
+        }).then(this.$router.go(0))
+      } else {
+        console.log('cancle')
+        done()
+      }
+    }
+  },
+  mounted () {
     handleLogin().then((res) => {
       getDetails(this.$route.query.orderId).then((res) => {
         this.courierData = res.data.data
-        console.log(this.courierData);
         this.clientData = res.data.data.order
         this.itemLists = res.data.data.orderItemList
       })
@@ -118,99 +139,99 @@ export default {
 }
 </script>
 <style lang="less">
-  .boldFont {
-    font-weight: bold;
-  }
-  .order-courierWrap {
-    margin: .8rem .6rem;
-  }
-  .order-courier {
-    margin-top: .5rem;
-  }
-  .order-courier__detail {
-    display: flex;
-  }
-  .order-courier__avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: rgb(199, 199, 199);
-    border-radius: 50%;
-  }
-  .order-courier__desc {
-    margin-left: .5rem;
-  }
-  .order-courier {
-    display: flex;
-    justify-content: space-between;
-  }
-  .order-clientWrap{
-    display: flex;
-    flex-direction: column;
-    margin: .8rem .6rem;
-    font-size: .75rem;
-  }
-  .order-client__name,
-  .order-client__tel,
-  .order-client__address,
-  .order-client__status {
-    display: flex;
-    justify-content: space-between;
-    padding: .4rem;
-    border: 1px solid rgb(226, 226, 226); 
-    border-bottom: none;   
-  } 
-  .order-client__status{
-    border-bottom: 1px solid rgb(226, 226, 226); 
-  }
-  .order-productWrap {
-    display: flex;
-    flex-direction: column;
-    margin: .8rem .6rem;
-    font-size: .75rem;
-  }
-  .order-product__detail {
-    display: flex;
-    justify-content: space-between;
-  }
-  .order-product__img {
-    width: auto;
-    height: 2rem;
-    // min-width: 20px;
-  }
-  .order-product__desc {
-    // display: inline-block;
-    margin-left: .2rem;
-    overflow: hidden;
-    width: 7rem;
-  }
-  .order-product__detailWrap,
-  .order-product__startData,
-  .order-product__deliveryCycle,
-  .order-product__deliveryTime {
-    display: flex;
-    justify-content: space-between;
-    padding: .4rem;
-    border: 1px solid rgb(226, 226, 226); 
-    border-bottom: none;   
-  }
-  .order-product__detailWrap {
-    // height: 4rem;
-    display: flex;
-    flex-direction: column;
-    margin-top: .5rem;
-  }
-  
-  .order-product__deliveryTime {
-    border-bottom: 1px solid rgb(226, 226, 226); 
-  }
-  .pop-change {
-    text-align: center;
-    font-size: .8rem;
-  }
-  .selectbox {
-    height: 2rem;
-    margin-bottom: 1rem;
-    font-size: .8rem;
-    padding: 0 .5rem;
-  }
+.boldFont {
+  font-weight: bold;
+}
+.order-courierWrap {
+  margin: 0.8rem 0.6rem;
+}
+.order-courier {
+  margin-top: 0.5rem;
+}
+.order-courier__detail {
+  display: flex;
+}
+.order-courier__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgb(199, 199, 199);
+  border-radius: 50%;
+}
+.order-courier__desc {
+  margin-left: 0.5rem;
+}
+.order-courier {
+  display: flex;
+  justify-content: space-between;
+}
+.order-clientWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0.8rem 0.6rem;
+  font-size: 0.75rem;
+}
+.order-client__name,
+.order-client__tel,
+.order-client__address,
+.order-client__status {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem;
+  border: 1px solid rgb(226, 226, 226);
+  border-bottom: none;
+}
+.order-client__status {
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.order-productWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0.8rem 0.6rem;
+  font-size: 0.75rem;
+}
+.order-product__detail {
+  display: flex;
+  justify-content: space-between;
+}
+.order-product__img {
+  width: auto;
+  height: 2rem;
+  // min-width: 20px;
+}
+.order-product__desc {
+  // display: inline-block;
+  margin-left: 0.2rem;
+  overflow: hidden;
+  width: 7rem;
+}
+.order-product__detailWrap,
+.order-product__startData,
+.order-product__deliveryCycle,
+.order-product__deliveryTime {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem;
+  border: 1px solid rgb(226, 226, 226);
+  border-bottom: none;
+}
+.order-product__detailWrap {
+  // height: 4rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.order-product__deliveryTime {
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.pop-change {
+  text-align: center;
+  font-size: 0.8rem;
+}
+.selectbox {
+  height: 2rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  padding: 0 0.5rem;
+}
 </style>

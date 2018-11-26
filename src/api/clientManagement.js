@@ -5,7 +5,8 @@ const baseUrl = process.env.BASE_API;
 const urls = {
   table: '/app/service_department/list.htm',
   comments: '/app/service_department/comment_list.htm',
-  details: ' /app/order/delivering_details.htm',
+  details: '/app/order/delivering_details.htm',
+  reject: '/app/order/reject.htm'
 }
 
 // 合并请求链接
@@ -57,4 +58,12 @@ export const getUnDeal = () => {
   })
 }
 
+// 拒绝订单
+export const rejectOrder = (param) => {
+  return axios({
+    url: apis.reject,
+    method: 'post',
+    data: axios.postData(param)
+  });
+};
 

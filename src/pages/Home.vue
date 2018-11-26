@@ -51,7 +51,7 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnDeal'"  class="tableWrap">
-              <span  @click="onClickCancle" style="color: red; font-size:12px">拒绝</span>
+              <span  @click="handleCancle(scope.row.id)" style="color: red; font-size:12px">拒绝</span>
               <span @click="handleAccept(scope.row.id)" style="color: green; font-size:12px">接受</span>
             </div>
             <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
@@ -70,7 +70,7 @@ import Vue from 'vue'
 import Grid from '../components/grid'
 import Content from '../components/content'
 import { handleLogin } from "@/api/login.js";
-import { getComments, getAllOrder, getDealing, getUnDeal, getDetails } from "../api/clientManagement.js";
+import { getComments, getAllOrder, getDealing, getUnDeal, getDetails, rejectOrder } from "../api/clientManagement.js";
 import Dialog from '../../node_modules/vant/lib/dialog';
 import '../../node_modules/vant/lib/dialog/style';
 
@@ -126,16 +126,20 @@ export default {
         this.listData = res.data.data
       }).catch(() => { 
         this.tableData = null
+        this.listData.total = 0 
+        // this.listData = null
       });
     },
-    onClickCancle() {
+    handleCancle(id) {
       this.$dialog.confirm({
         title: '确定拒绝该订单吗'
       }).then(() => {
-        // on confirm
-        console.log('u comfirmed');
+        let formdata = new FormData()
+        formdata.append('orderId', id)
+        rejectOrder(formdata).then(res => {
+          console.log('order cancled');
+        }).then(this.$router.go(0))
       }).catch(() => {
-        // on cancel
         console.log('u cancled');
       });
     }
