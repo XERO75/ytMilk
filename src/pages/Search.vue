@@ -1,106 +1,139 @@
 <template>
   <div class="search-page">
     <page-content>
-      <searchbar @input="input"></searchbar>
+      <van-search placeholder="请输入搜索关键词" v-model="searchKey" @input="search"/>
       <div class="search-grids">
-        <v-table 
-          :width="750" 
-          :row-height='55' 
-          title-bg-color='#F2F2F2' 
-          is-vertical-resize 
-          style="width:100%" 
-          is-horizontal-resize 
-          :vertical-resize-offset='5' 
-          :columns="columns" 
-          :table-data="tableData" 
-          row-hover-color="#eee" 
-          row-click-color="#edf7ff"
-        ></v-table>
+        <el-table :data="tableData"
+                border
+                :header-cell-style='styleObj'
+                style="width: 100%">
+        <el-table-column label="用户地址">
+          <template slot-scope="scope">
+            <span>{{scope.row.memberDistrict}}{{scope.row.memberAddress}}{{scope.row.memberRoom}}</span>
+          </template>               
+        </el-table-column>
+        <el-table-column label="状态"
+                         width="90"
+                         align="center">
+          <template slot-scope="scope">
+            <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:12px" >未处理</span>
+            <span v-if="scope.row.orderStatus == 'Refuse'" style="color: red; font-size:12px" >已拒绝</span>
+            <span v-if="scope.row.orderStatus == 'OnDelivery'" style="color: green; font-size:12px">已派单</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作"
+                         width="90"
+                         align="center">
+          <template slot-scope="scope">
+            <div v-if="scope.row.orderStatus == 'UnDeal'"  class="tableWrap">
+              <span  @click="handleCancle(scope.row.id)" style="color: red; font-size:12px">拒绝</span>
+              <span @click="handleAccept(scope.row.id)" style="color: green; font-size:12px">接受</span>
+            </div>
+            <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
+          </template>
+        </el-table-column>
+      </el-table>
       </div>
-    <div class="search-load">
-      <p>加载更多</p>
-    </div>
     </page-content>
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import Content from '../components/content'
-import Searchbar from '../components/searchbar'
+import Search from '../../node_modules/vant/lib/search';
+import '../../node_modules/vant/lib/search/style';
+import { handleLogin } from "@/api/login.js";
+import { getAllOrder, rejectOrder } from '@/api/search.js'
+import _ from 'lodash'; //引入lodash
+import axios from 'axios' //引入axios
 
+//请求canceltoken列表
+let sources = [];
+Vue.use(Search);
 export default {
   components: {
-    'page-content': Content,
-    Searchbar
+    'page-content': Content
   },
   data () {
     return {
-      searchInput: '',
-      tableData: [{
-            "address": "上海市黄浦区金陵东路",
-            "status": "未处理",
-            "action": "查看",
-          },
-          {
-            "address": "上海市黄浦区金陵东路",
-            "status": "未处理",
-            "action": "查看",
-          },
-          {
-            "address": "上海市黄浦区金陵东路",
-            "status": "未处理",
-            "action": "查看",
-          },
-          {
-            "address": "上海市黄浦区金陵东路",
-            "status": "未处理",
-            "action": "查看",
-          },
-          {
-            "address": "上海市黄浦区金陵东路",
-            "status": "未处理",
-            "action": "查看",
-          },
-        ],
-        columns: [{
-            field: 'address',
-            title: '用户地址',
-            width: 160,
-            titleAlign: 'center',
-            columnAlign: 'left',
-            isResize: true
-          },
-          {
-            field: 'status',
-            title: '状态',
-            width: 80,
-            titleAlign: 'center',
-            columnAlign: 'center',
-            isResize: true
-          },
-          // {
-          //   field: 'action',
-          //   title: '操作',
-          //   width: 100,
-          //   titleAlign: 'center',
-          //   columnAlign: 'center',
-          //   isResize: true
-          // },
-          {
-            field: 'custome-adv',
-            title: '操作',
-            width: 100,
-            titleAlign: 'center',
-            columnAlign: 'center',
-            componentName: 'tb-operation',
-            isResize: true
-          }
-        ]
+      styleObj: {'background': '#F2F2F2'},
+      tableData: [],
+      listData: {},
+      searchKey: ''
     }
   },
   methods: {
-    input (v) {
-      console.log(v)
+    //准备搜索
+    search: _.debounce(
+      function () {
+        let that = this;
+        _.remove(sources, function (n) {
+          return n.source === null;
+        });
+        sources.forEach(function (item) {
+          if (item !== null && item.source !== null && item.status === 1) {
+            item.status = 0;
+            item.source.cancel('取消上一个')
+          }
+        });
+        var sc = {
+          source: axios.CancelToken.source(),
+          status: 1 //状态1：请求中，0:取消中
+        };
+        sources.push(sc);
+        axios.get('api/app/service_department/search.htm', {
+          cancelToken: sc.source.token,
+          params: {
+            keyword: this.searchKey
+          }
+        }).then(function (res) {
+          //请求成功
+          sc.source = null; //置空请求canceltoken
+          console.log('搜索成功');
+          console.log('返回的值是',res.data);
+          if( res.data.data != null ){
+            that.tableData = res.data.data.content
+            that.listData = res.data.data
+            console.log('成功赋值啦');
+          } else {
+            that.tableData = null
+            console.log('无数据');
+          }
+        }).catch(() => { 
+          console.log('请求失败');
+          sc.source = null; //置空请求canceltoken
+        })
+      },
+      800 //空闲时间间隔设置500ms
+    ),
+    handleCancle(id) {
+      this.$dialog.confirm({
+        title: '确定拒绝该订单吗'
+      }).then(() => {
+        let formdata = new FormData()
+        formdata.append('orderId', id)
+        rejectOrder(formdata).then(res => {
+          console.log('order cancled');
+        }).then(this.$router.go(0))
+      }).catch(() => {
+        console.log('u cancled');
+      });
+    },
+    handleAccept(id) {
+      this.$router.push({path:'/AcceptOrder',query:{orderId:id}})
+    },
+    handleCheck(id) {
+      console.log(~~id);
+      this.$router.push({path:'/checkout',query:{orderId:id}})
     }
+  },
+  mounted () {
+    handleLogin().then((res) => {
+      getAllOrder().then((res) => {
+        this.tableData = res.data.data.content
+        this.listData = res.data.data
+      });
+    })
   }
 }
 
@@ -110,8 +143,10 @@ export default {
     font-size: .75rem;
   }
   .search-grids {
-    margin: .425rem;
-    font-size: .75rem;
+    margin:.6rem .6rem 4rem; 
+    font-size: 12px;
+    // margin: .425rem;
+    // font-size: .75rem;
   }
   .search-load{
     text-align: center;

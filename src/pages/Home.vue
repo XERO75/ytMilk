@@ -28,13 +28,15 @@
       <div :class="{'home-order__active': type == 'UnDeal'}" @click="handelUnDeal()" class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table"
-         style="margin:.6rem; font-size: 12px;">
+         style="margin:.6rem .6rem 4rem; font-size: 12px;">
       <el-table :data="tableData"
                 border
                 :header-cell-style='styleObj'
                 style="width: 100%">
-        <el-table-column prop="memberAddress"
-                         label="用户地址">
+        <el-table-column label="用户地址">
+          <template slot-scope="scope">
+            <span>{{scope.row.memberDistrict}}{{scope.row.memberAddress}}{{scope.row.memberRoom}}</span>
+          </template>               
         </el-table-column>
         <el-table-column label="状态"
                          width="80"
