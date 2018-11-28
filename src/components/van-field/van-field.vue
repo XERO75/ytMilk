@@ -5,8 +5,9 @@
       <el-select @change="handleChange" v-model="id"
                  placeholder="请选择">
         <el-option v-for="item in courierLists"
-                   :key="item.id"
+                   :key="item.value"
                    :value="item.id"
+                   :label="item.name"
                    >
           <span>{{ item.name }} - {{ item.phone }}</span>
         </el-option>

@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <sign-up v-if="isSign == true">sss</sign-up>
     <login v-if="isLogin == false"
            class="loginPage"></login>
     <div v-if="isLogin == true"
@@ -40,6 +41,7 @@
 
 <script>
 import login from './login.vue'
+import signUp from './signUp.vue'
 import Home from './Home'
 import Page from '../components/page'
 import { Footer, Item, FooterItem } from '../components/footer'
@@ -50,6 +52,7 @@ import Courier from './Courier'
 export default {
   components: {
     login,
+    'sign-up':signUp,
     'home': Home,
     'page-footer': Footer,
     'footer-item': Item,
@@ -61,7 +64,8 @@ export default {
   data () {
     return {
       // isLogin: this.$store.state.isLogin,
-      isLogin: true,
+      isSign: true,
+      // isLogin: false,
       currentView: 'home'
     }
   },

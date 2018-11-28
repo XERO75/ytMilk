@@ -34,6 +34,7 @@
         </el-table-column>
       </el-table>
       </div>
+      <p class="search-button"><a  @click="next" >GO NEXT</a></p>
     </page-content>
   </div>
 </template>
@@ -42,14 +43,17 @@ import Vue from 'vue'
 import Content from '../components/content'
 import Search from '../../node_modules/vant/lib/search';
 import '../../node_modules/vant/lib/search/style';
+import Toast from '../../node_modules/vant/lib/toast';
+import '../../node_modules/vant/lib/toast/style';
 import { handleLogin } from "@/api/login.js";
-import { getAllOrder, rejectOrder } from '@/api/search.js'
+import { getAllOrder, searchOrder, rejectOrder } from '@/api/search.js'
 import _ from 'lodash'; //引入lodash
 import axios from 'axios' //引入axios
 
 //请求canceltoken列表
 let sources = [];
 Vue.use(Search);
+Vue.use(Toast)
 export default {
   components: {
     'page-content': Content
@@ -59,7 +63,8 @@ export default {
       styleObj: {'background': '#F2F2F2'},
       tableData: [],
       listData: {},
-      searchKey: ''
+      searchKey: '',
+      pageNumber: 1
     }
   },
   methods: {
@@ -84,7 +89,8 @@ export default {
         axios.get('api/app/service_department/search.htm', {
           cancelToken: sc.source.token,
           params: {
-            keyword: this.searchKey
+            keyword: this.searchKey,
+            WX_TYPE: 'OfficialAccount'
           }
         }).then(function (res) {
           //请求成功
@@ -104,7 +110,7 @@ export default {
           sc.source = null; //置空请求canceltoken
         })
       },
-      800 //空闲时间间隔设置500ms
+      500 //空闲时间间隔设置500ms
     ),
     handleCancle(id) {
       this.$dialog.confirm({
@@ -125,6 +131,31 @@ export default {
     handleCheck(id) {
       console.log(~~id);
       this.$router.push({path:'/checkout',query:{orderId:id}})
+    },
+    next() {
+      if (this.searchKey == '') {
+        this.pageNumber ++
+        searchOrder(this.pageNumber).then(res => {
+          if (res.data.data != null) {
+            this.tableData = this.tableData.concat(res.data.data.content)
+            Toast.success('加载成功');
+          } else {
+            console.log('无数据');
+            Toast.fail('暂无数据');
+          }
+        })
+      } else {
+        this.pageNumber ++
+        searchOrder(this.pageNumber, this.searchKey).then(res => {
+          console.log(res);
+          if (res.data.data != null) {
+            this.tableData = this.tableData.concat(res.data.data.content)
+          } else {
+            console.log('无数据');
+            Toast.fail('暂无数据');
+          }
+        })
+      }
     }
   },
   mounted () {
@@ -132,6 +163,8 @@ export default {
       getAllOrder().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
+        console.log(res.data);
+        
       });
     })
   }
@@ -143,12 +176,20 @@ export default {
     font-size: .75rem;
   }
   .search-grids {
-    margin:.6rem .6rem 4rem; 
+    // margin:.6rem .6rem 4rem; 
     font-size: 12px;
-    // margin: .425rem;
+    margin: .425rem;
     // font-size: .75rem;
   }
   .search-load{
     text-align: center;
+  }
+  .search-button {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    a {
+      text-decoration:none;
+      color:#333; 
+    }
   }
 </style>

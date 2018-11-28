@@ -24,11 +24,11 @@ export const getAllOrder = () => {
 }
 
 // 搜索订单 
-export const searchOrder = () => {
+export const searchOrder = (pageNumber, searchKey) => {
   return axios({
     url: apis.order,
     method: 'get',
-    params: axios.getData({})
+    params: axios.getData({ pageNumber: pageNumber, keyword: searchKey })
   })
 }
 

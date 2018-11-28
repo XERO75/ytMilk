@@ -102,10 +102,9 @@ export default {
         formdata.append('expressServerId', this.expressServerId)
         acceptOrder(formdata).then(res => {
           setTimeout(done, 100)
-          console.log('haole');
         })
+        this.$router.push({path:'/checkout',query:{orderId:this.$route.query.orderId}})
       } else {
-        console.log('cancle')
         done()
       }
     }
