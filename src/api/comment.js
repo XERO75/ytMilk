@@ -4,8 +4,7 @@ const baseUrl = process.env.BASE_API;
 
 const urls = {
   commetns: '/app/service_department/comment_list.htm',
-  couriers: '/app/express_server/department_servers.htm'
-
+  couriers: '/app/service_department/department_servers.htm'
 }
 
 // 合并请求链接

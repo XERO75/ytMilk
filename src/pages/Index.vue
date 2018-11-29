@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <sign-up v-if="isSign == true">sss</sign-up>
+    <!-- <sign-up v-if="isSign == true">sss</sign-up> -->
+    <!-- <service-signup v-if="isSign == true"></service-signup> -->
     <login v-if="isLogin == false"
            class="loginPage"></login>
     <div v-if="isLogin == true"
@@ -41,6 +42,7 @@
 
 <script>
 import login from './login.vue'
+import serviceSignUp from './serviceSignUp.vue'
 import signUp from './signUp.vue'
 import Home from './Home'
 import Page from '../components/page'
@@ -53,6 +55,7 @@ export default {
   components: {
     login,
     'sign-up':signUp,
+    'service-signup':serviceSignUp,
     'home': Home,
     'page-footer': Footer,
     'footer-item': Item,
@@ -64,8 +67,9 @@ export default {
   data () {
     return {
       // isLogin: this.$store.state.isLogin,
-      isSign: true,
+      // isSign: true,
       // isLogin: false,
+      isLogin: true,
       currentView: 'home'
     }
   },

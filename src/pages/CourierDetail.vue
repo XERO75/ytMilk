@@ -1,17 +1,14 @@
 <template>
   <div class="page">
-    <page-header>
-      <header-link :left="true" :edge="true" v-back-link><icon icon="back"></icon>Back</header-link>
-    </page-header>
     <page-content >
       <div class="order-courierWrap">
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
           <div class="order-courier__detail">
-            <div class="order-courier__avatar"></div>
+            <img :src="courierData.image" class="order-courier__avatar">
             <div class="order-courier__desc">
-              {{name}}<br>
-              <span style="color:#54A93E">{{tel}}</span>
+              {{courierData.name}}<br>
+              <span style="color:#54A93E">{{courierData.phone}}</span>
             </div>
           </div>
           <router-link :to="{path:'courierEdit'}">
@@ -19,14 +16,14 @@
           </router-link>
         </div>
       </div>
-      <div class="courier-infoWrap">
+      <div class="courier-infoWrapper">
         <div class="courier-info__num">
           <p>工号：</p>
-          <span>{{num}}</span>
+          <span>{{courierData.code}}</span>
         </div>
         <div class="courier-info__status">
           <p>状态：</p>
-          <span>{{status}}</span>
+          <span>{{courierData.bindStatus}}</span>
           <div class="courier-info__bage">解绑</div>
         </div>
         <div class="courier-info__code">
@@ -41,16 +38,16 @@
 </template>
 
 <script>
-import { Header, HeaderLink,SecondHeader} from '../components/header'
 import { Footer } from '../components/footer'
 import Content from '../components/content'
 import Icon from '../components/icons'
 import { Button } from '../components/buttons'
+import { getCourierDetail } from '../api/courier.js'
+
 
 
 export default {
   components: {
-    'page-header': Header, HeaderLink,
     'page-content': Content,
     Icon,
     'm-button': Button,
@@ -60,9 +57,16 @@ export default {
       name:"jack",
       tel:11244444444,
       num:'007',
-      status:"已绑定"
+      status:"已绑定",
+      courierData:{}
     }
-  }
+  },
+  mounted() {
+    getCourierDetail(this.$route.query.expressServerId).then(res => {
+      console.log(res.data);
+      this.courierData = res.data.data
+    })
+  },
 }
 </script>
 <style lang="less">
@@ -89,7 +93,7 @@ export default {
   .order-courier__desc {
     margin-left: .5rem;
   }
-  .courier-infoWrap {
+  .courier-infoWrapper {
     margin: 0 .8rem;
     display: flex;
     flex-direction: column;

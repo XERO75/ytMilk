@@ -34,8 +34,13 @@
           </router-link>
         </div>
         <div class="courier-infoWrap">
-          <div @click="handleGetDetail(item.id)" v-for="item in couriers" :key="item.index" class="courier-info">
-            <p>{{item.name}} — {{item.phone}}</p>
+          <router-link class="courier-info"
+                       :to="{path:'courierDetail'}">
+            <p>{{courier.name}} - {{courier.tel}}</p>
+            <i class="iconfont icon-more"></i>
+          </router-link>
+          <div class="courier-info">
+            <p>{{courier.name}} - {{courier.tel}}</p>
             <i class="iconfont icon-more"></i>
           </div>
         </div>
@@ -80,7 +85,13 @@
                    row-click-color="#edf7ff"></v-table>
         </div>
       </div>
+
     </page-content>
+    <popup :show-title-bar="false"
+           ref="c2">
+      <calendar :date="date2"
+                @change="(d) => {(date2 = d) && $refs.c2.close()}"></calendar>
+    </popup>
   </div>
 
 </template>
@@ -94,7 +105,6 @@ import {
   Form,
   FormItem
 } from '../components/form'
-import { getAllCouriers, getCourierDetail } from '../api/courier.js'
 
 export default {
   components: {
@@ -107,37 +117,65 @@ export default {
   data () {
     return {
       selected: 1,
-      type: 1,
       couriers: [{
         text: 'lily-12580',
         value: 1
-      }],
-      couriers: [],
+      },
+      {
+        text: 'alice-10096',
+        value: 2
+      },
+      {
+        text: 'jack-22234',
+        value: 3
+      },
+      ],
+      type: 1,
+      // couriers: [],
+      courier: {
+        name: "荷里活",
+        tel: 13222222222
+      },
       date2: '2012-12-12',
-      tableData: []
+      tableData: [{
+        "product": "谷元黑米牛奶饮品236ml",
+        "number": "1",
+      },
+      {
+        "address": "谷元黑米牛奶饮品236ml",
+        "number": "2",
+      }
+      ],
+      columns: [{
+        field: 'product',
+        title: '产品',
+        width: 160,
+        titleAlign: 'center',
+        columnAlign: 'left',
+        isResize: true
+      },
+      {
+        field: 'number',
+        title: '数量',
+        width: 80,
+        titleAlign: 'center',
+        columnAlign: 'center',
+        isResize: true
+      }
+      ]
     }
   },
   methods: {
+    mounted () {
+      this.courier = courier
+    },
     getList () {
       this.type = 1
     },
     getCount () {
       this.type = 2
-    },
-    handleGetDetail(id) {
-      this.$router.push({path:'/CourierDetail',query:{expressServerId:id}})
-      // getCourierDetail(id).then(res => {
-      //   console.log('courier',res);
-      // })
     }
-  },
-  mounted() {
-    getAllCouriers().then(res => {
-      console.log(res.data);
-      this.couriers = res.data.data.serverList
-      console.log(this.couriers);
-    })
-  },
+  }
 }
 </script>
 
@@ -223,11 +261,10 @@ export default {
 
 .courier-infoWrap {
   color: gray;
-  font-size: 14px;
 }
 
 .courier-infoWrap :nth-child(1) {
-  // border-bottom: none;
+  border-bottom: none;
   // border-bottom: 1px solid gray;
 }
 
