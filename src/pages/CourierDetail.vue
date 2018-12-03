@@ -11,9 +11,9 @@
               <span style="color:#54A93E">{{courierData.phone}}</span>
             </div>
           </div>
-          <router-link :to="{path:'courierEdit'}">
-            <m-button size="small">编辑</m-button>
-          </router-link>
+          <!-- <router-link :to="{path:'courierEdit'}"> -->
+            <m-button @click.native="handleEdit" size="small">编辑</m-button>
+          <!-- </router-link> -->
         </div>
       </div>
       <div class="courier-infoWrapper">
@@ -24,12 +24,13 @@
         <div class="courier-info__status">
           <p>状态：</p>
           <span>{{courierData.bindStatus}}</span>
-          <div class="courier-info__bage">解绑</div>
+          <div v-if="courierData.bindStatus === '已绑定'" @click="handleUnbind" class="courier-info__bage">解绑</div>
         </div>
         <div class="courier-info__code">
-          <img src="../assets/images/courier/u1118.png" alt="">
+          <!-- <img src="../assets/images/courier/u1118.png" alt=""> -->
+          <qrcode :value="courierData.QRURL" :options="{ size: 130 }"></qrcode>
         </div>
-        <div class="courier-info__del">
+        <div @click="handleDelete" class="courier-info__del">
           删除配送员
         </div>
       </div>
@@ -42,10 +43,14 @@ import { Footer } from '../components/footer'
 import Content from '../components/content'
 import Icon from '../components/icons'
 import { Button } from '../components/buttons'
-import { getCourierDetail } from '../api/courier.js'
+import { getCourierDetail, deleteCourier, unbindCourier } from '../api/courier.js'
+import Vue from 'vue';
+import VueQrcode from '@xkeshi/vue-qrcode';
+import Toast from '../../node_modules/vant/lib/toast';
+import '../../node_modules/vant/lib/toast/style';
 
-
-
+Vue.use(Toast)
+Vue.component(VueQrcode.name, VueQrcode);
 export default {
   components: {
     'page-content': Content,
@@ -54,11 +59,37 @@ export default {
   },
   data() {
     return {
-      name:"jack",
-      tel:11244444444,
-      num:'007',
-      status:"已绑定",
       courierData:{}
+    }
+  },
+  methods: {
+    handleDelete() {
+      this.$dialog.confirm({
+        title: '确定删除吗'
+      }).then(() => {
+        deleteCourier(this.$route.query.expressServerId).then(res => {}).then(res => {
+          Toast.success({message:'删除成功',duration:1000});
+          this.$router.go(-1)
+        })
+      }).catch(() => {
+        console.log('u cancled');
+      });
+      
+    },
+    handleUnbind() {
+      this.$dialog.confirm({
+        title: '确定解绑吗'
+      }).then(() => {
+        unbindCourier(this.$route.query.expressServerId).then(res => {}).then(res => {
+          Toast.success('解绑成功');
+          this.$router.go(0)
+        })
+      }).catch(() => {
+        console.log('u cancled');
+      });
+    },
+    handleEdit() {
+      this.$router.push({path: '/courierEdit', query: {expressServerId: this.$route.query.expressServerId}})
     }
   },
   mounted() {

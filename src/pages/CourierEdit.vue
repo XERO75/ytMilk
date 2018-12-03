@@ -1,44 +1,56 @@
 <template>
-  <div class="page">
-    <page-header>
-      <header-link :left="true" :edge="true" v-back-link><icon icon="back"></icon>Back</header-link>
-    </page-header>
-    <page-content >
+    <page-content>
       <div class="courier-addWrap">
         <div class="courier-add__name">
           <span>姓名</span>
-          <input class="courier-input" type="text" placeholder="jack">
+          <input v-model="name" class="courier-input" type="text" maxlength="10" placeholder="">
         </div>
         <div class="courier-add__tel">
           <span>手机</span>
-          <input class="courier-input" type="number" placeholder="123213213">
+          <input v-model="phone" class="courier-input" type="number" oninput="if(value.length>11)value=value.slice(0,11)" placeholder="">
         </div>
-      <btn style="margin-top:20px" class="btn" size="large">确认修改</btn>
+        <btn @click.native="handleChange" style="margin-top:20px" class="btn" size="large">确认修改</btn>
       </div>
     </page-content>
-  </div>
 </template>
 
 <script>
-import { Header, HeaderLink,SecondHeader} from '../components/header'
-import { Footer } from '../components/footer'
 import Content from '../components/content'
 import Icon from '../components/icons'
 import { Button } from '../components/buttons'
+import { getCourierDetail, changeInfo } from '../api/courier.js'
 
 export default {
   components: {
-    'page-header': Header, HeaderLink,
     'page-content': Content,
     'btn': Button,
     Icon,
     'm-button': Button,
-    'page-footer': Footer,
   },
   data() {
     return {
-     
+     name: this.$route.query.expressServerId,
+     phone: '',
+     id: ''
     }
+  },
+  methods: {
+    handleChange() {
+      let formdata = new FormData()
+      formdata.append('id', this.$route.query.expressServerId)
+      formdata.append('name', this.name)
+      formdata.append('phone',this.phone)
+      changeInfo(formdata).then(res => {
+        console.log('success');
+        this.$router.go(-1)
+      })
+    }
+  },
+  mounted () {
+    getCourierDetail(this.$route.query.expressServerId).then(res => {
+      this.name = res.data.data.name
+      this.phone = res.data.data.phone
+    })
   }
 }
 </script>
@@ -50,16 +62,16 @@ export default {
   }
   .courier-input {
     height: 2.5rem;
-    width: 10rem;
+    width: 12rem;
     border: 1px solid black;
     border-radius: 25px;
-    padding: .7rem .5rem;
+    padding: .7rem 1rem;
   }
   .courier-add__name {
     margin: 1rem;
   }
   .btn {
-    width: 12rem;
+    width: 14rem;
     // margin-top: 50px;
   }
 </style>

@@ -1,4 +1,5 @@
 <template>
+<div class="page">
   <div class="page">
     <page-content>
       <div class="courier-header">
@@ -18,10 +19,8 @@
                   onsubmit="return false;">
               <input class="courier-search__input"
                      type="text"
-                     ref="searchInput"
-                     autofocus
-                     @focus="isFocus = true"
-                     @blur="isFocus = false"
+                     v-model="searchKey"
+                     @input="search"
                      placeholder="搜索关键字和号码">
             </form>
             <i class="courier-subHeader__searchIcon"></i>
@@ -43,78 +42,112 @@
       <div v-if="type === 2"
            class="courier-countWrap">
         <div class="courier-count__header">
-          <select class="courier-count__selectbox"
-                  v-model="selected">
-            <option v-for="item in couriers"
-                    :key="item.value">{{item.text}}</option>
+          <select @change="handleSelect(selected)" class="courier-count__selectbox" v-model="selected.name">
+            <option selected>全部配送员</option>
+            <option v-for="item in couriers" :key="item.value" :value="item.name">{{item.name}}</option>
           </select>
-          <form-item>
-            <div class="item-input">
-              <input type="text"
-                     v-model="date2"
-                     @click="$refs.c2.open()"
-                     readonly>
-            </div>
-          </form-item>
+          <div @click="timePickerOne = true;" class="item-input" style="font-size:12px">
+            {{beginDate}}
+          </div>
+            <van-popup
+              v-model="timePickerOne"
+              position="bottom"
+            >
+            <van-datetime-picker
+              v-model="beginDate"
+              type="date"
+              @cancel="onCancel"
+              @confirm="confirmOne"
+            />
+            </van-popup>
           <span>—</span>
-          <form-item>
-            <div class="item-input">
-              <input type="text"
-                     v-model="date2"
-                     @click="$refs.c2.open()"
-                     readonly>
-            </div>
-          </form-item>
+          <div @click="timePickerTwo = true;" class="item-input" style="font-size:12px">
+            {{endDate}}
+          </div>
+            <van-popup
+              v-model="timePickerTwo"
+              position="bottom"
+            >
+            <van-datetime-picker
+              v-model="endDate"
+              type="date"
+              @cancel="onCancel"
+              @confirm="confirmTwo"
+            />
+            </van-popup>
         </div>
         <div class="courier-count__grids">
-          <v-table :width="750"
-                   :row-height='55'
-                   title-bg-color='#F2F2F2'
-                   is-vertical-resize
-                   style="width:100%"
-                   is-horizontal-resize
-                   :vertical-resize-offset='5'
-                   :columns="columns"
-                   :table-data="tableData"
-                   row-hover-color="#eee"
-                   row-click-color="#edf7ff"></v-table>
+          <el-table
+        :data="tableData"
+        border
+        :header-cell-style='styleObj'
+        style="width: 100%">
+        <el-table-column
+          prop="product"
+          label="产品"
+          align="center">
+          <template slot-scope="scope">
+            <div class="del-productWrap">
+              <img src="../assets/images/u505.png" class="del-product__img">
+              <span>Lorem ipsum dolor sit amet.</span>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="amount"
+          label="数量"
+          align="center"
+          width="100">
+        </el-table-column>
+      </el-table>
         </div>
       </div>
     </page-content>
   </div>
-
+</div>
 </template>
 
 <script>
+import Vue from 'vue'
 import Content from '../components/content'
 import searchbar from '../components/searchbar'
-import Popup from '../components/popup'
 import Calendar from '../components/calendar'
-import {
-  Form,
-  FormItem
-} from '../components/form'
-import { getAllCouriers, getCourierDetail } from '../api/courier.js'
 
+import { getAllCouriers, getCourierDetail, getCount } from '../api/courier.js'
+import _ from 'lodash'; //引入lodash
+import axios from 'axios' //引入axios
+import Popup from '../../node_modules/vant/lib/popup';
+import '../../node_modules/vant/lib/popup/style';
+import DatetimePicker from '../../node_modules/vant/lib/datetime-picker';
+import '../../node_modules/vant/lib/datetime-picker/style';
+
+Vue.use(Popup);
+Vue.use(DatetimePicker);
+//请求canceltoken列表
+let sources = [];
 export default {
   components: {
     'page-content': Content,
     Calendar,
-    'form-list': Form,
-    FormItem,
-    Popup
   },
   data () {
     return {
-      selected: 1,
+      selected: {
+        name:'全部配送员'
+      },
       type: 1,
-      couriers: [{
-        text: 'lily-12580',
-        value: 1
-      }],
+      searchKey: '',
       couriers: [],
-      date2: '2012-12-12',
-      tableData: []
+      date2: '',
+      timePickerOne: false,
+      timePickerTwo: false,
+      beginDate: '',
+      endDate: '',
+      styleObj: {'background': '#F2F2F2'},
+      tableData: [{
+        product: '2016-05-02',
+        amount: '王小虎'
+      }]
     }
   },
   methods: {
@@ -124,18 +157,68 @@ export default {
     getCount () {
       this.type = 2
     },
+    //准备搜索
+    search: _.debounce(
+      function () {
+        let that = this;
+        _.remove(sources, function (n) {
+          return n.source === null;
+        });
+        sources.forEach(function (item) {
+          if (item !== null && item.source !== null && item.status === 1) {
+            item.status = 0;
+            item.source.cancel('取消上一个')
+          }
+        });
+        var sc = {
+          source: axios.CancelToken.source(),
+          status: 1 //状态1：请求中，0:取消中
+        };
+        sources.push(sc);
+        axios.get('api/app/service_department/servers.htm', {
+          cancelToken: sc.source.token,
+          params: {
+            keyword: this.searchKey,
+            WX_TYPE: 'OfficialAccount'
+          }
+        }).then(function (res) {
+          //请求成功
+          sc.source = null; //置空请求canceltoken
+          console.log('搜索成功');
+          that.couriers = res.data.data.serverList
+
+        }).catch((thrown) => { 
+          sc.source = null; //置空请求canceltoken
+        })
+      },
+      500 //空闲时间间隔设置500ms
+    ),
     handleGetDetail(id) {
       this.$router.push({path:'/CourierDetail',query:{expressServerId:id}})
-      // getCourierDetail(id).then(res => {
-      //   console.log('courier',res);
-      // })
+    },
+    handleSelect(selected) {
+    },
+    onCancel() {
+      this.timePickerOne = false
+      this.timePickerTwo = false
+    },
+    confirmOne(picker, value, index) {
+      this.beginDate = picker
+      this.timePickerOne = false
+    },
+    confirmTwo(picker, value, index) {
+      this.endDate = picker
+      this.timePickerTwo= false
+    },
+    onChange(picker, value, index) {
     }
   },
   mounted() {
+    this.beginDate = new Date()
+    this.endDate = new Date()
     getAllCouriers().then(res => {
-      console.log(res.data);
       this.couriers = res.data.data.serverList
-      console.log(this.couriers);
+      // this.selected = this.couriers[0]
     })
   },
 }
@@ -202,12 +285,14 @@ export default {
 }
 
 .courier-subHeader__add {
+  a {
+    color: rgb(101, 101, 101);
+  }
+  color: rgb(101, 101, 101);
   font-size: 0.75rem;
   padding-right: 0.625rem;
-}
-
-.courier-subHeader__add a {
-  color: rgb(101, 101, 101);
+  display: flex;
+  align-items: center;
 }
 
 .courier-subHeader__addIcon {
@@ -238,8 +323,10 @@ export default {
   margin: 0 0.65rem;
   height: 2.3rem;
   border: 1px solid #e0e0e0;
-  // border-bottom: none;
   padding: 0 0.375rem;
+}
+.courier-infoWrap :not(:first-child){
+  border-top: none;
 }
 
 .courier-info__upIcon {
@@ -272,4 +359,12 @@ export default {
   margin: 0 0.4rem;
   font-size: 0.7rem;
 }
+.del-productWrap {
+    display: flex;
+}
+.del-product__img {
+    width: auto;
+    height: 2rem;
+    margin-right: .2rem;
+  }
 </style>

@@ -11,6 +11,8 @@ import CourierDetail from './pages/CourierDetail.vue'
 import CourierAdd from './pages/CourierAdd.vue'
 import CourierEdit from './pages/CourierEdit.vue'
 import LoginError from './pages/LoginError.vue'
+import Bind from './pages/Bind.vue'
+import ServiceBind from './pages/serviceBind.vue'
 
 Vue.use(Router)
 Vue.use(Vum)
@@ -65,6 +67,16 @@ let router = new Router({
       path: '/courierEdit',
       name: 'courierEdit',
       component: CourierEdit
+    },
+    {
+      path: '/bind',
+      name: 'bind',
+      component: Bind
+    },
+    {
+      path: '/serviceBind',
+      name: 'serviceBind',
+      component: ServiceBind
     }
   ]
 })
