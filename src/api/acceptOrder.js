@@ -2,8 +2,9 @@ import axios from "../api/request.js";
 const baseUrl = process.env.BASE_API;
 const urls = {
   details: '/app/order/dealing_details.htm',
-  accept: '/app/order/accept.htm',
-  couriers: '/app/express_server/department_servers.htm'
+  accept: '/app/order/accept.htm?WX_TYPE=OfficialAccount',
+  couriers: '/app/service_department/department_servers.htm'
+  // couriers: '/app/express_server/department_servers.htm'
 }
 
 // 合并请求链接

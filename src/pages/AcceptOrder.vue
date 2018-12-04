@@ -70,9 +70,12 @@ import { getDetails, getCouriers, acceptOrder } from '@/api/acceptOrder.js'
 import Button from '../../node_modules/vant/lib/button';
 import '../../node_modules/vant/lib/button/style';
 import VanField from '../components/van-field/van-field'
+import Toast from '../../node_modules/vant/lib/toast';
+import '../../node_modules/vant/lib/toast/style';
 // import Dialog from '../../node_modules/vant/lib/dialog';
 // import '../../node_modules/vant/lib/dialog/style';
 
+Vue.use(Toast)
 Vue.use(Button);
 export default {
   components: {
@@ -88,7 +91,7 @@ export default {
       orderData: {},
       itemLists: {},
       courierLists: [],
-      expressServerId: null
+      expressServerId: ''
     }
   },
   methods: {
@@ -96,15 +99,16 @@ export default {
       this.expressServerId = id
     },
     beforeClose(action, done) {
-      if (action === 'confirm') {
+      if (action === 'confirm' && this.expressServerId != '') {
         let formdata = new FormData()
         formdata.append('orderId', this.$route.query.orderId)
         formdata.append('expressServerId', this.expressServerId)
         acceptOrder(formdata).then(res => {
-          setTimeout(done, 100)
+          setTimeout(done, 500)
         })
         this.$router.push({path:'/checkout',query:{orderId:this.$route.query.orderId}})
       } else {
+        Toast.fail({message:'请选择配送员',duration:1000});
         done()
       }
     }

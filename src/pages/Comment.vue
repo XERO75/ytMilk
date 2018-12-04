@@ -9,7 +9,7 @@
       <div class="comment-courierList">
         <p>优鲜达人</p>
         <el-select @change="handleChange(name)" v-model="name" size="mini">
-          <el-option v-for="item in courierLists" :key="item.value" :value="item.name" :label="item.name"><span style="font-size:12px">{{item.name}}-{{item.phone}}</span></el-option>
+          <el-option v-for="item in courierLists" :key="item.value" :value="item.name" :label="item.name"><span style="font-size:14px">{{item.name}}-{{item.phone}}</span></el-option>
         </el-select>
         <!-- <el-select @change="handleChange(selected)" v-model="selected" size="mini" placeholder="选择优鲜达人">
           <el-option v-for="item in courierLists" :key="item.value" :value="item.id" :label="item.name"><span style="font-size:12px">{{item.name}}-{{item.phone}}</span></el-option>
@@ -85,7 +85,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid rgb(226, 226, 226);
   padding: 0 0.625rem;
 }
 </style>

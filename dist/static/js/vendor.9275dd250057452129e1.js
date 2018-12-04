@@ -946,6 +946,33 @@ return lt;
 
 /***/ }),
 
+/***/ "/HaV":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("R6lU");
+
+exports.__esModule = true;
+exports.default = deepClone;
+
+var _deepAssign = _interopRequireDefault(__webpack_require__("bhS9"));
+
+function deepClone(obj) {
+  if (Array.isArray(obj)) {
+    return obj.map(function (item) {
+      return deepClone(item);
+    });
+  } else if (typeof obj === 'object') {
+    return (0, _deepAssign.default)({}, obj);
+  }
+
+  return obj;
+}
+
+/***/ }),
+
 /***/ "/Ppt":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22639,6 +22666,14 @@ return el;
 
 })));
 
+
+/***/ }),
+
+/***/ "D0HL":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("XqYu");
+__webpack_require__("0Y+T");
 
 /***/ }),
 
@@ -54509,6 +54544,239 @@ var RE_NARGS = /(%|)\{([0-9a-zA-Z_]+)\}/g;
 
 /***/ }),
 
+/***/ "TMdk":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("R6lU");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _create = _interopRequireDefault(__webpack_require__("ArwO"));
+
+var _PickerColumn = _interopRequireDefault(__webpack_require__("oCfm"));
+
+var _deepClone = _interopRequireDefault(__webpack_require__("/HaV"));
+
+var _default2 = (0, _create.default)({
+  render: function render() {
+    var _vm = this;
+
+    var _h = _vm.$createElement;
+
+    var _c = _vm._self._c || _h;
+
+    return _c('div', {
+      class: _vm.b()
+    }, [_vm.showToolbar ? _c('div', {
+      staticClass: "van-hairline--top-bottom",
+      class: _vm.b('toolbar')
+    }, [_vm._t("default", [_c('div', {
+      class: _vm.b('cancel'),
+      on: {
+        "click": function click($event) {
+          _vm.emit('cancel');
+        }
+      }
+    }, [_vm._v("\n        " + _vm._s(_vm.cancelButtonText || _vm.$t('cancel')) + "\n      ")]), _vm.title ? _c('div', {
+      staticClass: "van-ellipsis",
+      class: _vm.b('title'),
+      domProps: {
+        "textContent": _vm._s(_vm.title)
+      }
+    }) : _vm._e(), _c('div', {
+      class: _vm.b('confirm'),
+      on: {
+        "click": function click($event) {
+          _vm.emit('confirm');
+        }
+      }
+    }, [_vm._v("\n        " + _vm._s(_vm.confirmButtonText || _vm.$t('confirm')) + "\n      ")])])], 2) : _vm._e(), _vm.loading ? _c('div', {
+      class: _vm.b('loading')
+    }, [_c('loading')], 1) : _vm._e(), _c('div', {
+      class: _vm.b('columns'),
+      style: _vm.columnsStyle,
+      on: {
+        "touchmove": function touchmove($event) {
+          $event.preventDefault();
+        }
+      }
+    }, [_vm._l(_vm.simple ? [_vm.columns] : _vm.columns, function (item, index) {
+      return _c('picker-column', {
+        key: index,
+        attrs: {
+          "value-key": _vm.valueKey,
+          "initial-options": _vm.simple ? item : item.values,
+          "class-name": item.className,
+          "default-index": item.defaultIndex,
+          "item-height": _vm.itemHeight,
+          "visible-item-count": _vm.visibleItemCount
+        },
+        on: {
+          "change": function change($event) {
+            _vm.onChange(index);
+          }
+        }
+      });
+    }), _c('div', {
+      staticClass: "van-hairline--top-bottom",
+      class: _vm.b('frame'),
+      style: _vm.frameStyle
+    })], 2)]);
+  },
+  name: 'picker',
+  components: {
+    PickerColumn: _PickerColumn.default
+  },
+  props: {
+    title: String,
+    loading: Boolean,
+    showToolbar: Boolean,
+    confirmButtonText: String,
+    cancelButtonText: String,
+    visibleItemCount: {
+      type: Number,
+      default: 5
+    },
+    valueKey: {
+      type: String,
+      default: 'text'
+    },
+    itemHeight: {
+      type: Number,
+      default: 44
+    },
+    columns: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      children: []
+    };
+  },
+  computed: {
+    frameStyle: function frameStyle() {
+      return {
+        height: this.itemHeight + 'px'
+      };
+    },
+    columnsStyle: function columnsStyle() {
+      return {
+        height: this.itemHeight * this.visibleItemCount + 'px'
+      };
+    },
+    simple: function simple() {
+      return this.columns.length && !this.columns[0].values;
+    }
+  },
+  watch: {
+    columns: function columns() {
+      this.setColumns();
+    }
+  },
+  methods: {
+    setColumns: function setColumns() {
+      var _this = this;
+
+      var columns = this.simple ? [{
+        values: this.columns
+      }] : this.columns;
+      columns.forEach(function (columns, index) {
+        _this.setColumnValues(index, (0, _deepClone.default)(columns.values));
+      });
+    },
+    emit: function emit(event) {
+      if (this.simple) {
+        this.$emit(event, this.getColumnValue(0), this.getColumnIndex(0));
+      } else {
+        this.$emit(event, this.getValues(), this.getIndexes());
+      }
+    },
+    onChange: function onChange(columnIndex) {
+      if (this.simple) {
+        this.$emit('change', this, this.getColumnValue(0), this.getColumnIndex(0));
+      } else {
+        this.$emit('change', this, this.getValues(), columnIndex);
+      }
+    },
+    // get column instance by index
+    getColumn: function getColumn(index) {
+      return this.children[index];
+    },
+    // get column value by index
+    getColumnValue: function getColumnValue(index) {
+      var column = this.getColumn(index);
+      return column && column.getValue();
+    },
+    // set column value by index
+    setColumnValue: function setColumnValue(index, value) {
+      var column = this.getColumn(index);
+      column && column.setValue(value);
+    },
+    // get column option index by column index
+    getColumnIndex: function getColumnIndex(columnIndex) {
+      return (this.getColumn(columnIndex) || {}).currentIndex;
+    },
+    // set column option index by column index
+    setColumnIndex: function setColumnIndex(columnIndex, optionIndex) {
+      var column = this.getColumn(columnIndex);
+      column && column.setIndex(optionIndex);
+    },
+    // get options of column by index
+    getColumnValues: function getColumnValues(index) {
+      return (this.children[index] || {}).options;
+    },
+    // set options of column by index
+    setColumnValues: function setColumnValues(index, options) {
+      var column = this.children[index];
+
+      if (column && JSON.stringify(column.options) !== JSON.stringify(options)) {
+        column.options = options;
+        column.setIndex(0);
+      }
+    },
+    // get values of all columns
+    getValues: function getValues() {
+      return this.children.map(function (child) {
+        return child.getValue();
+      });
+    },
+    // set values of all columns
+    setValues: function setValues(values) {
+      var _this2 = this;
+
+      values.forEach(function (value, index) {
+        _this2.setColumnValue(index, value);
+      });
+    },
+    // get indexes of all columns
+    getIndexes: function getIndexes() {
+      return this.children.map(function (child) {
+        return child.currentIndex;
+      });
+    },
+    // set indexes of all columns
+    setIndexes: function setIndexes(indexes) {
+      var _this3 = this;
+
+      indexes.forEach(function (optionIndex, columnIndex) {
+        _this3.setColumnIndex(columnIndex, optionIndex);
+      });
+    }
+  }
+});
+
+exports.default = _default2;
+
+/***/ }),
+
 /***/ "TNV1":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57872,6 +58140,73 @@ function assign(to, from) {
 
   return to;
 }
+
+/***/ }),
+
+/***/ "blRl":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("R6lU");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _create = _interopRequireDefault(__webpack_require__("ArwO"));
+
+var _popup = _interopRequireDefault(__webpack_require__("/4KT"));
+
+var _default = (0, _create.default)({
+  render: function render() {
+    var _vm = this;
+
+    var _h = _vm.$createElement;
+
+    var _c = _vm._self._c || _h;
+
+    return _c('transition', {
+      attrs: {
+        "name": _vm.currentTransition
+      }
+    }, [_vm.shouldRender ? _c('div', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: _vm.value,
+        expression: "value"
+      }],
+      class: _vm.b((_obj = {}, _obj[_vm.position] = _vm.position, _obj))
+    }, [_vm._t("default")], 2) : _vm._e()]);
+
+    var _obj;
+  },
+  name: 'popup',
+  mixins: [_popup.default],
+  props: {
+    transition: String,
+    overlay: {
+      type: Boolean,
+      default: true
+    },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true
+    },
+    position: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    currentTransition: function currentTransition() {
+      return this.transition || (this.position === '' ? 'van-fade' : "popup-slide-" + this.position);
+    }
+  }
+});
+
+exports.default = _default;
 
 /***/ }),
 
@@ -66834,6 +67169,193 @@ function mergeFn (a, b) {
 
 /***/ }),
 
+/***/ "oCfm":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("R6lU");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _create = _interopRequireDefault(__webpack_require__("ArwO"));
+
+var _deepClone = _interopRequireDefault(__webpack_require__("/HaV"));
+
+var _utils = __webpack_require__("VxeN");
+
+var DEFAULT_DURATION = 200;
+
+var _default2 = (0, _create.default)({
+  render: function render() {
+    var _vm = this;
+
+    var _h = _vm.$createElement;
+
+    var _c = _vm._self._c || _h;
+
+    return _c('div', {
+      class: [_vm.b(), _vm.className],
+      style: _vm.columnStyle,
+      on: {
+        "touchstart": _vm.onTouchStart,
+        "touchmove": function touchmove($event) {
+          $event.preventDefault();
+          return _vm.onTouchMove($event);
+        },
+        "touchend": _vm.onTouchEnd,
+        "touchcancel": _vm.onTouchEnd
+      }
+    }, [_c('ul', {
+      style: _vm.wrapperStyle
+    }, _vm._l(_vm.options, function (option, index) {
+      return _c('li', {
+        staticClass: "van-ellipsis",
+        class: _vm.b('item', {
+          disabled: _vm.isDisabled(option),
+          selected: index === _vm.currentIndex
+        }),
+        style: _vm.optionStyle,
+        domProps: {
+          "innerHTML": _vm._s(_vm.getOptionText(option))
+        },
+        on: {
+          "click": function click($event) {
+            _vm.setIndex(index, true);
+          }
+        }
+      });
+    }))]);
+  },
+  name: 'picker-column',
+  props: {
+    valueKey: String,
+    className: String,
+    itemHeight: Number,
+    visibleItemCount: Number,
+    initialOptions: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    defaultIndex: {
+      type: Number,
+      default: 0
+    }
+  },
+  data: function data() {
+    return {
+      startY: 0,
+      offset: 0,
+      duration: 0,
+      startOffset: 0,
+      options: (0, _deepClone.default)(this.initialOptions),
+      currentIndex: this.defaultIndex
+    };
+  },
+  created: function created() {
+    this.$parent.children && this.$parent.children.push(this);
+    this.setIndex(this.currentIndex);
+  },
+  destroyed: function destroyed() {
+    var children = this.$parent.children;
+    children && children.splice(children.indexOf(this), 1);
+  },
+  watch: {
+    defaultIndex: function defaultIndex() {
+      this.setIndex(this.defaultIndex);
+    }
+  },
+  computed: {
+    count: function count() {
+      return this.options.length;
+    },
+    baseOffset: function baseOffset() {
+      return this.itemHeight * (this.visibleItemCount - 1) / 2;
+    },
+    columnStyle: function columnStyle() {
+      return {
+        height: this.itemHeight * this.visibleItemCount + 'px'
+      };
+    },
+    wrapperStyle: function wrapperStyle() {
+      return {
+        transition: this.duration + "ms",
+        transform: "translate3d(0, " + (this.offset + this.baseOffset) + "px, 0)",
+        lineHeight: this.itemHeight + 'px'
+      };
+    },
+    optionStyle: function optionStyle() {
+      return {
+        height: this.itemHeight + 'px'
+      };
+    }
+  },
+  methods: {
+    onTouchStart: function onTouchStart(event) {
+      this.startY = event.touches[0].clientY;
+      this.startOffset = this.offset;
+      this.duration = 0;
+    },
+    onTouchMove: function onTouchMove(event) {
+      var deltaY = event.touches[0].clientY - this.startY;
+      this.offset = (0, _utils.range)(this.startOffset + deltaY, -(this.count * this.itemHeight), this.itemHeight);
+    },
+    onTouchEnd: function onTouchEnd() {
+      if (this.offset !== this.startOffset) {
+        this.duration = DEFAULT_DURATION;
+        var index = (0, _utils.range)(Math.round(-this.offset / this.itemHeight), 0, this.count - 1);
+        this.setIndex(index, true);
+      }
+    },
+    adjustIndex: function adjustIndex(index) {
+      index = (0, _utils.range)(index, 0, this.count);
+
+      for (var i = index; i < this.count; i++) {
+        if (!this.isDisabled(this.options[i])) return i;
+      }
+
+      for (var _i = index - 1; _i >= 0; _i--) {
+        if (!this.isDisabled(this.options[_i])) return _i;
+      }
+    },
+    isDisabled: function isDisabled(option) {
+      return (0, _utils.isObj)(option) && option.disabled;
+    },
+    getOptionText: function getOptionText(option) {
+      return (0, _utils.isObj)(option) && this.valueKey in option ? option[this.valueKey] : option;
+    },
+    setIndex: function setIndex(index, userAction) {
+      index = this.adjustIndex(index) || 0;
+      this.offset = -index * this.itemHeight;
+
+      if (index !== this.currentIndex) {
+        this.currentIndex = index;
+        userAction && this.$emit('change', index);
+      }
+    },
+    setValue: function setValue(value) {
+      var options = this.options;
+
+      for (var i = 0; i < options.length; i++) {
+        if (this.getOptionText(options[i]) === value) {
+          return this.setIndex(i);
+        }
+      }
+    },
+    getValue: function getValue() {
+      return this.options[this.currentIndex];
+    }
+  }
+});
+
+exports.default = _default2;
+
+/***/ }),
+
 /***/ "oJlt":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -69906,6 +70428,390 @@ module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
+
+/***/ }),
+
+/***/ "tLiD":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("R6lU");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _picker = _interopRequireDefault(__webpack_require__("TMdk"));
+
+var _create = _interopRequireDefault(__webpack_require__("ArwO"));
+
+var _utils = __webpack_require__("VxeN");
+
+var currentYear = new Date().getFullYear();
+
+var isValidDate = function isValidDate(date) {
+  return Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date.getTime());
+};
+
+var _default2 = (0, _create.default)({
+  render: function render() {
+    var _vm = this;
+
+    var _h = _vm.$createElement;
+
+    var _c = _vm._self._c || _h;
+
+    return _c('picker', {
+      ref: "picker",
+      attrs: {
+        "title": _vm.title,
+        "columns": _vm.columns,
+        "item-height": _vm.itemHeight,
+        "show-toolbar": _vm.showToolbar,
+        "visible-item-count": _vm.visibleItemCount,
+        "confirm-button-text": _vm.confirmButtonText,
+        "cancel-button-text": _vm.cancelButtonText
+      },
+      on: {
+        "change": _vm.onChange,
+        "confirm": _vm.onConfirm,
+        "cancel": function cancel($event) {
+          _vm.$emit('cancel');
+        }
+      }
+    });
+  },
+  name: 'datetime-picker',
+  components: {
+    Picker: _picker.default
+  },
+  props: {
+    value: null,
+    title: String,
+    itemHeight: Number,
+    visibleItemCount: Number,
+    confirmButtonText: String,
+    cancelButtonText: String,
+    type: {
+      type: String,
+      default: 'datetime'
+    },
+    showToolbar: {
+      type: Boolean,
+      default: true
+    },
+    format: {
+      type: String,
+      default: 'YYYY.MM.DD HH时 mm分'
+    },
+    formatter: {
+      type: Function,
+      default: function _default(type, value) {
+        return value;
+      }
+    },
+    minDate: {
+      type: Date,
+      default: function _default() {
+        return new Date(currentYear - 10, 0, 1);
+      },
+      validator: isValidDate
+    },
+    maxDate: {
+      type: Date,
+      default: function _default() {
+        return new Date(currentYear + 10, 11, 31);
+      },
+      validator: isValidDate
+    },
+    minHour: {
+      type: Number,
+      default: 0
+    },
+    maxHour: {
+      type: Number,
+      default: 23
+    },
+    minMinute: {
+      type: Number,
+      default: 0
+    },
+    maxMinute: {
+      type: Number,
+      default: 59
+    }
+  },
+  data: function data() {
+    return {
+      innerValue: this.correctValue(this.value)
+    };
+  },
+  watch: {
+    value: function value(val) {
+      val = this.correctValue(val);
+      var isEqual = this.type === 'time' ? val === this.innerValue : val.valueOf() === this.innerValue.valueOf();
+      if (!isEqual) this.innerValue = val;
+    },
+    innerValue: function innerValue(val) {
+      this.$emit('input', val);
+    },
+    columns: function columns() {
+      this.updateColumnValue(this.innerValue);
+    }
+  },
+  computed: {
+    ranges: function ranges() {
+      if (this.type === 'time') {
+        return [{
+          type: 'hour',
+          range: [this.minHour, this.maxHour]
+        }, {
+          type: 'minute',
+          range: [this.minMinute, this.maxMinute]
+        }];
+      }
+
+      var _this$getBoundary = this.getBoundary('max', this.innerValue),
+          maxYear = _this$getBoundary.maxYear,
+          maxDate = _this$getBoundary.maxDate,
+          maxMonth = _this$getBoundary.maxMonth,
+          maxHour = _this$getBoundary.maxHour,
+          maxMinute = _this$getBoundary.maxMinute;
+
+      var _this$getBoundary2 = this.getBoundary('min', this.innerValue),
+          minYear = _this$getBoundary2.minYear,
+          minDate = _this$getBoundary2.minDate,
+          minMonth = _this$getBoundary2.minMonth,
+          minHour = _this$getBoundary2.minHour,
+          minMinute = _this$getBoundary2.minMinute;
+
+      var result = [{
+        type: 'year',
+        range: [minYear, maxYear]
+      }, {
+        type: 'month',
+        range: [minMonth, maxMonth]
+      }, {
+        type: 'day',
+        range: [minDate, maxDate]
+      }, {
+        type: 'hour',
+        range: [minHour, maxHour]
+      }, {
+        type: 'minute',
+        range: [minMinute, maxMinute]
+      }];
+      if (this.type === 'date') result.splice(3, 2);
+      if (this.type === 'year-month') result.splice(2, 3);
+      return result;
+    },
+    columns: function columns() {
+      var _this = this;
+
+      var results = this.ranges.map(function (_ref) {
+        var type = _ref.type,
+            range = _ref.range;
+
+        var values = _this.times(range[1] - range[0] + 1, function (index) {
+          var value = range[0] + index;
+          value = value < 10 ? "0" + value : "" + value;
+          return _this.formatter(type, value);
+        });
+
+        return {
+          values: values
+        };
+      });
+      return results;
+    }
+  },
+  methods: {
+    pad: function pad(val) {
+      return ("00" + val).slice(-2);
+    },
+    correctValue: function correctValue(value) {
+      // validate value
+      var isDateType = this.type !== 'time';
+
+      if (isDateType && !isValidDate(value)) {
+        value = this.minDate;
+      } else if (!value) {
+        var _minHour = this.minHour;
+        value = (_minHour > 10 ? _minHour : '0' + _minHour) + ":00";
+      } // time type
+
+
+      if (!isDateType) {
+        var _value$split = value.split(':'),
+            hour = _value$split[0],
+            minute = _value$split[1];
+
+        hour = this.pad((0, _utils.range)(hour, this.minHour, this.maxHour));
+        minute = this.pad((0, _utils.range)(minute, this.minMinute, this.maxMinute));
+        return hour + ":" + minute;
+      } // date type
+
+
+      var _this$getBoundary3 = this.getBoundary('max', value),
+          maxYear = _this$getBoundary3.maxYear,
+          maxDate = _this$getBoundary3.maxDate,
+          maxMonth = _this$getBoundary3.maxMonth,
+          maxHour = _this$getBoundary3.maxHour,
+          maxMinute = _this$getBoundary3.maxMinute;
+
+      var _this$getBoundary4 = this.getBoundary('min', value),
+          minYear = _this$getBoundary4.minYear,
+          minDate = _this$getBoundary4.minDate,
+          minMonth = _this$getBoundary4.minMonth,
+          minHour = _this$getBoundary4.minHour,
+          minMinute = _this$getBoundary4.minMinute;
+
+      var minDay = new Date(minYear, minMonth - 1, minDate, minHour, minMinute);
+      var maxDay = new Date(maxYear, maxMonth - 1, maxDate, maxHour, maxMinute);
+      value = Math.max(value, minDay);
+      value = Math.min(value, maxDay);
+      return new Date(value);
+    },
+    times: function times(n, iteratee) {
+      var index = -1;
+      var result = Array(n);
+
+      while (++index < n) {
+        result[index] = iteratee(index);
+      }
+
+      return result;
+    },
+    getBoundary: function getBoundary(type, value) {
+      var _ref2;
+
+      var boundary = this[type + "Date"];
+      var year = boundary.getFullYear();
+      var month = 1;
+      var date = 1;
+      var hour = 0;
+      var minute = 0;
+
+      if (type === 'max') {
+        month = 12;
+        date = this.getMonthEndDay(value.getFullYear(), value.getMonth() + 1);
+        hour = 23;
+        minute = 59;
+      }
+
+      if (value.getFullYear() === year) {
+        month = boundary.getMonth() + 1;
+
+        if (value.getMonth() + 1 === month) {
+          date = boundary.getDate();
+
+          if (value.getDate() === date) {
+            hour = boundary.getHours();
+
+            if (value.getHours() === hour) {
+              minute = boundary.getMinutes();
+            }
+          }
+        }
+      }
+
+      return _ref2 = {}, _ref2[type + "Year"] = year, _ref2[type + "Month"] = month, _ref2[type + "Date"] = date, _ref2[type + "Hour"] = hour, _ref2[type + "Minute"] = minute, _ref2;
+    },
+    getTrueValue: function getTrueValue(formattedValue) {
+      if (!formattedValue) return;
+
+      while (isNaN(parseInt(formattedValue, 10))) {
+        formattedValue = formattedValue.slice(1);
+      }
+
+      return parseInt(formattedValue, 10);
+    },
+    getMonthEndDay: function getMonthEndDay(year, month) {
+      return 32 - new Date(year, month - 1, 32).getDate();
+    },
+    onConfirm: function onConfirm() {
+      this.$emit('confirm', this.innerValue);
+    },
+    onChange: function onChange(picker) {
+      var _this2 = this;
+
+      var value;
+
+      if (this.type === 'time') {
+        var indexes = picker.getIndexes();
+        value = indexes[0] + this.minHour + ":" + (indexes[1] + this.minMinute);
+      } else {
+        var values = picker.getValues();
+        var year = this.getTrueValue(values[0]);
+        var month = this.getTrueValue(values[1]);
+        var maxDate = this.getMonthEndDay(year, month);
+        var date = this.getTrueValue(values[2]);
+
+        if (this.type === 'year-month') {
+          date = 1;
+        }
+
+        date = date > maxDate ? maxDate : date;
+        var hour = 0;
+        var minute = 0;
+
+        if (this.type === 'datetime') {
+          hour = this.getTrueValue(values[3]);
+          minute = this.getTrueValue(values[4]);
+        }
+
+        value = new Date(year, month - 1, date, hour, minute);
+      }
+
+      this.innerValue = this.correctValue(value);
+      this.$nextTick(function () {
+        _this2.$nextTick(function () {
+          _this2.$emit('change', picker);
+        });
+      });
+    },
+    updateColumnValue: function updateColumnValue(value) {
+      var _this3 = this;
+
+      var values = [];
+      var formatter = this.formatter,
+          pad = this.pad;
+
+      if (this.type === 'time') {
+        var pair = value.split(':');
+        values = [formatter('hour', pair[0]), formatter('minute', pair[1])];
+      } else {
+        values = [formatter('year', "" + value.getFullYear()), formatter('month', pad(value.getMonth() + 1)), formatter('day', pad(value.getDate()))];
+
+        if (this.type === 'datetime') {
+          values.push(formatter('hour', pad(value.getHours())), formatter('minute', pad(value.getMinutes())));
+        }
+
+        if (this.type === 'year-month') {
+          values = values.slice(0, 2);
+        }
+      }
+
+      this.$nextTick(function () {
+        _this3.$refs.picker.setValues(values);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.updateColumnValue(this.innerValue);
+  }
+});
+
+exports.default = _default2;
+
+/***/ }),
+
+/***/ "tLo2":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("XqYu");
+__webpack_require__("+ed2");
 
 /***/ }),
 
@@ -107527,4 +108433,4 @@ exports.default = _default;
 /***/ })
 
 });
-//# sourceMappingURL=vendor.86956e9eb110865bd759.js.map
+//# sourceMappingURL=vendor.9275dd250057452129e1.js.map

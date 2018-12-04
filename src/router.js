@@ -13,6 +13,7 @@ import CourierEdit from './pages/CourierEdit.vue'
 import LoginError from './pages/LoginError.vue'
 import Bind from './pages/Bind.vue'
 import ServiceBind from './pages/serviceBind.vue'
+import SupplierAllBack from './pages/supplierAllBack.vue'
 
 Vue.use(Router)
 Vue.use(Vum)
@@ -77,6 +78,11 @@ let router = new Router({
       path: '/serviceBind',
       name: 'serviceBind',
       component: ServiceBind
+    },
+    {
+      path: '/supplierAllBack',
+      name: 'supplierAllBack',
+      component: SupplierAllBack
     }
   ]
 })

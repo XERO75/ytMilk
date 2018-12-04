@@ -25,7 +25,7 @@
     <div class="home-order">
       <div :class="{'home-order__active': type == 'all'}" @click="handelAllOrder()" class="home-order__total">所有订单</div>
       <div :class="{'home-order__active ': type == 'OnDelivery'}" @click="handelDealing()" class="home-order__sending">配送中订单</div>
-      <div :class="{'home-order__active': type == 'UnDeal'}" @click="handelUnDeal()" class="home-order__unhandle">未处理订单</div>
+      <div :class="{'home-order__active': type == 'UnSettle'}" @click="handelUnSettle()" class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table"
          style="margin:.6rem .6rem 4rem; font-size: 12px;">
@@ -35,16 +35,23 @@
                 style="width: 100%">
         <el-table-column label="用户地址">
           <template slot-scope="scope">
-            <span>{{scope.row.memberDistrict}}{{scope.row.memberAddress}}{{scope.row.memberRoom}}</span>
+            <span>{{scope.row.memberDistrict}}{{scope.row.gaodeAddress}}{{scope.row.memberAddress}}{{scope.row.memberRoom}}</span>
           </template>               
         </el-table-column>
         <el-table-column label="状态"
                          width="80"
                          align="center">
           <template slot-scope="scope">
-            <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:12px" >未处理</span>
-            <span v-if="scope.row.orderStatus == 'Refuse'" style="color: red; font-size:12px" >已拒绝</span>
-            <span v-if="scope.row.orderStatus == 'OnDelivery'" style="color: green; font-size:12px">已派单</span>
+            <span v-if="scope.row.orderStatus == 'Collaging'" style="color: green; font-size:14px">拼团中</span>
+            <span v-if="scope.row.orderStatus == 'OnDelivery'" style="color: green; font-size:14px">正常派送</span>
+            <span v-if="scope.row.orderStatus == 'HoldDelivery'" style="color: red; font-size:14px" >暂停派送</span>
+            <span v-if="scope.row.orderStatus == 'UnSettle'" style="color: red; font-size:14px" >未分配</span>
+            <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:14px" >未处理</span>
+            <span v-if="scope.row.orderStatus == 'Refuse'" style="color: red; font-size:14px" >已拒绝</span>
+            <span v-if="scope.row.orderStatus == 'completed'" style="color: green; font-size:14px">已完成</span>
+            <span v-if="scope.row.orderStatus == 'cancelled'" style="color: red; font-size:14px" >已取消</span>
+            <span v-if="scope.row.orderStatus == 'Finish'" style="color: green; font-size:14px">已评价</span>
+            <span v-if="scope.row.orderStatus == 'Closed'" style="color: red; font-size:14px" >已关闭</span>
             <!-- <span>{{scope.row.state === -1? '冻结': (scope.row.state === 0? '未认证': '已认证')}}</span> -->
           </template>
         </el-table-column>
@@ -53,10 +60,10 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnDeal'"  class="tableWrap">
-              <span  @click="handleCancle(scope.row.id)" style="color: red; font-size:12px">拒绝</span>
-              <span @click="handleAccept(scope.row.id)" style="color: green; font-size:12px">接受</span>
+              <span  @click="handleCancle(scope.row.id)" style="color: red; font-size:14px">拒绝</span>
+              <span @click="handleAccept(scope.row.id)" style="color: green; font-size:14px">接受</span>
             </div>
-            <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
+            <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
         </el-table-column>
       </el-table>
@@ -72,7 +79,7 @@ import Vue from 'vue'
 import Grid from '../components/grid'
 import Content from '../components/content'
 import { handleLogin } from "@/api/login.js";
-import { getComments, getAllOrder, getDealing, getUnDeal, getDetails, rejectOrder } from "../api/clientManagement.js";
+import { getComments, getAllOrder, getDealing, getUnSettle, getDetails, rejectOrder } from "../api/clientManagement.js";
 import Dialog from '../../node_modules/vant/lib/dialog';
 import '../../node_modules/vant/lib/dialog/style';
 
@@ -92,7 +99,10 @@ export default {
   },
   methods: {
     handleRefresh() {
-      this.$router.go(0)
+      this.$router.replace({
+        path: '/supplierAllBack',
+        name: 'supplierAllBack'
+      })
     },
     handleComments() {
       this.$router.push({path:'/comment'})
@@ -121,9 +131,9 @@ export default {
         this.tableData = null
       });
     },
-    handelUnDeal() {
-      this.type = 'UnDeal'
-      getUnDeal().then((res) => {
+    handelUnSettle() {
+      this.type = 'UnSettle'
+      getUnSettle().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
       }).catch(() => { 

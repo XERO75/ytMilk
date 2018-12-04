@@ -6,7 +6,7 @@ const urls = {
   table: '/app/service_department/list.htm',
   comments: '/app/service_department/comment_list.htm',
   details: '/app/order/delivering_details.htm',
-  reject: '/app/order/reject.htm'
+  reject: '/app/order/reject.htm?WX_TYPE=OfficialAccount'
 }
 
 // 合并请求链接
@@ -47,13 +47,13 @@ export const getDealing = () => {
 }
 
 // 获取未处理订单 
-export const getUnDeal = () => {
+export const getUnSettle = () => {
   return axios({
     url: apis.table,
     method: 'get',
     params: {
       WX_TYPE: "OfficialAccount",
-      orderStatus: 'UnDeal'
+      orderStatus: 'UnSettle'
     }
   })
 }

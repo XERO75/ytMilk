@@ -35,8 +35,8 @@
           <span style="color:#54A93E">{{clientData.memberPhone}}</span>
         </div>
         <div class="order-client__address">
-          <span class="boldFont">地址</span>
-          <span>{{clientData.memberAddress}}</span>
+          <span class="boldFont" style="width:90px">地址</span>
+          <span >{{clientData.memberDistrict}}{{clientData.memberDistrict}}{{clientData.gaodeAddress}}{{clientData.memberAddress}}{{clientData.memberRoom}}</span>
         </div>
         <div class="order-client__status">
           <span class="boldFont">状态</span>
