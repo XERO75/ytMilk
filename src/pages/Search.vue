@@ -88,7 +88,7 @@ export default {
           status: 1 //状态1：请求中，0:取消中
         };
         sources.push(sc);
-        axios.get('api/app/service_department/search.htm', {
+        axios.get('/api/app/service_department/search.htm', {
           cancelToken: sc.source.token,
           params: {
             keyword: this.searchKey,

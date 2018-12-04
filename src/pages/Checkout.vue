@@ -107,7 +107,7 @@ export default {
       courierData: {},
       clientData: {},
       itemLists: {},
-      expressServerId: null,
+      expressServerId: '',
       originDate: '',
       originStatus: '',
       originDeliverType: '',

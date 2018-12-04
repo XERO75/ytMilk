@@ -59,7 +59,7 @@
                          width="100"
                          align="center">
           <template slot-scope="scope">
-            <div v-if="scope.row.orderStatus == 'UnDeal'"  class="tableWrap">
+            <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
               <span  @click="handleCancle(scope.row.id)" style="color: red; font-size:14px">拒绝</span>
               <span @click="handleAccept(scope.row.id)" style="color: green; font-size:14px">接受</span>
             </div>
@@ -67,6 +67,16 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        background
+        :current-page.sync="currentPage3"
+        :page-size="10"
+        :pager-count="2"
+        layout="prev, pager, next, jumper"
+        :total="100">
+      </el-pagination>
     </div>
 
   </page-content>
@@ -95,6 +105,7 @@ export default {
       tableData: [],
       listData: {},
       commentTotal: null,
+      currentPage3: 5,
     }
   },
   methods: {
@@ -154,6 +165,12 @@ export default {
       }).catch(() => {
         console.log('u cancled');
       });
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
     }
   },
   created () {
