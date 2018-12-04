@@ -34,6 +34,15 @@ export const getAllOrder = () => {
   });
 };
 
+// 获取表格信息
+export const getOrder = (val,status) => {
+  return axios({
+    url: apis.table,
+    method: 'get',
+    params: axios.getData({orderStatus:val, orderStatus:status})
+  });
+};
+
 // 获取配送中订单 
 export const getDealing = () => {
   return axios({

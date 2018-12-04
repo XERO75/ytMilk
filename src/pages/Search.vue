@@ -119,7 +119,7 @@ export default {
         title: '确定拒绝该订单吗'
       }).then(() => {
         let formdata = new FormData()
-        formdata.append('orderId', id)
+        formdata.append('sn', id)
         rejectOrder(formdata).then(res => {
           console.log('order cancled');
         }).then(this.$router.go(0))
@@ -128,11 +128,11 @@ export default {
       });
     },
     handleAccept(id) {
-      this.$router.push({path:'/AcceptOrder',query:{orderId:id}})
+      this.$router.push({path:'/AcceptOrder',query:{sn:id}})
     },
     handleCheck(id) {
       console.log(~~id);
-      this.$router.push({path:'/checkout',query:{orderId:id}})
+      this.$router.push({path:'/checkout',query:{sn:id}})
     },
     next() {
       if (this.searchKey == '') {

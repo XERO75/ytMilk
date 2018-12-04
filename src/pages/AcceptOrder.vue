@@ -50,7 +50,6 @@
         </div>
       </div>
       <van-button  @click="show = true" class="order-footer" type="primary" size="large" square>接受订单</van-button>
-      <van-button  @click="show = true" class="order-footer" type="primary" size="large" square>接受订单</van-button>
       <van-dialog
         v-model="show"
         show-cancel-button
@@ -162,12 +161,12 @@ export default {
     beforeClose(action, done) {
       if (action === 'confirm' && this.expressServerId != '') {
         let formdata = new FormData()
-        formdata.append('orderId', this.$route.query.orderId)
+        formdata.append('sn', this.$route.query.sn)
         formdata.append('expressServerId', this.expressServerId)
         acceptOrder(formdata).then(res => {
           setTimeout(done, 500)
         })
-        this.$router.push({path:'/checkout',query:{orderId:this.$route.query.orderId}})
+        this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
       } else {
         Toast.fail({message:'请选择配送员',duration:1000});
         done()
@@ -175,7 +174,7 @@ export default {
     }
   },
   mounted() {
-    getDetails(this.$route.query.orderId).then((res) => {
+    getDetails(this.$route.query.sn).then((res) => {
       this.orderData = res.data.data.order
       this.itemLists = res.data.data.orderItemList
       this.originDate = res.data.data.order.beginDate

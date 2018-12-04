@@ -80,24 +80,25 @@
           <span>{{filterHalfDateType}}</span>
         </div>
       </div>
+      <van-button class="order-footer" type="default" size="large" square>已暂停</van-button>
     </page-content>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import Content from '../components/content'
-import { Button } from '../components/buttons'
 import PopWindow from '../components/popwindow'
 import { handleLogin } from "@/api/login.js";
 import { getDetails, changeCourier } from '@/api/checkout.js'
 import VanField from '../components/van-field/van-field'
+import Button from '../../node_modules/vant/lib/button';
+import '../../node_modules/vant/lib/button/style';
 
-
-
+Vue.use(Button);
 export default {
   components: {
     'page-content': Content,
-    'm-button': Button,
     PopWindow,
     'van-field': VanField
   },
@@ -177,7 +178,7 @@ export default {
     beforeClose (action, done) {
       if (action === 'confirm') {
         let formdata = new FormData()
-        formdata.append('orderId', this.$route.query.orderId)
+        formdata.append('sn', this.$route.query.sn)
         formdata.append('expressServerId', this.expressServerId)
         changeCourier(formdata).then(res => {
           setTimeout(done, 100)
@@ -191,7 +192,7 @@ export default {
   },
   mounted () {
     handleLogin().then((res) => {
-      getDetails(this.$route.query.orderId).then((res) => {
+      getDetails(this.$route.query.sn).then((res) => {
         this.courierData = res.data.data
         this.clientData = res.data.data.order
         this.itemLists = res.data.data.orderItemList
@@ -299,5 +300,11 @@ export default {
   margin-bottom: 1rem;
   font-size: 0.8rem;
   padding: 0 0.5rem;
+}
+.order-footer {
+  position: fixed;
+  bottom: 0;
+  background : #F2F2F2;
+color : #999999
 }
 </style>

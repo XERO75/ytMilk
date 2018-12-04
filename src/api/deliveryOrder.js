@@ -20,10 +20,10 @@ const apis = Object.keys(urls)
 //     params: axios.getData({ chooseDate : day })
 //   })
 // }
-export const getDay = () => {
+export const getDay = (date) => {
   return axios({
     url: apis.date,
     method: 'get',
-    params: axios.getData({})
+    params: axios.getData({chooseDate:date})
   })
 }

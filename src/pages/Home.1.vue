@@ -60,21 +60,24 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
-              <span  @click="handleCancle(scope.row.sn)" style="color: red; font-size:14px">拒绝</span>
-              <span @click="handleAccept(scope.row.sn)" style="color: green; font-size:14px">接受</span>
+              <span  @click="handleCancle(scope.row.id)" style="color: red; font-size:14px">拒绝</span>
+              <span @click="handleAccept(scope.row.id)" style="color: green; font-size:14px">接受</span>
             </div>
-            <span @click="handleCheck(scope.row.sn)" v-else style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
+            <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
         </el-table-column>
       </el-table>
       <div class="home-pagination">
         <el-pagination
+          @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           background
           :current-page.sync="currentPage"
+          :page-size="10"
+          :pager-count="2"
           layout="prev, slot, next, jumper"
-          :total="totalPage">
-          <span style="text-align:center">{{currentPage}} / {{totalPage}}页</span>
+          :total="100">
+          <span style="text-align:center">{{currentPage}}</span>
         </el-pagination>
       </div>
     </div>
@@ -89,7 +92,7 @@ import Vue from 'vue'
 import Grid from '../components/grid'
 import Content from '../components/content'
 import { handleLogin } from "@/api/login.js";
-import { getComments, getAllOrder, getOrder, getDealing, getUnSettle, getDetails, rejectOrder } from "../api/clientManagement.js";
+import { getComments, getAllOrder, getDealing, getUnSettle, getDetails, rejectOrder } from "../api/clientManagement.js";
 import Dialog from '../../node_modules/vant/lib/dialog';
 import '../../node_modules/vant/lib/dialog/style';
 
@@ -105,8 +108,7 @@ export default {
       tableData: [],
       listData: {},
       commentTotal: null,
-      currentPage: 1,
-      totalPage: 1
+      currentPage: 5,
     }
   },
   methods: {
@@ -167,11 +169,11 @@ export default {
         console.log('u cancled');
       });
     },
-    handleCurrentChange(val, status) {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
-      getOrder(val, status).then(res => {
-        console.log(res);
-      })
     }
   },
   created () {
@@ -184,9 +186,6 @@ export default {
       getAllOrder().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
-        console.log(res.data.data);
-        this.currentPage = res.data.data.pageNumber
-        this.totalPage = res.data.data.totalPage
       });
     })
   }

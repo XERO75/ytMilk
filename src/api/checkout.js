@@ -19,7 +19,7 @@ export const getDetails = (id) => {
   return axios({
     url: apis.details,
     method: 'get',
-    params: axios.getData({ orderId : id })
+    params: axios.getData({ sn : id })
   })
 }
 

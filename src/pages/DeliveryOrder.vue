@@ -1,12 +1,14 @@
 <template>
   <page-content>
     <div class="del-order__header">
-      <a href="" class="del-order__prev">前一天</a>
+      <a @click="handlePrev" class="del-order__prev"><span v-if="this.dayList.length !== 1">前一天</span></a>
+      <!-- <a @click="handlePrev" class="del-order__prev"><span v-if="this.status !== 0">前一天</span></a> -->
       <div class="del-order__date">
         <i class="del-order__dateIcon"></i>
-        {{date}}
+        {{filterDate}}
       </div>
-      <a href="" class="del-order__next">后一天</a>
+      <a @click="handleNext" class="del-order__next"><span v-if="this.dayList.length !==3" >后一天</span></a>
+      <!-- <a @click="handleNext" class="del-order__next"><span v-if="this.status !== 2" >后一天</span></a> -->
     </div>
     <div class="del-grids">
       <el-table
@@ -15,40 +17,25 @@
         :header-cell-style='styleObj'
         style="width: 100%">
         <el-table-column
-          prop="product"
           label="产品"
           align="center">
           <template slot-scope="scope">
             <div class="del-productWrap">
-              <img src="../assets/images/u505.png" class="del-product__img">
-              <span>Lorem ipsum dolor sit amet.</span>
+              <img :src="scope.row.image" class="del-product__img">
+              <span>{{scope.row.name}}</span>
             </div>
           </template>
         </el-table-column>
         <el-table-column
-          prop="amount"
           label="数量"
           align="center"
           width="100">
+          <template slot-scope="scope">
+            <span>{{scope.row.number}}</span>
+          </template>
         </el-table-column>
       </el-table>
     </div>
-    <!-- <div class="del-grids">
-      <v-table 
-        :width="750" 
-        :title-row-height='35' 
-        :row-height='65' 
-        title-bg-color='#F2F2F2' 
-        is-vertical-resize 
-        style="width:100%" 
-        is-horizontal-resize 
-        :vertical-resize-offset='5' 
-        :columns="columns" 
-        :table-data="tableData" 
-        row-hover-color="#eee" 
-        row-click-color="#edf7ff"
-      ></v-table>
-    </div> -->
   </page-content>
 </template>
 <script>
@@ -63,20 +50,54 @@
       return {
         date: null,
         styleObj: {'background': '#F2F2F2'},
-        tableData: [{
-          product: '2016-05-02',
-          amount: '王小虎'
-        }]
+        filterDate: '',
+        tableData: [],
+        dayList: [],
+        dateAdd: ''
       }
     },
     methods: {
-
+      handleNext() {
+        this.dateAdd = new Date(this.filterDate)
+        this.dateAdd.setDate(this.dateAdd.getDate()+1)
+        let date = this.dateLong2String(this.dateAdd)
+        getDay(date).then(res => {
+          let Res = res.data.data
+          this.tableData = Res.content
+          this.filterDate = Res.chooseDate
+          this.dayList.push(this.tableData)
+        })
+      },
+      handlePrev() {
+        this.dateAdd = new Date(this.filterDate)
+        this.dateAdd.setDate(this.dateAdd.getDate()-1)
+        let date = this.dateLong2String(this.dateAdd)
+        getDay(date).then(res => {
+          let Res = res.data.data
+          this.tableData = Res.content
+          this.filterDate = Res.chooseDate
+          this.dayList.pop()
+        })
+      },
+      dateLong2String(time){
+        var date = new Date(time);
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        month = month < 10 ? "0"+month:month;
+        day = day < 10 ? "0"+day:day;
+        return year+"-"+month+"-"+day;
+      }
     },
     mounted() {
       this.date = this.getNowFormatDate()
       handleLogin().then(res => {
         getDay().then(res => {
-          console.log(res);
+          this.filterDate = res.data.data.chooseDate
+          console.log(this.filterDate);
+          this.tableData = res.data.data.content
+          this.dayList.push(this.tableData)
+          console.log(this.dayList);
         })
       })
     },
@@ -96,6 +117,7 @@
   .del-order__header a{
     display: block;
     color: #eee;
+    width: 50px;
   }
   .del-order__dateIcon{
     display: inline-block;

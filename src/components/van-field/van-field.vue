@@ -27,7 +27,7 @@ export default {
     }
   },
   mounted () {
-    getCouriers(this.$route.query.orderId).then((res) => {
+    getCouriers(this.$route.query.sn).then((res) => {
       this.courierLists = res.data.data.serverList
     })
   },
