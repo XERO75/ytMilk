@@ -1,7 +1,9 @@
 <template>
   <div class="search-page">
     <page-content>
-      <van-search placeholder="请输入搜索关键词" v-model="searchKey" @input="search"/>
+      <form action="/">
+        <van-search placeholder="请输入搜索关键词" v-model="searchKey" @search="search"/>
+      </form>
       <div class="search-grids">
         <el-table :data="tableData"
                 border
@@ -34,7 +36,7 @@
         </el-table-column>
       </el-table>
       </div>
-      <p class="search-button"><a  @click="next" >GO NEXT</a></p>
+      <p class="search-button"><a  @click="next" >加载更多</a></p>
     </page-content>
   </div>
 </template>
@@ -188,7 +190,7 @@ export default {
     margin-bottom: 3.5rem;
     a {
       text-decoration:none;
-      color:#333; 
+      color:rgb(122, 121, 121); 
     }
   }
 </style>

@@ -35,12 +35,13 @@
           <span style="color:#54A93E">{{clientData.memberPhone}}</span>
         </div>
         <div class="order-client__address">
-          <span class="boldFont" style="width:90px">地址</span>
-          <span >{{clientData.memberDistrict}}{{clientData.memberDistrict}}{{clientData.gaodeAddress}}{{clientData.memberAddress}}{{clientData.memberRoom}}</span>
+          <span class="boldFont" style="width:100px">地址</span>
+          <span >{{clientData.memberDistrict}}{{clientData.gaodeAddress}}{{clientData.memberAddress}}{{clientData.memberRoom}}</span>
         </div>
         <div class="order-client__status">
           <span class="boldFont">状态</span>
-          <span>{{clientData.status}}</span>
+          <!-- <span>{{clientData.status}}</span> -->
+          <span>{{filterStatus}}</span>
         </div>
       </div>
       <div class="order-productWrap">
@@ -67,15 +68,16 @@
         </div> -->
         <div class="order-product__startData">
           <span class="boldFont">起送日期</span>
-          <span>{{clientData.beginDate}}</span>
+          <!-- <span>{{clientData.beginDate}}</span> -->
+          <span>{{filterDate}}</span>
         </div>
         <div class="order-product__deliveryCycle">
           <span class="boldFont">配送周期</span>
-          <span>{{clientData.deliverType}}</span>
+          <span>{{filterDeliverType}}</span>
         </div>
         <div class="order-product__deliveryTime">
           <span class="boldFont">配送时间</span>
-          <span>{{clientData.halfDateType}}</span>
+          <span>{{filterHalfDateType}}</span>
         </div>
       </div>
     </page-content>
@@ -105,7 +107,67 @@ export default {
       courierData: {},
       clientData: {},
       itemLists: {},
-      expressServerId: null
+      expressServerId: null,
+      originDate: '',
+      originStatus: '',
+      originDeliverType: '',
+      originHalfDateType: ''
+    }
+  },
+  computed: {
+    filterStatus: function() {
+      switch (this.originStatus) {
+        case "Collaging":
+          return "拼团中";
+          break;
+        case "OnDelivery":
+          return "正常派送";
+          break;
+        case "HoldDelivery":
+          return "暂停派送";
+          break;
+        case "UnSettle":
+          return "未分配";
+          break;
+        case "UnDeal":
+          return "未处理";
+          break;
+        case "Refuse":
+          return "已拒绝";
+          break;
+        case "completed":
+          return "已完成";
+          break;
+        case "cancelled":
+          return "已取消";
+          break;
+        case "Finish":
+          return "已评价";
+          break;
+        case "Closed":
+          return "已关闭";
+          break;
+        default: "unknown"
+          break;
+      }
+    },
+    filterDate: function() {
+      const regexp=/(?:\.0*|(\.\d+?)0+)$/
+      return this.originDate.replace(regexp,'$1')
+    },
+    filterDeliverType: function() {
+      if (this.originDeliverType = "WorkingDay") {
+        return "周一到周五"
+      } else {
+        return "周一到周日"
+      }
+    },
+    filterHalfDateType: function() {
+      if (this.originHalfDateType = "Morning") {
+        return "上午"
+      } else {
+        return "下午"
+      }
     }
   },
   methods: {
@@ -133,6 +195,10 @@ export default {
         this.courierData = res.data.data
         this.clientData = res.data.data.order
         this.itemLists = res.data.data.orderItemList
+        this.originDate = res.data.data.order.beginDate
+        this.originStatus = res.data.data.order.orderStatus
+        this.originDeliverType = res.data.data.order.deliverType
+        this.originHalfDateType = res.data.data.order.halfDateType
       })
     })
   }
