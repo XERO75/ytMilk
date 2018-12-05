@@ -9,7 +9,7 @@
                 class="orderDetail-list__month">月账单</div>
             <div :class="{'orderDetail-list__active ': type == 2}"
                 @click="getDaily()"
-                class="orderDetail-list__day">日细明</div>
+                class="orderDetail-list__day">日明细</div>
           </div>
           <div v-if="type === 1" class="orderDetail-monthWrap">
             <div class="orderDetail-list__status">
@@ -73,6 +73,19 @@
               <div v-for="item in dayLists"
                   :key="item.index"
                   class="order-daily__info">
+                <div class="order-daily__sn">
+                  <span class="">订单号：{{item.sn}}</span>
+                  <!-- <span class="" style="color:green">{{filterStatus(item.orderStatus)}}</span> -->
+                  <span v-if="item.orderStatus == 'OnDelivery'" style="align-self:center; color:#54A93E">正常派送</span>
+                  <span v-if="item.orderStatus == 'HoldDelivery'" style="align-self:center; color:red">暂停派送</span>
+                  <span v-if="item.orderStatus == 'UnSettle'" style="align-self:center; color:red">未分配</span>
+                  <span v-if="item.orderStatus == 'UnDeal'" style="align-self:center; color:red">未处理</span>
+                  <span v-if="item.orderStatus == 'Refuse'" style="align-self:center; color:red">已拒绝</span>
+                  <span v-if="item.orderStatus == 'completed'" style="align-self:center; color:#54A93E">已完成</span>
+                  <span v-if="item.orderStatus == 'cancelled'" style="align-self:center; color:red">已取消</span>
+                  <span v-if="item.orderStatus == 'Finish'" style="align-self:center; color:#54A93E">已评价</span>
+                  <span v-if="item.orderStatus == 'Closed'" style="align-self:center; color:red">已关闭</span>
+                </div>
                 <div class="order-daily__user">
                   <span class="">用户：</span>{{item.memberName}}
                 </div>
@@ -89,6 +102,9 @@
                       :src="n.image"
                       alt="">
                   <span class="order-daily__desc">{{n.productName}}{{n.specifications}}<br>X{{n.number}}</span>
+                </div>
+                <div class="order-daily__user">
+                  <span class="">订单总价</span>￥{{item.totalPrice}}
                 </div>
               </div>
             </div>
@@ -108,7 +124,7 @@
 import Vue from 'vue'
 import Content from '../components/content'
 import { getMonthDetail, getDayDetail } from '../api/orderDetail.js'
-import VueBetterScroll from 'vue2-better-scroll'
+// import VueBetterScroll from 'vue2-better-scroll'
 import Popup from '../../node_modules/vant/lib/popup';
 import '../../node_modules/vant/lib/popup/style';
 import DatetimePicker from '../../node_modules/vant/lib/datetime-picker';
@@ -117,7 +133,7 @@ import List from '../../node_modules/vant/lib/list';
 import '../../node_modules/vant/lib/list/style';
 import axios from 'axios' //引入axios
 
-Vue.use(VueBetterScroll)
+// Vue.use(VueBetterScroll)
 Vue.use(Popup);
 Vue.use(DatetimePicker);
 Vue.use(List);
@@ -158,7 +174,8 @@ export default {
   computed: {
     filterBegin: function () {
       return this.dateLong2String(this.beginDate.toString())
-    }
+    },
+    
   },
   methods: {
     getMonth () {
@@ -172,6 +189,42 @@ export default {
       getMonthDetail(this.pageNumber).then(res => {
         this.dataList.push(res.data.data.content)
       })
+    },
+    filterStatus (val) {
+      switch (val) {
+        case "Collaging":
+          return "拼团中";
+          break;
+        case "OnDelivery":
+          return "正常派送";
+          break;
+        case "HoldDelivery":
+          return "暂停派送";
+          break;
+        case "UnSettle":
+          return "未分配";
+          break;
+        case "UnDeal":
+          return "未处理";
+          break;
+        case "Refuse":
+          return "已拒绝";
+          break;
+        case "completed":
+          return "已完成";
+          break;
+        case "cancelled":
+          return "已取消";
+          break;
+        case "Finish":
+          return "已评价";
+          break;
+        case "Closed":
+          return "已关闭";
+          break;
+        default: "unknown"
+          break;
+      }
     },
     handleDetail (id, status) {
       this.$router.push({ path: 'billDetail', query: { departmentBillId: id, status: status } })
@@ -209,7 +262,7 @@ export default {
       day = day < 10 ? "0" + day : day;
       return year + "-" + month + "-" + day;
     },
-
+    
  
   },
   mounted () {
@@ -366,6 +419,10 @@ export default {
   .van-popup {
     z-index: 99999999!important;
   }
+}
+.order-daily__sn {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
 

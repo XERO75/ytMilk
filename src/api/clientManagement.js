@@ -35,11 +35,11 @@ export const getAllOrder = () => {
 };
 
 // 获取表格信息
-export const getOrder = (val,status) => {
+export const getOrder = (status, pageNumber) => {
   return axios({
     url: apis.table,
     method: 'get',
-    params: axios.getData({orderStatus:val, orderStatus:status})
+    params: axios.getData({orderStatus:status, pageNumber:pageNumber})
   });
 };
 

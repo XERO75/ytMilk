@@ -136,14 +136,14 @@ export default {
     },
     
     filterDeliverType: function() {
-      if (this.originDeliverType = "WorkingDay") {
+      if (this.originDeliverType === "WorkingDay") {
         return "周一到周五"
       } else {
         return "周一到周日"
       }
     },
     filterHalfDateType: function() {
-      if (this.originHalfDateType = "Morning") {
+      if (this.originHalfDateType === "Morning") {
         return "上午"
       } else {
         return "下午"

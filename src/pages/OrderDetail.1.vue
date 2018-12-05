@@ -4,7 +4,7 @@
       <div class="orderDetail">
         <div class="orderDetail-list">
           <div :class="{'orderDetail-list__active ': type == 1}" @click="getMonth()" class="orderDetail-list__month">月账单</div>
-          <div :class="{'orderDetail-list__active ': type == 2}" @click="getDaily()" class="orderDetail-list__day">日细明</div>
+          <div :class="{'orderDetail-list__active ': type == 2}" @click="getDaily()" class="orderDetail-list__day">日明细</div>
         </div>
         <div v-if="type === 1" class="orderDetail-monthWrap">
           <div class="orderDetail-list__status">

@@ -4,7 +4,7 @@ import '../src/assets/css/base.css'/* 引入公共样式 */
 import Vue from 'vue'
 import Vum from './vum.js'
 import { router } from './router';
-// import store from "./store.js";
+import store from "./store.js";
 import FastClick from 'fastclick'
 import { VTable, VPagination } from 'vue-easytable'
 import './plugins/element.js'
@@ -17,7 +17,7 @@ Vue.use(util)
 
 new Vue({
   router,
-  // store
+  store
 }).$mount('#app')
 
 Vue.prototype.getNowFormatDate = function() {

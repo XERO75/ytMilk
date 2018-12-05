@@ -46,7 +46,7 @@
       </div>
         <!-- <btn size="large">确认对账</btn>
         <btn size="large">有异议</btn> -->
-        <div v-if="this.$route.query.status == 'Unconfirmed'" class="page-bottom">
+        <div v-if="this.$route.query.status == 'Unconfirmed'" class="bill-bottom">
           <van-button @click="handleComfirm" class="order-footer" type="primary" size="large" square>确认对账</van-button>
           <van-button @click="handleConfuse" class="order-footer" type="default" size="large" square>有异议</van-button>
         </div>
@@ -221,7 +221,7 @@
     // position: absolute;
     bottom: 0;
   }
-  .page-bottom {
-    // display: flex;
+  .bill-bottom {
+    display: flex;
   }
 </style>

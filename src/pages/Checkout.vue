@@ -157,14 +157,14 @@ export default {
       return this.originDate.replace(regexp,'$1')
     },
     filterDeliverType: function() {
-      if (this.originDeliverType = "WorkingDay") {
+      if (this.originDeliverType === "WorkingDay") {
         return "周一到周五"
       } else {
         return "周一到周日"
       }
     },
     filterHalfDateType: function() {
-      if (this.originHalfDateType = "Morning") {
+      if (this.originHalfDateType === "Morning") {
         return "上午"
       } else {
         return "下午"
@@ -302,7 +302,7 @@ export default {
   padding: 0 0.5rem;
 }
 .order-footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   background : #F2F2F2;
   color : #999999

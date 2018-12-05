@@ -49,13 +49,13 @@ export default {
       formdata.append('phone',this.form.phone)
       if (this.form.name == "") {
         Toast.fail({message:'请输入姓名',duration:1000});
-      } else if(this.form.phone == ""){
-        Toast.fail({message:'请输入手机',duration:1000});
+      } else if(this.form.phone == "" || this.form.phone.length !== 11){
+        Toast.fail({message:'手机格式不正确',duration:1000});
       } else {
         addCourier(formdata).then(res => {
           Toast.success({
             duration: 1000,
-            message:'success'
+            message:'添加成功'
           })
           this.$router.go(-1)
         })

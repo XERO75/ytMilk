@@ -358,6 +358,7 @@ export default {
 .courier-infoWrap {
   color: gray;
   font-size: 14px;
+  margin-bottom: 4rem;
 }
 
 .courier-infoWrap :nth-child(1) {

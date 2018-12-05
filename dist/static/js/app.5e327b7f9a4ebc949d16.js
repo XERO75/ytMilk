@@ -275,22 +275,6 @@ var update = __webpack_require__("po5z")("4e0b95d1", content, true);
 
 /***/ }),
 
-/***/ "1SGP":
-/***/ (function(module, exports, __webpack_require__) {
-
-var escape = __webpack_require__("kxFB");
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".comment-courierList[data-v-71e5d53e]{margin:1rem;font-size:.8rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:-.5rem}.comment-courierList__selectbox[data-v-71e5d53e]{border-radius:5px;width:6.25rem;height:1.2rem;margin:.8rem 0}.orderDetail-list__detail[data-v-71e5d53e]{margin:0 1rem;font-size:.75rem;border-bottom:1px solid #e2e2e2}.orderDetail-list__cusAmount[data-v-71e5d53e],.orderDetail-list__fees[data-v-71e5d53e],.orderDetail-list__paidAmount[data-v-71e5d53e],.orderDetail-list__promot[data-v-71e5d53e],.orderDetail-list__status[data-v-71e5d53e],.orderDetail-list__sum[data-v-71e5d53e],.orderDetail-list__total[data-v-71e5d53e]{display:flex;justify-content:space-between;margin-bottom:-1.2rem}.orderDetail-list__paidAmount[data-v-71e5d53e]{margin-bottom:.5rem}.orderDetail-list__loadMore[data-v-71e5d53e]{display:flex;justify-content:center;align-items:center;font-size:.75rem;margin-top:.75rem;margin-bottom:1rem}.orderDetail-list__upIcon[data-v-71e5d53e]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.order-footer__comfuse[data-v-71e5d53e]{bottom:0}", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "1aVL":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -320,21 +304,6 @@ exports.push([module.i, "@keyframes preloader-spin{to{transform:rotate(1turn)}}.
 
 /***/ }),
 
-/***/ "2qEc":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".search-page[data-v-50fad281]{font-size:.75rem}.search-grids[data-v-50fad281]{font-size:12px;margin:.425rem}.search-load[data-v-50fad281]{text-align:center}.search-button[data-v-50fad281]{text-align:center;margin-bottom:3.5rem}.search-button a[data-v-50fad281]{text-decoration:none;color:#7a7979}", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "3cxT":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -354,6 +323,22 @@ exports.push([module.i, "@keyframes preloader-spin{to{transform:rotate(1turn)}}.
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "static/img/ytlogo.f4c0f59.jpeg";
+
+/***/ }),
+
+/***/ "5FSu":
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__("kxFB");
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".courier-header[data-v-886f1ccc]{display:flex;text-align:center;justify-content:space-around;margin-top:1.2rem;font-size:.75rem}.courier-header__deliveryCount[data-v-886f1ccc],.courier-header__list[data-v-886f1ccc]{width:8rem;height:1.8rem;line-height:1.8rem;background:#e2e2e2}.courier-header__active[data-v-886f1ccc]{color:#fff;font-weight:700;background:#54a93e}.courier-subHeader[data-v-886f1ccc]{display:flex;justify-content:space-between;align-items:center;margin:1rem .6rem}.courier-subHeader__inputWrap[data-v-886f1ccc]{display:flex;width:9rem;justify-content:space-between;align-items:center;border:1px solid #e0e0e0;border-radius:5px}.courier-search__form[data-v-886f1ccc]{padding:.25rem}.courier-search__input[data-v-886f1ccc]{width:6rem;outline:none;font-size:.7rem;color:gray}.courier-subHeader__searchIcon[data-v-886f1ccc]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("eM7Z")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.courier-subHeader__add[data-v-886f1ccc]{color:#656565;font-size:.75rem;padding-right:.625rem;display:flex;align-items:center}.courier-subHeader__add a[data-v-886f1ccc]{color:#656565}.courier-subHeader__addIcon[data-v-886f1ccc]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.courier-infoWrap[data-v-886f1ccc]{color:gray;font-size:14px}.courier-info[data-v-886f1ccc]{display:flex;justify-content:space-between;align-items:center;margin:0 .65rem;height:2.3rem;border:1px solid #e0e0e0;padding:0 .375rem}.courier-infoWrap[data-v-886f1ccc] :not(:first-child){border-top:none}.courier-info__upIcon[data-v-886f1ccc]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.courier-count__header[data-v-886f1ccc]{display:flex;margin:.9rem .8rem;justify-content:space-between;align-items:center}.courier-count__selectbox[data-v-886f1ccc]{width:5rem;padding:.35rem;border-radius:5px;font-size:14px}.item-input[data-v-886f1ccc]{width:5rem;border:1px solid #e0e0e0;padding:.35rem;border-radius:5px;text-align:center;font-size:14px;color:gray}.courier-count__grids[data-v-886f1ccc]{margin:0 .4rem;font-size:.7rem}.del-productWrap[data-v-886f1ccc]{display:flex}.del-product__img[data-v-886f1ccc]{width:auto;height:2rem;margin-right:.2rem}", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -806,6 +791,20 @@ exports.push([module.i, ".boldFont{font-weight:700}.order-courierWrap{margin:.8r
 
 /***/ }),
 
+/***/ "7+dx":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("OB5j");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("po5z")("19e0cce9", content, true);
+
+/***/ }),
+
 /***/ "8Xnm":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -817,20 +816,6 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__("po5z")("c710084c", content, true);
-
-/***/ }),
-
-/***/ "8nRL":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("U56u");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("po5z")("969c64ee", content, true);
 
 /***/ }),
 
@@ -855,32 +840,17 @@ var update = __webpack_require__("po5z")("7a4ff5ac", content, true);
 
 /***/ }),
 
-/***/ "Bh56":
+/***/ "BkpO":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("V/01");
+var content = __webpack_require__("5FSu");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("po5z")("255da42e", content, true);
-
-/***/ }),
-
-/***/ "C5S4":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".signUp-detail{display:flex;margin:20px;flex-direction:column;justify-content:center;align-items:center}.signUp-detail .iconfont{font-size:100px;color:green}.signUp-detail__depart{font-size:18px}.signUp-detail__comfirmOne{font-size:14px;color:#999}.signUp-detail__comfirmTwo{margin:0 0 100px;font-size:14px;color:#999}", ""]);
-
-// exports
-
+var update = __webpack_require__("po5z")("5955bb34", content, true);
 
 /***/ }),
 
@@ -978,24 +948,18 @@ var update = __webpack_require__("po5z")("6a252580", content, true);
 
 /***/ }),
 
-/***/ "ExA6":
+/***/ "HCXu":
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
 
-// load the styles
-var content = __webpack_require__("2qEc");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("po5z")("bce6add8", content, true);
 
-/***/ }),
+// module
+exports.push([module.i, ".courier-addWrap{display:flex;flex-direction:column;align-items:center;margin-top:2rem}.courier-addWrap .iconfont{font-size:6rem;color:#24ad24}.courier-input{height:2.5rem;width:12rem;margin-left:.5rem;border:1px solid gray;border-radius:10px;padding:.7rem 1rem}.courier-add__name{margin:1rem}.btn{width:14rem}", ""]);
 
-/***/ "GdEX":
-/***/ (function(module, exports) {
+// exports
 
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -1062,6 +1026,20 @@ exports.push([module.i, "@keyframes preloader-spin{to{transform:rotate(1turn)}}.
 
 // exports
 
+
+/***/ }),
+
+/***/ "JNps":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("UEij");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("po5z")("52ce0552", content, true);
 
 /***/ }),
 
@@ -2480,6 +2458,8 @@ var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 //
 //
 //
+//
+//
 
 
 
@@ -2607,14 +2587,14 @@ vue_esm["default"].use(toast_default.a);
     });
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-50fad281","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/Search.vue
-var Search_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"search-page"},[_c('page-content',[_c('form',{attrs:{"action":"/"}},[_c('van-search',{attrs:{"placeholder":"请输入搜索关键词"},on:{"search":_vm.search},model:{value:(_vm.searchKey),callback:function ($$v) {_vm.searchKey=$$v},expression:"searchKey"}})],1),_vm._v(" "),_c('div',{staticClass:"search-grids"},[_c('el-table',{staticStyle:{"width":"100%"},attrs:{"data":_vm.tableData,"border":"","header-cell-style":_vm.styleObj}},[_c('el-table-column',{attrs:{"label":"用户地址"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.row.memberDistrict)+_vm._s(scope.row.memberAddress)+_vm._s(scope.row.memberRoom))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"状态","width":"90","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.orderStatus == 'Collaging')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("拼团中")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'OnDelivery')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("正常派送")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'HoldDelivery')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("暂停派送")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'UnSettle')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("未分配")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'UnDeal')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("未处理")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'Refuse')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("已拒绝")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'completed')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("已完成")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'cancelled')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("已取消")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'Finish')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("已评价")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'Closed')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("已关闭")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"90","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.orderStatus == 'UnSettle')?_c('div',{staticClass:"tableWrap"},[_c('span',{staticStyle:{"color":"red","font-size":"14px"},on:{"click":function($event){_vm.handleCancle(scope.row.sn)}}},[_vm._v("拒绝")]),_vm._v(" "),_c('span',{staticStyle:{"color":"green","font-size":"14px"},on:{"click":function($event){_vm.handleAccept(scope.row.sn)}}},[_vm._v("接受")])]):_c('span',{staticStyle:{"color":"green","font-size":"14px"},on:{"click":function($event){_vm.handleCheck(scope.row.sn)}}},[_c('i',{staticClass:"iconfont icon-065chakandingdan",staticStyle:{"font-size":"16px"}}),_vm._v("查看")])]}}])})],1)],1),_vm._v(" "),(_vm.tableData !== null)?_c('p',{staticClass:"search-button"},[_c('a',{on:{"click":_vm.next}},[_vm._v("加载更多")])]):_vm._e()])],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-7a096e14","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/Search.vue
+var Search_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"search-page"},[_c('page-content',[_c('form',{attrs:{"action":"/"}},[_c('van-search',{attrs:{"placeholder":"请输入搜索关键词","show-action":""},on:{"search":_vm.search},model:{value:(_vm.searchKey),callback:function ($$v) {_vm.searchKey=$$v},expression:"searchKey"}},[_c('div',{attrs:{"slot":"action"},on:{"click":_vm.search},slot:"action"},[_vm._v("搜索")])])],1),_vm._v(" "),_c('div',{staticClass:"search-grids"},[_c('el-table',{staticStyle:{"width":"100%"},attrs:{"data":_vm.tableData,"border":"","header-cell-style":_vm.styleObj}},[_c('el-table-column',{attrs:{"label":"用户地址"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.row.memberDistrict)+_vm._s(scope.row.memberAddress)+_vm._s(scope.row.memberRoom))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"状态","width":"90","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.orderStatus == 'Collaging')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("拼团中")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'OnDelivery')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("正常派送")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'HoldDelivery')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("暂停派送")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'UnSettle')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("未分配")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'UnDeal')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("未处理")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'Refuse')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("已拒绝")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'completed')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("已完成")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'cancelled')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("已取消")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'Finish')?_c('span',{staticStyle:{"color":"green","font-size":"14px"}},[_vm._v("已评价")]):_vm._e(),_vm._v(" "),(scope.row.orderStatus == 'Closed')?_c('span',{staticStyle:{"color":"red","font-size":"14px"}},[_vm._v("已关闭")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"90","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.orderStatus == 'UnSettle')?_c('div',{staticClass:"tableWrap"},[_c('span',{staticStyle:{"color":"red","font-size":"14px"},on:{"click":function($event){_vm.handleCancle(scope.row.sn)}}},[_vm._v("拒绝")]),_vm._v(" "),_c('span',{staticStyle:{"color":"green","font-size":"14px"},on:{"click":function($event){_vm.handleAccept(scope.row.sn)}}},[_vm._v("接受")])]):_c('span',{staticStyle:{"color":"green","font-size":"14px"},on:{"click":function($event){_vm.handleCheck(scope.row.sn)}}},[_c('i',{staticClass:"iconfont icon-065chakandingdan",staticStyle:{"font-size":"16px"}}),_vm._v("查看")])]}}])})],1)],1),_vm._v(" "),(_vm.tableData !== null)?_c('p',{staticClass:"search-button"},[_c('a',{on:{"click":_vm.next}},[_vm._v("加载更多")])]):_vm._e()])],1)}
 var Search_staticRenderFns = []
 var Search_esExports = { render: Search_render, staticRenderFns: Search_staticRenderFns }
 /* harmony default export */ var pages_Search = (Search_esExports);
 // CONCATENATED MODULE: ./src/pages/Search.vue
 function Search_injectStyle (ssrContext) {
-  __webpack_require__("ExA6")
+  __webpack_require__("XEYF")
 }
 var Search_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2626,7 +2606,7 @@ var Search___vue_template_functional__ = false
 /* styles */
 var Search___vue_styles__ = Search_injectStyle
 /* scopeId */
-var Search___vue_scopeId__ = "data-v-50fad281"
+var Search___vue_scopeId__ = "data-v-7a096e14"
 /* moduleIdentifier (server only) */
 var Search___vue_module_identifier__ = null
 var Search_Component = Search_normalizeComponent(
@@ -2680,6 +2660,10 @@ const getDayDetail = date => {
 //     data: axios.postData(param)
 //   });
 // };
+// EXTERNAL MODULE: ./node_modules/vue2-better-scroll/dist/vue-better-scroll.js
+var vue_better_scroll = __webpack_require__("nAkq");
+var vue_better_scroll_default = /*#__PURE__*/__webpack_require__.n(vue_better_scroll);
+
 // EXTERNAL MODULE: ./node_modules/vant/lib/popup/index.js
 var popup = __webpack_require__("blRl");
 var popup_default = /*#__PURE__*/__webpack_require__.n(popup);
@@ -2696,13 +2680,13 @@ var datetime_picker_default = /*#__PURE__*/__webpack_require__.n(datetime_picker
 var datetime_picker_style = __webpack_require__("D0HL");
 var datetime_picker_style_default = /*#__PURE__*/__webpack_require__.n(datetime_picker_style);
 
-// EXTERNAL MODULE: ./node_modules/mescroll.js/mescroll.min.js
-var mescroll_min = __webpack_require__("MdTC");
-var mescroll_min_default = /*#__PURE__*/__webpack_require__.n(mescroll_min);
+// EXTERNAL MODULE: ./node_modules/vant/lib/list/index.js
+var list = __webpack_require__("r9aq");
+var list_default = /*#__PURE__*/__webpack_require__.n(list);
 
-// EXTERNAL MODULE: ./node_modules/mescroll.js/mescroll.min.css
-var mescroll_js_mescroll_min = __webpack_require__("GdEX");
-var mescroll_js_mescroll_min_default = /*#__PURE__*/__webpack_require__.n(mescroll_js_mescroll_min);
+// EXTERNAL MODULE: ./node_modules/vant/lib/list/style/index.js
+var list_style = __webpack_require__("Mcfu");
+var list_style_default = /*#__PURE__*/__webpack_require__.n(list_style);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/pages/OrderDetail.vue
 //
@@ -2808,11 +2792,14 @@ var mescroll_js_mescroll_min_default = /*#__PURE__*/__webpack_require__.n(mescro
 //
 //
 //
+//
+//
+//
 
 
 
 
-// import VueBetterScroll from 'vue2-better-scroll'
+
 
 
 
@@ -2821,9 +2808,10 @@ var mescroll_js_mescroll_min_default = /*#__PURE__*/__webpack_require__.n(mescro
 
  //引入axios
 
-// Vue.use(VueBetterScroll)
+vue_esm["default"].use(vue_better_scroll_default.a);
 vue_esm["default"].use(popup_default.a);
 vue_esm["default"].use(datetime_picker_default.a);
+vue_esm["default"].use(list_default.a);
 /* harmony default export */ var OrderDetail = ({
   name: 'xxx',
   components: {
@@ -2842,16 +2830,20 @@ vue_esm["default"].use(datetime_picker_default.a);
       beginDate: '',
       dayLists: [],
       productList: [],
-      mescroll: null, //mescroll实例对象
-      dataList: [] //列表数据
+      pageNumber: '1',
+      // mescroll: null,
+      // mescrollUp: {
+      //   callback: this.upCallback,
+      // },
+      // dataList: [] // 列表数据
+      list: [],
+      loading: false,
+      finished: false
     };
   },
   computed: {
     filterBegin: function () {
       return this.dateLong2String(this.beginDate.toString());
-    },
-    filterDate: function () {
-      // const regexp=/(?:\.0*|(\.\d+?)0+)$/
     }
   },
   methods: {
@@ -2903,6 +2895,7 @@ vue_esm["default"].use(datetime_picker_default.a);
       day = day < 10 ? "0" + day : day;
       return year + "-" + month + "-" + day;
     }
+
   },
   mounted() {
     getMonthDetail().then(res => {
@@ -2918,14 +2911,14 @@ vue_esm["default"].use(datetime_picker_default.a);
     this.beginDate = new Date();
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-c3fd1594","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/OrderDetail.vue
-var OrderDetail_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page"},[_c('page-content',[_c('div',{staticClass:"orderDetail"},[_c('div',{staticClass:"orderDetail-list"},[_c('div',{staticClass:"orderDetail-list__month",class:{'orderDetail-list__active ': _vm.type == 1},on:{"click":function($event){_vm.getMonth()}}},[_vm._v("月账单")]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__day",class:{'orderDetail-list__active ': _vm.type == 2},on:{"click":function($event){_vm.getDaily()}}},[_vm._v("日细明")])]),_vm._v(" "),(_vm.type === 1)?_c('div',{staticClass:"orderDetail-monthWrap"},[_c('div',{staticClass:"orderDetail-list__status"},[_c('p',{staticStyle:{"font-size":"14px","font-weight":"bold","color":"#6666666"}},[_vm._v("选择状态")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.id),expression:"id"}],staticClass:"orderDetail-list__selectbox",on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.id=$event.target.multiple ? $$selectedVal : $$selectedVal[0]},function($event){_vm.handleSelect(_vm.id)}]}},_vm._l((_vm.options),function(item){return _c('option',{key:item.value,domProps:{"value":item.id}},[_vm._v(_vm._s(item.value))])}))]),_vm._v(" "),_vm._l((_vm.orderLists),function(item){return _c('div',{key:item.index,staticClass:"orderDetail-list__detail"},[_c('div',{staticClass:"orderDetail-list__total"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("订单总数:  ")]),_vm._v(_vm._s(item.totalOrder))]),_vm._v(" "),(item.status == 'Unconfirmed')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("未对账")]):_vm._e(),_vm._v(" "),(item.status == 'Confirmed')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("已确认")]):_vm._e(),_vm._v(" "),(item.status == 'Confuse')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("有异议")]):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__sum"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("订单总额:  ")]),_vm._v("￥"+_vm._s(item.totalPrice))]),_vm._v(" "),_c('a',{staticStyle:{"align-self":"center"},on:{"click":function($event){_vm.handleDetail(item.id, item.status)}}},[_vm._v("详情")])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__promot"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("优惠金额:  ")]),_vm._v("￥"+_vm._s(item.discountedPrice))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__cusAmount"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("客户应收金额:  ")]),_vm._v("￥"+_vm._s(item.receivablePrice))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__fees"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("手续费:  ")]),_vm._v("￥"+_vm._s(item.handlingFee))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__paidAmount"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("实收金额:  ")]),_vm._v("￥"+_vm._s(item.receivablePrice))]),_vm._v(" "),_c('span',{staticStyle:{"align-self":"center"}},[_vm._v(_vm._s(_vm.dateLong2String(item.createDate)))])])])})],2):_vm._e(),_vm._v(" "),(_vm.type === 2)?_c('div',{staticClass:"order-dailyWrap"},[_c('div',{staticClass:"order-daily__slecetDay"},[_c('span',{staticStyle:{"font-size":"14px"}},[_vm._v("选择日期")]),_vm._v(" "),_c('div',{staticClass:"item-input",staticStyle:{"font-size":"14px"},on:{"click":function($event){_vm.timePickerOne = true;}}},[_vm._v("\n            "+_vm._s(_vm.filterBegin)+"\n          ")]),_vm._v(" "),_c('van-popup',{attrs:{"position":"bottom"},model:{value:(_vm.timePickerOne),callback:function ($$v) {_vm.timePickerOne=$$v},expression:"timePickerOne"}},[_c('van-datetime-picker',{attrs:{"type":"date"},on:{"cancel":_vm.onCancel,"confirm":_vm.confirmOne},model:{value:(_vm.beginDate),callback:function ($$v) {_vm.beginDate=$$v},expression:"beginDate"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"wrapper"},_vm._l((_vm.dayLists),function(item){return _c('div',{key:item.index,staticClass:"order-daily__info"},[_c('div',{staticClass:"order-daily__user"},[_c('span',{},[_vm._v("用户：")]),_vm._v(_vm._s(item.memberName)+"\n            ")]),_vm._v(" "),_c('div',{staticClass:"order-daily__tel"},[_c('span',{},[_vm._v("手机：")]),_vm._v(_vm._s(item.memberPhone)+"\n            ")]),_vm._v(" "),_c('div',{staticClass:"order-daily__product"},[_c('span',{},[_vm._v("商品：")])]),_vm._v(" "),_vm._l((item.orderItems),function(n){return _c('div',{key:n.index,staticClass:"order-daily__productImg"},[_c('img',{staticClass:"order-daily__img",attrs:{"src":n.image,"alt":""}}),_vm._v(" "),_c('span',{staticClass:"order-daily__desc"},[_vm._v(_vm._s(n.productName)+_vm._s(n.specifications)),_c('br'),_vm._v("X"+_vm._s(n.number))])])})],2)}))]):_vm._e()])])],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-64b35ef4","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/OrderDetail.vue
+var OrderDetail_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page"},[_c('page-content',[_c('div',{staticClass:"orderDetail"},[_c('div',{staticClass:"orderDetail-list"},[_c('div',{staticClass:"orderDetail-list__month",class:{'orderDetail-list__active ': _vm.type == 1},on:{"click":function($event){_vm.getMonth()}}},[_vm._v("月账单")]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__day",class:{'orderDetail-list__active ': _vm.type == 2},on:{"click":function($event){_vm.getDaily()}}},[_vm._v("日细明")])]),_vm._v(" "),(_vm.type === 1)?_c('div',{staticClass:"orderDetail-monthWrap"},[_c('div',{staticClass:"orderDetail-list__status"},[_c('p',{staticStyle:{"font-size":"14px","font-weight":"bold","color":"#6666666"}},[_vm._v("选择状态")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.id),expression:"id"}],staticClass:"orderDetail-list__selectbox",on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.id=$event.target.multiple ? $$selectedVal : $$selectedVal[0]},function($event){_vm.handleSelect(_vm.id)}]}},_vm._l((_vm.options),function(item){return _c('option',{key:item.value,domProps:{"value":item.id}},[_vm._v(_vm._s(item.value))])}))]),_vm._v(" "),_vm._l((_vm.orderLists),function(item){return _c('div',{key:item.index,staticClass:"orderDetail-list__detail"},[_c('div',{staticClass:"orderDetail-list__total"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("订单总数:  ")]),_vm._v(_vm._s(item.totalOrder))]),_vm._v(" "),(item.status == 'Unconfirmed')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("未对账")]):_vm._e(),_vm._v(" "),(item.status == 'Confirmed')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("已确认")]):_vm._e(),_vm._v(" "),(item.status == 'Confuse')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("有异议")]):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__sum"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("订单总额:  ")]),_vm._v("￥"+_vm._s(item.totalPrice))]),_vm._v(" "),_c('a',{staticStyle:{"align-self":"center"},on:{"click":function($event){_vm.handleDetail(item.id, item.status)}}},[_vm._v("详情")])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__promot"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("优惠金额:  ")]),_vm._v("￥"+_vm._s(item.discountedPrice))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__cusAmount"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("客户应收金额:  ")]),_vm._v("￥"+_vm._s(item.receivablePrice))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__fees"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("手续费:  ")]),_vm._v("￥"+_vm._s(item.handlingFee))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__paidAmount"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("实收金额:  ")]),_vm._v("￥"+_vm._s(item.receivablePrice))]),_vm._v(" "),_c('span',{staticStyle:{"align-self":"center"}},[_vm._v(_vm._s(_vm.dateLong2String(item.createDate)))])])])})],2):_vm._e(),_vm._v(" "),(_vm.type === 2)?_c('div',{staticClass:"order-dailyWrap"},[_c('div',{staticClass:"order-daily__slecetDay"},[_c('span',{staticClass:"fontBold",staticStyle:{"font-size":"14px"}},[_vm._v("选择日期")]),_vm._v(" "),_c('div',{staticClass:"item-input",staticStyle:{"font-size":"14px"},on:{"click":function($event){_vm.timePickerOne = true;}}},[_vm._v("\n              "+_vm._s(_vm.filterBegin)+"\n            ")]),_vm._v(" "),_c('van-popup',{attrs:{"position":"bottom"},model:{value:(_vm.timePickerOne),callback:function ($$v) {_vm.timePickerOne=$$v},expression:"timePickerOne"}},[_c('van-datetime-picker',{attrs:{"type":"date"},on:{"cancel":_vm.onCancel,"confirm":_vm.confirmOne},model:{value:(_vm.beginDate),callback:function ($$v) {_vm.beginDate=$$v},expression:"beginDate"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"wrapper"},_vm._l((_vm.dayLists),function(item){return _c('div',{key:item.index,staticClass:"order-daily__info"},[_c('div',{staticClass:"order-daily__user"},[_c('span',{},[_vm._v("用户：")]),_vm._v(_vm._s(item.memberName)+"\n              ")]),_vm._v(" "),_c('div',{staticClass:"order-daily__tel"},[_c('span',{},[_vm._v("手机：")]),_vm._v(_vm._s(item.memberPhone)+"\n              ")]),_vm._v(" "),_c('div',{staticClass:"order-daily__product"},[_c('span',{},[_vm._v("商品：")])]),_vm._v(" "),_vm._l((item.orderItems),function(n){return _c('div',{key:n.index,staticClass:"order-daily__productImg"},[_c('img',{staticClass:"order-daily__img",attrs:{"src":n.image,"alt":""}}),_vm._v(" "),_c('span',{staticClass:"order-daily__desc"},[_vm._v(_vm._s(n.productName)+_vm._s(n.specifications)),_c('br'),_vm._v("X"+_vm._s(n.number))])])})],2)}))]):_vm._e()])])],1)}
 var OrderDetail_staticRenderFns = []
 var OrderDetail_esExports = { render: OrderDetail_render, staticRenderFns: OrderDetail_staticRenderFns }
 /* harmony default export */ var pages_OrderDetail = (OrderDetail_esExports);
 // CONCATENATED MODULE: ./src/pages/OrderDetail.vue
 function OrderDetail_injectStyle (ssrContext) {
-  __webpack_require__("Bh56")
+  __webpack_require__("7+dx")
 }
 var OrderDetail_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2937,7 +2930,7 @@ var OrderDetail___vue_template_functional__ = false
 /* styles */
 var OrderDetail___vue_styles__ = OrderDetail_injectStyle
 /* scopeId */
-var OrderDetail___vue_scopeId__ = "data-v-c3fd1594"
+var OrderDetail___vue_scopeId__ = "data-v-64b35ef4"
 /* moduleIdentifier (server only) */
 var OrderDetail___vue_module_identifier__ = null
 var OrderDetail_Component = OrderDetail_normalizeComponent(
@@ -3922,14 +3915,14 @@ let Courier_sources = [];
     });
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-3a526822","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/Courier.vue
-var Courier_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page"},[_c('div',{staticClass:"page"},[_c('page-content',[_c('div',{staticClass:"courier-header"},[_c('div',{staticClass:"courier-header__list",class:{'courier-header__active': _vm.type == 1},on:{"click":function($event){_vm.getList()}}},[_vm._v("配送员列表")]),_vm._v(" "),_c('div',{staticClass:"courier-header__deliveryCount",class:{'courier-header__active': _vm.type == 2},on:{"click":function($event){_vm.getCount()}}},[_vm._v("配送员送奶统计")])]),_vm._v(" "),(_vm.type === 1)?_c('div',{staticClass:"courier-ListWrap"},[_c('div',{staticClass:"courier-subHeader"},[_c('div',{staticClass:"courier-subHeader__inputWrap"},[_c('form',{staticClass:"courier-search__form",attrs:{"action":"javascript:;","onsubmit":"return false;"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchKey),expression:"searchKey"}],staticClass:"courier-search__input",attrs:{"type":"text","placeholder":"关键字或号码"},domProps:{"value":(_vm.searchKey)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.searchKey=$event.target.value},_vm.search]}})]),_vm._v(" "),_c('i',{staticClass:"courier-subHeader__searchIcon"})]),_vm._v(" "),_c('router-link',{attrs:{"to":{path:'courierAdd'}}},[_c('div',{staticClass:"courier-subHeader__add"},[_c('i',{staticClass:"iconfont icon-add"}),_vm._v(" "),_c('a',{attrs:{"href":"javascript:;"}},[_vm._v("新增配送员")])])])],1),_vm._v(" "),_c('div',{staticClass:"courier-infoWrap"},_vm._l((_vm.couriers),function(item){return (item.id !== '')?_c('div',{key:item.index,staticClass:"courier-info",on:{"click":function($event){_vm.handleGetDetail(item.id)}}},[_c('p',[_vm._v(_vm._s(item.name)+" — "+_vm._s(item.phone))]),_vm._v(" "),_c('i',{staticClass:"iconfont icon-more"})]):_vm._e()}))]):_vm._e(),_vm._v(" "),(_vm.type === 2)?_c('div',{staticClass:"courier-countWrap"},[_c('div',{staticClass:"courier-count__header"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.id),expression:"id"}],staticClass:"courier-count__selectbox",on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.id=$event.target.multiple ? $$selectedVal : $$selectedVal[0]},function($event){_vm.handleSelect(_vm.id)}]}},_vm._l((_vm.couriers),function(item){return _c('option',{key:item.name,domProps:{"value":item.id}},[_vm._v(_vm._s(item.name))])})),_vm._v(" "),_c('div',{staticClass:"item-input",staticStyle:{"font-size":"14px"},on:{"click":function($event){_vm.timePickerOne = true;}}},[_vm._v("\n            "+_vm._s(_vm.filterBegin)+"\n          ")]),_vm._v(" "),_c('van-popup',{attrs:{"position":"bottom"},model:{value:(_vm.timePickerOne),callback:function ($$v) {_vm.timePickerOne=$$v},expression:"timePickerOne"}},[_c('van-datetime-picker',{attrs:{"type":"date"},on:{"cancel":_vm.onCancel,"confirm":_vm.confirmOne},model:{value:(_vm.beginDate),callback:function ($$v) {_vm.beginDate=$$v},expression:"beginDate"}})],1),_vm._v(" "),_c('span',[_vm._v("—")]),_vm._v(" "),_c('div',{staticClass:"item-input",staticStyle:{"font-size":"14px"},on:{"click":function($event){_vm.timePickerTwo = true;}}},[_vm._v("\n            "+_vm._s(_vm.filterEnd)+"\n          ")]),_vm._v(" "),_c('van-popup',{attrs:{"position":"bottom"},model:{value:(_vm.timePickerTwo),callback:function ($$v) {_vm.timePickerTwo=$$v},expression:"timePickerTwo"}},[_c('van-datetime-picker',{attrs:{"type":"date"},on:{"cancel":_vm.onCancel,"confirm":_vm.confirmTwo},model:{value:(_vm.endDate),callback:function ($$v) {_vm.endDate=$$v},expression:"endDate"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"courier-count__grids"},[_c('el-table',{staticStyle:{"width":"100%"},attrs:{"data":_vm.tableData,"border":"","header-cell-style":_vm.styleObj}},[_c('el-table-column',{attrs:{"label":"产品","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"del-productWrap"},[_c('img',{staticClass:"del-product__img",attrs:{"src":scope.row.image}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(scope.row.name)+_vm._s(scope.row.specifications))])])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"数量","align":"center","width":"100"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.row.number))])]}}])})],1)],1)]):_vm._e()])],1)])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-886f1ccc","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/Courier.vue
+var Courier_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page"},[_c('div',{staticClass:"page"},[_c('page-content',[_c('div',{staticClass:"courier-header"},[_c('div',{staticClass:"courier-header__list",class:{'courier-header__active': _vm.type == 1},on:{"click":function($event){_vm.getList()}}},[_vm._v("配送员列表")]),_vm._v(" "),_c('div',{staticClass:"courier-header__deliveryCount",class:{'courier-header__active': _vm.type == 2},on:{"click":function($event){_vm.getCount()}}},[_vm._v("配送员送奶统计")])]),_vm._v(" "),(_vm.type === 1)?_c('div',{staticClass:"courier-ListWrap"},[_c('div',{staticClass:"courier-subHeader"},[_c('div',{staticClass:"courier-subHeader__inputWrap"},[_c('form',{staticClass:"courier-search__form",attrs:{"action":"javascript:;","onsubmit":"return false;"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchKey),expression:"searchKey"}],staticClass:"courier-search__input",attrs:{"type":"text","placeholder":"关键字或号码"},domProps:{"value":(_vm.searchKey)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.searchKey=$event.target.value},_vm.search]}})]),_vm._v(" "),_c('i',{staticClass:"courier-subHeader__searchIcon"})]),_vm._v(" "),_c('router-link',{attrs:{"to":{path:'courierAdd'}}},[_c('div',{staticClass:"courier-subHeader__add"},[_c('i',{staticClass:"iconfont icon-add"}),_vm._v(" "),_c('a',{attrs:{"href":"javascript:;"}},[_vm._v("新增配送员")])])])],1),_vm._v(" "),_c('div',{staticClass:"courier-infoWrap"},_vm._l((_vm.couriers),function(item){return (item.id !== '')?_c('div',{key:item.index,staticClass:"courier-info",on:{"click":function($event){_vm.handleGetDetail(item.id)}}},[_c('p',[_vm._v(_vm._s(item.name)+" — "+_vm._s(item.phone))]),_vm._v(" "),_c('i',{staticClass:"iconfont icon-more"})]):_vm._e()}))]):_vm._e(),_vm._v(" "),(_vm.type === 2)?_c('div',{staticClass:"courier-countWrap"},[_c('div',{staticClass:"courier-count__header"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.id),expression:"id"}],staticClass:"courier-count__selectbox",on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.id=$event.target.multiple ? $$selectedVal : $$selectedVal[0]},function($event){_vm.handleSelect(_vm.id)}]}},_vm._l((_vm.couriers),function(item){return _c('option',{key:item.name,domProps:{"value":item.id}},[_vm._v(_vm._s(item.name))])})),_vm._v(" "),_c('div',{staticClass:"item-input",on:{"click":function($event){_vm.timePickerOne = true;}}},[_vm._v("\n            "+_vm._s(_vm.filterBegin)+"\n          ")]),_vm._v(" "),_c('van-popup',{attrs:{"position":"bottom"},model:{value:(_vm.timePickerOne),callback:function ($$v) {_vm.timePickerOne=$$v},expression:"timePickerOne"}},[_c('van-datetime-picker',{attrs:{"type":"date"},on:{"cancel":_vm.onCancel,"confirm":_vm.confirmOne},model:{value:(_vm.beginDate),callback:function ($$v) {_vm.beginDate=$$v},expression:"beginDate"}})],1),_vm._v(" "),_c('span',{staticStyle:{"color":"gray"}},[_vm._v("—")]),_vm._v(" "),_c('div',{staticClass:"item-input",on:{"click":function($event){_vm.timePickerTwo = true;}}},[_vm._v("\n            "+_vm._s(_vm.filterEnd)+"\n          ")]),_vm._v(" "),_c('van-popup',{attrs:{"position":"bottom"},model:{value:(_vm.timePickerTwo),callback:function ($$v) {_vm.timePickerTwo=$$v},expression:"timePickerTwo"}},[_c('van-datetime-picker',{attrs:{"type":"date"},on:{"cancel":_vm.onCancel,"confirm":_vm.confirmTwo},model:{value:(_vm.endDate),callback:function ($$v) {_vm.endDate=$$v},expression:"endDate"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"courier-count__grids"},[_c('el-table',{staticStyle:{"width":"100%"},attrs:{"data":_vm.tableData,"border":"","header-cell-style":_vm.styleObj}},[_c('el-table-column',{attrs:{"label":"产品","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"del-productWrap"},[_c('img',{staticClass:"del-product__img",attrs:{"src":scope.row.image}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(scope.row.name)+_vm._s(scope.row.specifications))])])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"数量","align":"center","width":"100"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.row.number))])]}}])})],1)],1)]):_vm._e()])],1)])}
 var Courier_staticRenderFns = []
 var Courier_esExports = { render: Courier_render, staticRenderFns: Courier_staticRenderFns }
 /* harmony default export */ var pages_Courier = (Courier_esExports);
 // CONCATENATED MODULE: ./src/pages/Courier.vue
 function Courier_injectStyle (ssrContext) {
-  __webpack_require__("c8tY")
+  __webpack_require__("BkpO")
 }
 var Courier_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -3941,7 +3934,7 @@ var Courier___vue_template_functional__ = false
 /* styles */
 var Courier___vue_styles__ = Courier_injectStyle
 /* scopeId */
-var Courier___vue_scopeId__ = "data-v-3a526822"
+var Courier___vue_scopeId__ = "data-v-886f1ccc"
 /* moduleIdentifier (server only) */
 var Courier___vue_module_identifier__ = null
 var Courier_Component = Courier_normalizeComponent(
@@ -5299,10 +5292,6 @@ const changeHandler = (departmentBillId, status) => {
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -5377,15 +5366,15 @@ vue_esm["default"].use(button_default.a);
     });
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-71e5d53e","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/BillDetail.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-34818030","hasScoped":true,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/BillDetail.vue
 var BillDetail_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page"},[_c('page-content',[_c('div',{staticClass:"comment-courierList"},[_c('p',[_vm._v("选择配送员")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.id),expression:"id"}],staticClass:"comment-courierList__selectbox",staticStyle:{"font-size":"14px"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.id=$event.target.multiple ? $$selectedVal : $$selectedVal[0]},function($event){_vm.handleSelect(_vm.id)}]}},_vm._l((_vm.couriers),function(item){return _c('option',{key:item.name,domProps:{"value":item.id}},[_vm._v(_vm._s(item.name))])}))]),_vm._v(" "),_vm._l((_vm.billLists),function(item){return _c('div',{key:item.index,staticClass:"orderDetail-list__detail"},[_c('div',{staticClass:"orderDetail-list__total"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("接单日期:  ")]),_vm._v(_vm._s(_vm.filterDate(item.departmentDate)))]),_vm._v(" "),(item.orderStatus == 'OnDelivery')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("正常派送")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'HoldDelivery')?_c('span',{staticStyle:{"align-self":"center","color":"red"}},[_vm._v("暂停派送")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'UnSettle')?_c('span',{staticStyle:{"align-self":"center","color":"red"}},[_vm._v("未分配")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'UnDeal')?_c('span',{staticStyle:{"align-self":"center","color":"red"}},[_vm._v("未处理")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'Refuse')?_c('span',{staticStyle:{"align-self":"center","color":"red"}},[_vm._v("已拒绝")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'completed')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("已完成")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'cancelled')?_c('span',{staticStyle:{"align-self":"center","color":"red"}},[_vm._v("已取消")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'Finish')?_c('span',{staticStyle:{"align-self":"center","color":"#54A93E"}},[_vm._v("已评价")]):_vm._e(),_vm._v(" "),(item.orderStatus == 'Closed')?_c('span',{staticStyle:{"align-self":"center","color":"red"}},[_vm._v("已关闭")]):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__sum"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("订单号:  ")]),_vm._v(_vm._s(item.sn))]),_vm._v(" "),_c('a',{staticStyle:{"align-self":"center"},on:{"click":function($event){_vm.handleCheckOrder(item.sn)}}},[_vm._v(_vm._s(_vm.orderDetail))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__promot"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("姓名:  ")]),_vm._v(_vm._s(item.memberName))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__cusAmount"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("联系方式:  ")]),_vm._v(_vm._s(item.memberPhone))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__fees"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("地址:  ")]),_vm._v(_vm._s(item.memberDistrict)+_vm._s(item.gaodeAddress)+_vm._s(item.memberAddress)+_vm._s(item.memberRoom))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__fees"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("下单时间:  ")]),_vm._v(_vm._s(_vm.filterDate(item.createDate)))])]),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__paidAmount"},[_c('p',[_c('span',{staticClass:"fontBold"},[_vm._v("订单总价:  ")]),_vm._v("￥"+_vm._s(item.totalPrice))])])])}),_vm._v(" "),_c('div',{staticClass:"orderDetail-list__loadMore"}),_vm._v(" "),(this.$route.query.status == 'Unconfirmed')?_c('div',{staticClass:"page-bottom"},[_c('van-button',{staticClass:"order-footer",attrs:{"type":"primary","size":"large","square":""},on:{"click":_vm.handleComfirm}},[_vm._v("确认对账")]),_vm._v(" "),_c('van-button',{staticClass:"order-footer",attrs:{"type":"default","size":"large","square":""},on:{"click":_vm.handleConfuse}},[_vm._v("有异议")])],1):_vm._e(),_vm._v(" "),(this.$route.query.status == 'Confirmed')?_c('van-button',{staticClass:"order-footer__comfirmed",attrs:{"disable":"","type":"default","size":"large","square":""}},[_vm._v("已对账")]):_vm._e(),_vm._v(" "),(this.$route.query.status == 'Confuse' && this.billLists !==null)?_c('van-button',{staticClass:"order-footer__comfuse",staticStyle:{"background":"#F2F2F2","color":"#9999A0","font-weight":"bold"},attrs:{"disable":"","type":"default","size":"large","square":""}},[_vm._v("有异议")]):_vm._e()],2)],1)}
 var BillDetail_staticRenderFns = []
 var BillDetail_esExports = { render: BillDetail_render, staticRenderFns: BillDetail_staticRenderFns }
 /* harmony default export */ var pages_BillDetail = (BillDetail_esExports);
 // CONCATENATED MODULE: ./src/pages/BillDetail.vue
 function BillDetail_injectStyle (ssrContext) {
-  __webpack_require__("x+5+")
-  __webpack_require__("dJD5")
+  __webpack_require__("pv10")
+  __webpack_require__("JNps")
 }
 var BillDetail_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -5397,7 +5386,7 @@ var BillDetail___vue_template_functional__ = false
 /* styles */
 var BillDetail___vue_styles__ = BillDetail_injectStyle
 /* scopeId */
-var BillDetail___vue_scopeId__ = "data-v-71e5d53e"
+var BillDetail___vue_scopeId__ = "data-v-34818030"
 /* moduleIdentifier (server only) */
 var BillDetail___vue_module_identifier__ = null
 var BillDetail_Component = BillDetail_normalizeComponent(
@@ -5621,13 +5610,6 @@ var field_style_default = /*#__PURE__*/__webpack_require__.n(field_style);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5677,14 +5659,14 @@ vue_esm["default"].use(field_default.a);
   },
   mounted() {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-758352d1","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/CourierAdd.vue
-var CourierAdd_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('page-content',[_c('div',{staticClass:"courier-addWrap"},[_c('el-form',{attrs:{"label-position":_vm.labelPosition,"label-width":"80px","model":_vm.form}},[_c('el-form-item',{attrs:{"label":"姓名"}},[_c('el-input',{model:{value:(_vm.form.name),callback:function ($$v) {_vm.$set(_vm.form, "name", $$v)},expression:"form.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机"}},[_c('el-input',{attrs:{"type":"number","oninput":"if(value.length>11)value=value.slice(0,11)"},model:{value:(_vm.form.phone),callback:function ($$v) {_vm.$set(_vm.form, "phone", $$v)},expression:"form.phone"}})],1)],1),_vm._v(" "),_c('btn',{staticClass:"btn",staticStyle:{"margin-top":"40px"},attrs:{"size":"medium"},nativeOn:{"click":function($event){return _vm.handleChange($event)}}},[_vm._v("确认添加")])],1)])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-d8c0c3be","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/CourierAdd.vue
+var CourierAdd_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('page-content',[_c('div',{staticClass:"courier-addWrap"},[_c('i',{staticClass:"iconfont icon-userplus"}),_vm._v(" "),_c('el-form',{attrs:{"label-position":_vm.labelPosition,"label-width":"80px","model":_vm.form}},[_c('el-form-item',{attrs:{"label":"姓名"}},[_c('el-input',{model:{value:(_vm.form.name),callback:function ($$v) {_vm.$set(_vm.form, "name", $$v)},expression:"form.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机"}},[_c('el-input',{attrs:{"type":"number","oninput":"if(value.length>11)value=value.slice(0,11)"},model:{value:(_vm.form.phone),callback:function ($$v) {_vm.$set(_vm.form, "phone", $$v)},expression:"form.phone"}})],1)],1),_vm._v(" "),_c('btn',{staticClass:"btn",staticStyle:{"margin-top":"40px"},attrs:{"size":"medium"},nativeOn:{"click":function($event){return _vm.handleChange($event)}}},[_vm._v("确认添加")])],1)])}
 var CourierAdd_staticRenderFns = []
 var CourierAdd_esExports = { render: CourierAdd_render, staticRenderFns: CourierAdd_staticRenderFns }
 /* harmony default export */ var pages_CourierAdd = (CourierAdd_esExports);
 // CONCATENATED MODULE: ./src/pages/CourierAdd.vue
 function CourierAdd_injectStyle (ssrContext) {
-  __webpack_require__("8nRL")
+  __webpack_require__("w6HK")
 }
 var CourierAdd_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -6208,12 +6190,10 @@ const comfirmBind = id => {
 //
 //
 //
-//
-//
-//
 
 
 // import { Button } from '../components/buttons'
+
 
 
 
@@ -6226,7 +6206,8 @@ vue_esm["default"].use(button_default.a);
 /* harmony default export */ var Bind = ({
   components: {
     // 'm-button': Button,
-    name: 'signUp'
+    name: 'signUp',
+    Icon: src_components_icons
   },
   data() {
     return {
@@ -6266,14 +6247,14 @@ vue_esm["default"].use(button_default.a);
     });
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0f047770","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/Bind.vue
-var Bind_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"signUp"},[_c('div',{staticClass:"signUp-detail"},[_c('i',{staticClass:"iconfont icon-success"}),_vm._v(" "),_c('span',{staticClass:"signUp-detail__depart"},[_vm._v("绑定服务部")]),_vm._v(" "),_c('span',{staticClass:"signUp-detail__comfirmOne"},[_vm._v("立即绑定 "+_vm._s(_vm.department))]),_vm._v(" "),_c('span',{staticClass:"signUp-detail__comfirmTwo"},[_vm._v(_vm._s(_vm.contact)+" "+_vm._s(_vm.address)+" "+_vm._s(_vm.contactWay1)),(_vm.contactWay2 != '')?_c('span',[_vm._v("/")]):_vm._e(),_vm._v(_vm._s(_vm.contactWay2))]),_vm._v(" "),_c('van-button',{attrs:{"type":"primary","size":"large"},nativeOn:{"click":function($event){return _vm.handleBind($event)}}},[_vm._v("立即绑定")])],1)])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-6f7eb17a","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/pages/Bind.vue
+var Bind_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"signUp"},[_c('div',{staticClass:"signUp-detail"},[_c('icon',{attrs:{"icon":"success-fill icons"}}),_vm._v(" "),_c('span',{staticClass:"signUp-detail__depart"},[_vm._v("绑定"+_vm._s(_vm.department)+"服务部")]),_vm._v(" "),_c('span',{staticClass:"signUp-detail__comfirmOne"},[_vm._v("联系人："+_vm._s(_vm.contact))]),_vm._v(" "),_c('span',{staticClass:"signUp-detail__comfirmTwo"},[_vm._v("联系电话："+_vm._s(_vm.contactWay1)+"/"+_vm._s(_vm.contactWay2))]),_vm._v(" "),_c('span',{staticClass:"signUp-detail__comfirmThree"},[_vm._v("联系地址："+_vm._s(_vm.address))]),_vm._v(" "),_c('van-button',{attrs:{"type":"primary","size":"large"},nativeOn:{"click":function($event){return _vm.handleBind($event)}}},[_vm._v("立即绑定")])],1),_vm._v(" "),_c('div',{staticClass:"signUp-contact"},[_vm._v("客服电话：4008881956")])])}
 var Bind_staticRenderFns = []
 var Bind_esExports = { render: Bind_render, staticRenderFns: Bind_staticRenderFns }
 /* harmony default export */ var pages_Bind = (Bind_esExports);
 // CONCATENATED MODULE: ./src/pages/Bind.vue
 function Bind_injectStyle (ssrContext) {
-  __webpack_require__("s/l1")
+  __webpack_require__("gDMb")
 }
 var Bind_normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -6566,6 +6547,22 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__("po5z")("7392d9b7", content, true);
+
+/***/ }),
+
+/***/ "OB5j":
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__("kxFB");
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".fontBold[data-v-64b35ef4]{font-weight:700}.orderDetail-list[data-v-64b35ef4]{display:flex;text-align:center;justify-content:space-around;margin-top:1.2rem;font-size:.75rem}.orderDetail-list__status[data-v-64b35ef4]{margin:0 1rem;align-items:center}.orderDetail-list__day[data-v-64b35ef4],.orderDetail-list__month[data-v-64b35ef4]{width:8rem;height:1.8rem;line-height:1.8rem;background:#e2e2e2}.orderDetail-list__active[data-v-64b35ef4]{color:#fff;font-weight:700;background:#54a93e}.orderDetail-list__selectbox[data-v-64b35ef4]{border-radius:5px;font-size:14px;width:6.25rem;height:1.2rem;margin:.8rem 0}.orderDetail-list__detail[data-v-64b35ef4]{margin:0 1rem;font-size:.75rem;border-bottom:1px solid #e2e2e2;color:#838383}.orderDetail-list__detail[data-v-64b35ef4]:last-child{margin-bottom:10em}.orderDetail-list__cusAmount[data-v-64b35ef4],.orderDetail-list__fees[data-v-64b35ef4],.orderDetail-list__paidAmount[data-v-64b35ef4],.orderDetail-list__promot[data-v-64b35ef4],.orderDetail-list__status[data-v-64b35ef4],.orderDetail-list__sum[data-v-64b35ef4],.orderDetail-list__total[data-v-64b35ef4]{display:flex;justify-content:space-between;margin-bottom:-1.2rem}.orderDetail-list__paidAmount[data-v-64b35ef4]{margin-bottom:.5rem}.orderDetail-list__total[data-v-64b35ef4]{margin-top:.5rem}.orderDetail-list__loadMore[data-v-64b35ef4]{display:flex;justify-content:center;align-items:center;font-size:.75rem;margin-top:.75rem}.orderDetail-list__upIcon[data-v-64b35ef4]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.order-daily__slecetDay[data-v-64b35ef4]{display:flex;justify-content:space-between;align-items:center;margin:1rem .8rem}.order-daily__info[data-v-64b35ef4]{margin:1rem .8rem;font-size:14px;border-bottom:1px solid #e2e2e2}.item-input[data-v-64b35ef4]{border:1px solid #e2e2e2;padding:.4rem;color:gray;width:5rem;text-align:center;border-radius:5px}.order-daily__productImg[data-v-64b35ef4]{display:flex;align-items:center}.order-daily__img[data-v-64b35ef4]{width:auto;height:2.5rem;margin:.4rem 0}.order-daily__desc[data-v-64b35ef4]{margin:0 .4rem;font-size:.7rem}.wrapper[data-v-64b35ef4]:last-child{margin-bottom:4rem}.mescroll[data-v-64b35ef4]{top:100px;bottom:0;height:auto}.order-daily__slecetDay .van-popup[data-v-64b35ef4]{z-index:99999999!important}", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -6929,15 +6926,16 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "U56u":
+/***/ "UEij":
 /***/ (function(module, exports, __webpack_require__) {
 
+var escape = __webpack_require__("kxFB");
 exports = module.exports = __webpack_require__("FZ+f")(false);
 // imports
 
 
 // module
-exports.push([module.i, ".courier-addWrap{display:flex;flex-direction:column;align-items:center;margin-top:8rem}.courier-input{height:2.5rem;width:12rem;margin-left:.5rem;border:1px solid gray;border-radius:10px;padding:.7rem 1rem}.courier-add__name{margin:1rem}.btn{width:14rem}", ""]);
+exports.push([module.i, ".comment-courierList[data-v-34818030]{margin:1rem;font-size:.8rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:-.5rem}.comment-courierList__selectbox[data-v-34818030]{border-radius:5px;width:6.25rem;height:1.2rem;margin:.8rem 0}.orderDetail-list__detail[data-v-34818030]{margin:0 1rem;font-size:.75rem;border-bottom:1px solid #e2e2e2}.orderDetail-list__cusAmount[data-v-34818030],.orderDetail-list__fees[data-v-34818030],.orderDetail-list__paidAmount[data-v-34818030],.orderDetail-list__promot[data-v-34818030],.orderDetail-list__status[data-v-34818030],.orderDetail-list__sum[data-v-34818030],.orderDetail-list__total[data-v-34818030]{display:flex;justify-content:space-between;margin-bottom:-1.2rem}.orderDetail-list__paidAmount[data-v-34818030]{margin-bottom:.5rem}.orderDetail-list__loadMore[data-v-34818030]{display:flex;justify-content:center;align-items:center;font-size:.75rem;margin-top:.75rem;margin-bottom:1rem}.orderDetail-list__upIcon[data-v-34818030]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.order-footer__comfuse[data-v-34818030]{bottom:0}", ""]);
 
 // exports
 
@@ -6948,22 +6946,6 @@ exports.push([module.i, ".courier-addWrap{display:flex;flex-direction:column;ali
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "V/01":
-/***/ (function(module, exports, __webpack_require__) {
-
-var escape = __webpack_require__("kxFB");
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".fontBold[data-v-c3fd1594]{font-weight:700}.orderDetail-list[data-v-c3fd1594]{display:flex;text-align:center;justify-content:space-around;margin-top:1.2rem;font-size:.75rem}.orderDetail-list__status[data-v-c3fd1594]{margin:0 1rem;align-items:center}.orderDetail-list__day[data-v-c3fd1594],.orderDetail-list__month[data-v-c3fd1594]{width:8rem;height:1.8rem;line-height:1.8rem;background:#e2e2e2}.orderDetail-list__active[data-v-c3fd1594]{color:#fff;font-weight:700;background:#54a93e}.orderDetail-list__selectbox[data-v-c3fd1594]{border-radius:5px;font-size:14px;width:6.25rem;height:1.2rem;margin:.8rem 0}.orderDetail-list__detail[data-v-c3fd1594]{margin:0 1rem;font-size:.75rem;border-bottom:1px solid #e2e2e2;color:#838383}.orderDetail-list__cusAmount[data-v-c3fd1594],.orderDetail-list__fees[data-v-c3fd1594],.orderDetail-list__paidAmount[data-v-c3fd1594],.orderDetail-list__promot[data-v-c3fd1594],.orderDetail-list__status[data-v-c3fd1594],.orderDetail-list__sum[data-v-c3fd1594],.orderDetail-list__total[data-v-c3fd1594]{display:flex;justify-content:space-between;margin-bottom:-1.2rem}.orderDetail-list__paidAmount[data-v-c3fd1594]{margin-bottom:.5rem}.orderDetail-list__total[data-v-c3fd1594]{margin-top:.5rem}.orderDetail-list__loadMore[data-v-c3fd1594]{display:flex;justify-content:center;align-items:center;font-size:.75rem;margin-top:.75rem}.orderDetail-list__upIcon[data-v-c3fd1594]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.order-daily__slecetDay[data-v-c3fd1594]{display:flex;justify-content:space-between;align-items:center;margin:1rem .8rem}.order-daily__info[data-v-c3fd1594]{margin:1rem .8rem;font-size:14px;border-bottom:1px solid #e2e2e2}.item-input[data-v-c3fd1594]{border:1px solid gray;padding:.4rem;width:12rem;border-radius:5px}.order-daily__productImg[data-v-c3fd1594]{display:flex;align-items:center}.order-daily__img[data-v-c3fd1594]{width:auto;height:2.5rem;margin:.4rem 0}.order-daily__desc[data-v-c3fd1594]{margin:0 .4rem;font-size:.7rem}.wrapper[data-v-c3fd1594]:last-child{margin-bottom:4rem}.mescroll[data-v-c3fd1594]{position:fixed;top:44px;bottom:0;height:auto}.order-daily__slecetDay .van-popup[data-v-c3fd1594]{z-index:99999999!important}", ""]);
-
-// exports
-
 
 /***/ }),
 
@@ -6994,6 +6976,20 @@ exports.push([module.i, ".comment-header{color:#999;display:flex;justify-content
 
 // exports
 
+
+/***/ }),
+
+/***/ "XEYF":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("f28b");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("po5z")("15beaa1c", content, true);
 
 /***/ }),
 
@@ -7149,38 +7145,39 @@ exports.push([module.i, "@keyframes preloader-spin{to{transform:rotate(1turn)}}.
 
 /***/ }),
 
-/***/ "c8tY":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("wmpf");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("po5z")("580c8e3b", content, true);
-
-/***/ }),
-
-/***/ "dJD5":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("1SGP");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("po5z")("28339f55", content, true);
-
-/***/ }),
-
 /***/ "eM7Z":
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADSElEQVRYR8WWx24UQRCG/+rZNUkEcSSaZHPDjwAHQEKIeCAjyzvd9o1wIh4QghvpZG/3eGyJfEGAEBJBgkeAGxkjwhVkTJzZLtRoba1hPTNrL6ZPI3VP1ddV1VU/4T8v+s/+kQmgUCjMJKKNRLSJiBYy81wiYgDvmfk5M1/P5/PXOjs7P9Z6oUQApdQ8Zj5IRAUA+STjzPwTQMjMJ4IgeJcVZEQA3/fXE9EVIpoI4AeA69ba257nPfY872Ucx561dj6AFiHEGgAbAExg5u9CiB3FYvFaFoiqAFLKPUR01hlg5nvWWtnd3f0myWChUJjveZ4GsKp8bp/W+reNpPUXgJRyLYCbROT2TmqtD6cZqdgn3/ePCyEOM7OrkQ3GmJuZATo6OmZba58BmDwK50N+lFInABwC8FUI0dTV1fV+JIhhEVBKnQew04XdGLPaZaCG21ceJSnlHSJaycznjTG7UwF8318ghHgF4Ju1tqmWSq5m3Pf9OUIIF81J1tqFQRC8rnZuKAJKqX0ATgO4oLXeNcqbD/ttMKIARizISoA7roKJaGuxWLxaD4D29vYtzHwFwF2ttUvpX6sSwIVrCTM3G2Pc95iXlLKJiJ4y8zNjTHMigJSyn4imApiitf46Zu8AlFLuNX0B0K+1np4GMEBEU+I4nhaG4ed6ALS1tU3N5XL9AAa01u5y6SmI43hpGIZP6wTQnMvlnmRNwV33bq2124MguFwPAN/3twkhLpX7ymCLHmZ6qAillPuJ6NQ/eob7tdZnElNQ0Yh+RFG0pKen5+1YolBuRC/chMzUiJwzKeUFItrBzPeNMS5k9WjFF40xO1NbsTtQHkbPXfus0zD6Fsfx4jAMP2QCKEdhnRMfbhxba526OVJDKkgpdQzA0fI4XmeMuZX0f6ogcW20VCqpWgUJM+81xpxLgx+VJGPmPmeYiBpLpdKyPyUZM28NguBGOaItURT19fb2fkp8BdU2ncwSQhwYrSiVUrYAeACgL4qiFdUgMstyIYQTnZuJaBEzzypH4EOSLG9tbZ3R0NDwEMAyZn5UDSITQFoek/bTIP45gINLghgXgCSIcQP4A6KRmZcbYx6NK8AgRD6fb3TOfxfyWAqsHv/+ArxQyjCiCfPsAAAAAElFTkSuQmCC"
+
+/***/ }),
+
+/***/ "f28b":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".search-page[data-v-7a096e14]{font-size:.75rem}.search-grids[data-v-7a096e14]{font-size:12px;margin:.425rem}.search-load[data-v-7a096e14]{text-align:center}.search-button[data-v-7a096e14]{text-align:center;margin-bottom:3.5rem}.search-button a[data-v-7a096e14]{text-decoration:none;color:#7a7979}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "gDMb":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("tSwH");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("po5z")("226a850c", content, true);
 
 /***/ }),
 
@@ -8428,6 +8425,21 @@ var table_Component = table_normalizeComponent(
 
 /***/ }),
 
+/***/ "iqWn":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".fontBold{font-weight:700}.comment-header{color:#999;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #999;padding:0 .625rem}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "jAhT":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8440,6 +8452,13 @@ exports.push([module.i, ".courier-addWrap{display:flex;flex-direction:column;ali
 
 // exports
 
+
+/***/ }),
+
+/***/ "jLuM":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -8617,7 +8636,21 @@ var update = __webpack_require__("po5z")("2d5a7bf8", content, true);
 
 /***/ }),
 
-/***/ "qomB":
+/***/ "pv10":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("iqWn");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("po5z")("314fdd99", content, true);
+
+/***/ }),
+
+/***/ "tSwH":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -8625,24 +8658,10 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, ".fontBold{font-weight:700}.comment-header{color:#999;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #999;padding:0 .625rem}", ""]);
+exports.push([module.i, ".signUp-detail{display:flex;height:100%;margin:20px;flex-direction:column;justify-content:center;align-items:center}.signUp-detail .iconfont{font-size:100px;color:green}.signUp-detail__depart{font-size:20px}.signUp-detail__comfirmOne{font-size:16px;color:#999;margin-top:2rem}.signUp-detail__comfirmTwo{font-size:16px;color:#999}.signUp-detail__comfirmThree{margin:0 0 50px;font-size:16px;color:#999}.icons{font-size:6rem;color:#3cc51f}.signUp-contact{text-align:center;position:absolute;bottom:0;width:100%;font-size:16px;color:gray;margin-bottom:.8rem}", ""]);
 
 // exports
 
-
-/***/ }),
-
-/***/ "s/l1":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("C5S4");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("po5z")("ba972720", content, true);
 
 /***/ }),
 
@@ -8969,6 +8988,20 @@ var update = __webpack_require__("po5z")("24cb0c4e", content, true);
 
 /***/ }),
 
+/***/ "w6HK":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("HCXu");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("po5z")("70069990", content, true);
+
+/***/ }),
+
 /***/ "wTU5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8981,36 +9014,6 @@ exports.push([module.i, "@keyframes preloader-spin{to{transform:rotate(1turn)}}.
 
 // exports
 
-
-/***/ }),
-
-/***/ "wmpf":
-/***/ (function(module, exports, __webpack_require__) {
-
-var escape = __webpack_require__("kxFB");
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".courier-header[data-v-3a526822]{display:flex;text-align:center;justify-content:space-around;margin-top:1.2rem;font-size:.75rem}.courier-header__deliveryCount[data-v-3a526822],.courier-header__list[data-v-3a526822]{width:8rem;height:1.8rem;line-height:1.8rem;background:#e2e2e2}.courier-header__active[data-v-3a526822]{color:#fff;font-weight:700;background:#54a93e}.courier-subHeader[data-v-3a526822]{display:flex;justify-content:space-between;align-items:center;margin:1rem .6rem}.courier-subHeader__inputWrap[data-v-3a526822]{display:flex;width:9rem;justify-content:space-between;align-items:center;border:1px solid #e0e0e0;border-radius:5px}.courier-search__form[data-v-3a526822]{padding:.25rem}.courier-search__input[data-v-3a526822]{width:6rem;outline:none;font-size:.7rem;color:gray}.courier-subHeader__searchIcon[data-v-3a526822]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("eM7Z")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.courier-subHeader__add[data-v-3a526822]{color:#656565;font-size:.75rem;padding-right:.625rem;display:flex;align-items:center}.courier-subHeader__add a[data-v-3a526822]{color:#656565}.courier-subHeader__addIcon[data-v-3a526822]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.courier-infoWrap[data-v-3a526822]{color:gray;font-size:14px}.courier-info[data-v-3a526822]{display:flex;justify-content:space-between;align-items:center;margin:0 .65rem;height:2.3rem;border:1px solid #e0e0e0;padding:0 .375rem}.courier-infoWrap[data-v-3a526822] :not(:first-child){border-top:none}.courier-info__upIcon[data-v-3a526822]{display:inline-block;width:.8rem;height:.8rem;background-image:url(" + escape(__webpack_require__("juGk")) + ");background-repeat:no-repeat;background-size:100%;position:relative;margin-right:.25rem}.courier-count__header[data-v-3a526822]{display:flex;margin:.9rem .8rem;justify-content:space-between;align-items:center}.courier-count__selectbox[data-v-3a526822]{width:5rem;padding:.4rem;border-radius:5px}.item-input[data-v-3a526822]{width:5rem;border:1px solid #e0e0e0;padding:.3rem;border-radius:5px;text-align:center}.courier-count__grids[data-v-3a526822]{margin:0 .4rem;font-size:.7rem}.del-productWrap[data-v-3a526822]{display:flex}.del-product__img[data-v-3a526822]{width:auto;height:2rem;margin-right:.2rem}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "x+5+":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("qomB");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("po5z")("13097b5b", content, true);
 
 /***/ }),
 
@@ -9043,4 +9046,4 @@ var update = __webpack_require__("po5z")("0b57210a", content, true);
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.5994f79718420ff8c3bc.js.map
+//# sourceMappingURL=app.5e327b7f9a4ebc949d16.js.map

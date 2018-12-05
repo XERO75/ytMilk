@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="page">
     <page-content>
     <div class="home-commentWrap">
       <span class="home-received__depart"><i class="iconfont icon-shouye"></i>{{listData.serviceDepartmentName}}</span>
@@ -23,9 +23,9 @@
       </div>
     </div>
     <div class="home-order">
-      <div :class="{'home-order__active': type !== 'OnDelivery' && type !=='UnSettle'}" @click="handleOrder()" class="home-order__total">所有订单</div>
-      <div :class="{'home-order__active ': type == 'OnDelivery'}" @click="handleOrder('OnDelivery')" class="home-order__sending">配送中订单</div>
-      <div :class="{'home-order__active': type == 'UnSettle'}" @click="handleOrder('UnSettle')" class="home-order__unhandle">未处理订单</div>
+      <div :class="{'home-order__active': type == 'all'}" @click="handelAllOrder()" class="home-order__total">所有订单</div>
+      <div :class="{'home-order__active ': type == 'OnDelivery'}" @click="handelDealing()" class="home-order__sending">配送中订单</div>
+      <div :class="{'home-order__active': type == 'UnSettle'}" @click="handelUnSettle()" class="home-order__unhandle">未处理订单</div>
     </div>
     <div class="home-table"
          style="margin:.6rem .6rem 3rem; font-size: 12px;">
@@ -68,12 +68,14 @@
         </el-table-column>
       </el-table>
       <div class="home-pagination">
-        <van-pagination 
-          v-model="currentPage" 
-          :page-count="totalPage"
-          mode="simple" 
-          @change="pageChange"
-        />
+        <el-pagination
+          @current-change="handleCurrentChange"
+          background
+          :current-page.sync="currentPage"
+          layout="prev, slot, next, jumper"
+          :total="totalPage">
+          <span style="text-align:center">{{currentPage}} / {{totalPage}}页</span>
+        </el-pagination>
       </div>
     </div>
 
@@ -90,36 +92,21 @@ import { handleLogin } from "@/api/login.js";
 import { getComments, getAllOrder, getOrder, getDealing, getUnSettle, getDetails, rejectOrder } from "../api/clientManagement.js";
 import Dialog from '../../node_modules/vant/lib/dialog';
 import '../../node_modules/vant/lib/dialog/style';
-import Pagination from '../../node_modules/vant/lib/pagination';
-import '../../node_modules/vant/lib/pagination/style';
 
 Vue.use(Dialog);
-Vue.use(Pagination);
 export default {
   components: {
     'page-content': Content
   },
   data() {
     return {
-      type: null,
+      type: 'all',
       styleObj: {'background': '#F2F2F2'},
       tableData: [],
       listData: {},
       commentTotal: null,
       currentPage: 1,
-      totalPage: 1,
-      status: ''
-    }
-  },
-  watch: {
-    type() {
-      this.currentPage = 1
-      getOrder(this.type, this.currentPage).then((res) => {
-        this.tableData = res.data.data.content
-        this.listData = res.data.data
-        this.currentPage = res.data.data.pageNumber
-        this.totalPage = res.data.data.totalPage
-      });
+      totalPage: 1
     }
   },
   methods: {
@@ -133,19 +120,17 @@ export default {
       this.$router.push({path:'/comment'})
     },
     handleCheck(id) {
+      console.log(~~id);
       this.$router.push({path:'/checkout',query:{sn:id}})
     },
     handleAccept(id) {
       this.$router.push({path:'/AcceptOrder',query:{sn:id}})
     },
-    handleOrder(type) {
-      this.type = type
-      // this.currentPage = 1
-      getOrder(type, this.currentPage).then((res) => {
+    handelAllOrder() {
+      this.type = 'all',
+      getAllOrder().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
-        this.currentPage = res.data.data.pageNumber
-        this.totalPage = res.data.data.totalPage
       });
     },
     handelDealing() {
@@ -153,6 +138,7 @@ export default {
       getDealing().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
+        console.log(this.tableData);
       }).catch(() => { 
         this.tableData = null
       });
@@ -175,16 +161,17 @@ export default {
         let formdata = new FormData()
         formdata.append('sn', id)
         rejectOrder(formdata).then(res => {
+          console.log('order cancled');
         }).then(this.handleRefresh())
       }).catch(() => {
+        console.log('u cancled');
       });
     },
     handleCurrentChange(val, status) {
+      console.log(`当前页: ${val}`);
       getOrder(val, status).then(res => {
+        console.log(res);
       })
-    },
-    pageChange(){
-      this.handleOrder(this.type)
     }
   },
   created () {
@@ -197,6 +184,7 @@ export default {
       getAllOrder().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
+        console.log(res.data.data);
         this.currentPage = res.data.data.pageNumber
         this.totalPage = res.data.data.totalPage
       });
@@ -310,8 +298,8 @@ export default {
 }
 
 .home-pagination {
-  // display: flex;
-  // justify-content: center;
+  display: flex;
+  justify-content: center;
   margin-top: 0.3rem;
 }
 </style>

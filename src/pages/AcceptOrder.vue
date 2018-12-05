@@ -135,14 +135,14 @@ export default {
       return this.originDate.replace(regexp,'$1')
     },
     filterDeliverType: function() {
-      if (this.originDeliverType = "WorkingDay") {
+      if (this.originDeliverType === "WorkingDay") {
         return "周一到周五"
       } else {
         return "周一到周日"
       }
     },
     filterHalfDateType: function() {
-      if (this.originHalfDateType = "Morning") {
+      if (this.originHalfDateType === "Morning") {
         return "上午"
       } else {
         return "下午"
@@ -161,7 +161,8 @@ export default {
         acceptOrder(formdata).then(res => {
           setTimeout(done, 500)
         })
-        this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
+        this.$router.push({path:'/'})
+        // this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
       } else {
         Toast.fail({message:'请选择配送员',duration:1000});
         done()
