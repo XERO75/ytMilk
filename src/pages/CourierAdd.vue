@@ -1,14 +1,7 @@
 <template>
     <page-content>
       <div class="courier-addWrap">
-        <!-- <div class="courier-add__name">
-          <span>姓名</span>
-          <input v-model="name" class="courier-input" type="text" maxlength="18" placeholder="请输入姓名">
-        </div>
-        <div class="courier-add__tel">
-          <span>手机</span>
-          <input v-model="phone" class="courier-input" type="number" oninput="if(value.length>11)value=value.slice(0,11)" placeholder="请输入手机号码">
-        </div> -->
+        <i class="iconfont icon-userplus"></i>
         <el-form :label-position="labelPosition" label-width="80px" :model="form">
           <el-form-item label="姓名">
             <el-input v-model="form.name"></el-input>
@@ -78,7 +71,11 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top:8rem;
+    margin-top: 2rem;
+    .iconfont {
+      font-size: 6rem;
+      color: #24AD24;
+    }
   }
   .courier-input {
     height: 2.5rem;

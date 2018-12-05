@@ -45,7 +45,7 @@
           <select @change="handleSelect(id)" class="courier-count__selectbox" v-model="id">
             <option v-for="item in couriers" :key="item.name" :value="item.id">{{item.name}}</option>
           </select>
-          <div @click="timePickerOne = true;" class="item-input" style="font-size:14px">
+          <div @click="timePickerOne = true;" class="item-input">
             {{filterBegin}}
           </div>
             <van-popup
@@ -59,8 +59,8 @@
               @confirm="confirmOne"
             />
             </van-popup>
-          <span>—</span>
-          <div @click="timePickerTwo = true;" class="item-input" style="font-size:14px">
+          <span style="color:gray">—</span>
+          <div @click="timePickerTwo = true;" class="item-input">
             {{filterEnd}}
           </div>
             <van-popup
@@ -396,15 +396,18 @@ export default {
 }
 .courier-count__selectbox {
   width: 5rem;
-  padding: 0.4rem;
+  padding: 0.35rem;
   border-radius: 5px;
+  font-size: 14px;
 }
 .item-input {
   width: 5rem;
   border: 1px solid #e0e0e0;
-  padding: 0.3rem;
+  padding: 0.35rem;
   border-radius: 5px;
   text-align: center;
+  font-size:14px; 
+  color:gray
 }
 .courier-count__grids {
   margin: 0 0.4rem;

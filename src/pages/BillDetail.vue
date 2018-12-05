@@ -3,9 +3,6 @@
     <page-content>
       <div class="comment-courierList">
         <p>选择配送员</p>
-        <!-- <select class="comment-courierList__selectbox" v-model="selected">
-          <option v-for="item in couriers" :key="item.value" >{{item.text}}</option>
-        </select> -->
         <select @change="handleSelect(id)" class="comment-courierList__selectbox" v-model="id" style="font-size:14px">
           <option v-for="item in couriers" :key="item.name" :value="item.id" >{{item.name}}</option>
         </select>
@@ -13,7 +10,6 @@
       <div v-for="item in billLists" :key="item.index" class="orderDetail-list__detail">
         <div class="orderDetail-list__total">
           <p><span class="fontBold">接单日期:&nbsp;&nbsp;</span>{{filterDate(item.departmentDate)}}</p>
-          <!-- <p><span class="fontBold">接单日期:&nbsp;&nbsp;</span>{{item.departmentDate}}</p> -->
           <span v-if="item.orderStatus == 'OnDelivery'" style="align-self:center; color:#54A93E">正常派送</span>
           <span v-if="item.orderStatus == 'HoldDelivery'" style="align-self:center; color:red">暂停派送</span>
           <span v-if="item.orderStatus == 'UnSettle'" style="align-self:center; color:red">未分配</span>

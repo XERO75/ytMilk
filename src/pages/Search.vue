@@ -2,7 +2,9 @@
   <div class="search-page">
     <page-content>
       <form action="/">
-        <van-search placeholder="请输入搜索关键词" v-model="searchKey" @search="search"/>
+        <van-search placeholder="请输入搜索关键词" show-action @search="search" v-model="searchKey">
+          <div slot="action" @click="search">搜索</div>
+        </van-search>
       </form>
       <div class="search-grids">
         <el-table :data="tableData"
