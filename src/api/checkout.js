@@ -4,7 +4,8 @@ const baseUrl = process.env.BASE_API;
 
 const urls = {
   details: '/app/order/delivering_details.htm',
-  changeCourier: '/app/order/change_express.htm'
+  changeCourier: '/app/order/change_express.htm',
+  orderStatus: '/app/service_department/bill_order_details.htm'
 }
 
 // 合并请求链接
@@ -31,3 +32,12 @@ export const changeCourier = (param) => {
     data: axios.postData(param)
   });
 };
+
+// 查看订单 
+export const getOrderStatus = (id) => {
+  return axios({
+    url: apis.orderStatus,
+    method: 'get',
+    params: axios.getData({ sn : id })
+  })
+}

@@ -6,6 +6,7 @@ import Index from './pages/Index'
 import Comment from './pages/Comment'
 import AcceptOrder from './pages/AcceptOrder'
 import Checkout from './pages/Checkout'
+import CheckoutOrderDetail from './pages/checkoutOrderDetail'
 import BillDetail from './pages/BillDetail.vue'
 import CourierDetail from './pages/CourierDetail.vue'
 import CourierAdd from './pages/CourierAdd.vue'
@@ -48,6 +49,11 @@ let router = new Router({
       path: '/checkout',
       name: 'checkout',
       component: Checkout
+    },
+    {
+      path: '/checkoutOrderDetail',
+      name: 'checkoutOrderDetail',
+      component: CheckoutOrderDetail
     },
     {
       path: '/billDetail',

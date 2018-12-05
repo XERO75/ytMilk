@@ -15,6 +15,7 @@
     "cssnano": "^4.1.7",
     "element-ui": "^2.4.5",
     "lib-flexible": "^0.3.2",
+    "mescroll.js": "^1.4.0",
     "postcss-aspect-ratio-mini": "0.0.2",
     "postcss-cssnext": "^3.1.0",
     "postcss-px-to-viewport": "0.0.3",
@@ -22,7 +23,8 @@
     "postcss-viewport-units": "^0.1.6",
     "postcss-write-svg": "^3.0.1",
     "vant": "^1.4.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-better-scroll": "^1.0.7"
   },
   "devDependencies": {
     "@xkeshi/vue-qrcode": "^1.0.0",

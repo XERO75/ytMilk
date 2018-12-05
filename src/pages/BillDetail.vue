@@ -3,130 +3,145 @@
     <page-content>
       <div class="comment-courierList">
         <p>选择配送员</p>
-        <select class="comment-courierList__selectbox" v-model="selected">
+        <!-- <select class="comment-courierList__selectbox" v-model="selected">
           <option v-for="item in couriers" :key="item.value" >{{item.text}}</option>
+        </select> -->
+        <select @change="handleSelect(id)" class="comment-courierList__selectbox" v-model="id" style="font-size:14px">
+          <option v-for="item in couriers" :key="item.name" :value="item.id" >{{item.name}}</option>
         </select>
       </div>
-      <div class="orderDetail-list__detail">
+      <div v-for="item in billLists" :key="item.index" class="orderDetail-list__detail">
         <div class="orderDetail-list__total">
-          <p><span class="fontBold">接单日期:&nbsp;&nbsp;</span>{{orderTotal}}</p>
-          <span style="align-self:center; color:#54A93E">{{orderStatus}}</span>
+          <p><span class="fontBold">接单日期:&nbsp;&nbsp;</span>{{filterDate(item.departmentDate)}}</p>
+          <!-- <p><span class="fontBold">接单日期:&nbsp;&nbsp;</span>{{item.departmentDate}}</p> -->
+          <span v-if="item.orderStatus == 'OnDelivery'" style="align-self:center; color:#54A93E">正常派送</span>
+          <span v-if="item.orderStatus == 'HoldDelivery'" style="align-self:center; color:red">暂停派送</span>
+          <span v-if="item.orderStatus == 'UnSettle'" style="align-self:center; color:red">未分配</span>
+          <span v-if="item.orderStatus == 'UnDeal'" style="align-self:center; color:red">未处理</span>
+          <span v-if="item.orderStatus == 'Refuse'" style="align-self:center; color:red">已拒绝</span>
+          <span v-if="item.orderStatus == 'completed'" style="align-self:center; color:#54A93E">已完成</span>
+          <span v-if="item.orderStatus == 'cancelled'" style="align-self:center; color:red">已取消</span>
+          <span v-if="item.orderStatus == 'Finish'" style="align-self:center; color:#54A93E">已评价</span>
+          <span v-if="item.orderStatus == 'Closed'" style="align-self:center; color:red">已关闭</span>
         </div>
         <div class="orderDetail-list__sum">
-          <p><span class="fontBold">订单号:&nbsp;&nbsp;</span>{{orderSum}}</p>
-          <router-link style="align-self:center" :to="{ path: 'billDetail' }">
-            {{orderDetail}}
-            <!-- <a href="#" style="align-self:center">{{orderDetail}}</a> -->
-          </router-link>
+          <p><span class="fontBold">订单号:&nbsp;&nbsp;</span>{{item.sn}}</p>
+          <a @click="handleCheckOrder(item.sn)" style="align-self:center">{{orderDetail}}</a>
         </div>
         <div class="orderDetail-list__promot">
-          <p><span class="fontBold">姓名:&nbsp;&nbsp;</span>{{orderPromot}}</p>
+          <p><span class="fontBold">姓名:&nbsp;&nbsp;</span>{{item.memberName}}</p>
         </div>
         <div class="orderDetail-list__cusAmount">
-          <p><span class="fontBold">联系方式:&nbsp;&nbsp;</span>{{cusAmount}}</p>
+          <p><span class="fontBold">联系方式:&nbsp;&nbsp;</span>{{item.memberPhone}}</p>
         </div>
         <div class="orderDetail-list__fees">
-          <p><span class="fontBold">地址:&nbsp;&nbsp;</span>{{fees}}</p>
+          <p><span class="fontBold">地址:&nbsp;&nbsp;</span>{{item.memberDistrict}}{{item.gaodeAddress}}{{item.memberAddress}}{{item.memberRoom}}</p>
         </div>
         <div class="orderDetail-list__fees">
-          <p><span class="fontBold">下单时间:&nbsp;&nbsp;</span>{{fees}}</p>
+          <p><span class="fontBold">下单时间:&nbsp;&nbsp;</span>{{filterDate(item.createDate)}}</p>
         </div>
         <div class="orderDetail-list__paidAmount">
-          <p><span class="fontBold">订单总价:&nbsp;&nbsp;</span>{{paidAmount}}</p>
-        </div>
-      </div>
-      <div class="orderDetail-list__detail">
-        <div class="orderDetail-list__total">
-          <p><span class="fontBold">接单日期:&nbsp;&nbsp;</span>{{orderTotal}}</p>
-          <span style="align-self:center; color:#54A93E">{{orderStatus}}</span>
-        </div>
-        <div class="orderDetail-list__sum">
-          <p><span class="fontBold">订单号:&nbsp;&nbsp;</span>{{orderSum}}</p>
-          <router-link style="align-self:center" :to="{ path: 'billDetail' }">
-            {{orderDetail}}
-            <!-- <a href="#" style="align-self:center">{{orderDetail}}</a> -->
-          </router-link>
-        </div>
-        <div class="orderDetail-list__promot">
-          <p><span class="fontBold">姓名:&nbsp;&nbsp;</span>{{orderPromot}}</p>
-        </div>
-        <div class="orderDetail-list__cusAmount">
-          <p><span class="fontBold">联系方式:&nbsp;&nbsp;</span>{{cusAmount}}</p>
-        </div>
-        <div class="orderDetail-list__fees">
-          <p><span class="fontBold">地址:&nbsp;&nbsp;</span>{{fees}}</p>
-        </div>
-        <div class="orderDetail-list__fees">
-          <p><span class="fontBold">下单时间:&nbsp;&nbsp;</span>{{fees}}</p>
-        </div>
-        <div class="orderDetail-list__paidAmount">
-          <p><span class="fontBold">订单总价:&nbsp;&nbsp;</span>{{paidAmount}}</p>
+          <p><span class="fontBold">订单总价:&nbsp;&nbsp;</span>￥{{item.totalPrice}}</p>
         </div>
       </div>
       <div class="orderDetail-list__loadMore">
-        <i class="orderDetail-list__upIcon"></i>
-        <span>加载更多</span>
+        <!-- <i class="orderDetail-list__upIcon"></i> -->
+        <!-- <span style="font-size:14px">加载更多</span> -->
       </div>
-      <div class="order-footer">
-        <btn size="large">确认对账</btn>
-      </div>
+        <!-- <btn size="large">确认对账</btn>
+        <btn size="large">有异议</btn> -->
+        <div v-if="this.$route.query.status == 'Unconfirmed'" class="page-bottom">
+          <van-button @click="handleComfirm" class="order-footer" type="primary" size="large" square>确认对账</van-button>
+          <van-button @click="handleConfuse" class="order-footer" type="default" size="large" square>有异议</van-button>
+        </div>
+        <van-button v-if="this.$route.query.status == 'Confirmed'" disable class="order-footer__comfirmed" type="default" size="large" square>已对账</van-button>
+        <van-button v-if="this.$route.query.status == 'Confuse' && this.billLists !==null" disable style="background:#F2F2F2; color:#9999A0; font-weight:bold" class="order-footer__comfuse" type="default" size="large" square>有异议</van-button>
     </page-content>
   </div>
 </template>
 
 <script>
-  import {
-    Header,
-    HeaderLink
-  } from '../components/header'
+  import Vue from 'vue'
   import Content from '../components/content'
-  import Icon from '../components/icons'
-  import {
-    Button
-  } from '../components/buttons'
-  
+  import { getMonthDetails, getAllCouriers, changeHandler } from '../api/billDetail.js'
+  import Button from '../../node_modules/vant/lib/button';
+  import '../../node_modules/vant/lib/button/style';
+  import Toast from '../../node_modules/vant/lib/toast';
+  import '../../node_modules/vant/lib/toast/style';
+
+  Vue.use(Toast)
+  Vue.use(Button);
   export default {
     components: {
-      'page-header': Header,
-      HeaderLink,
       'page-content': Content,
-      'btn': Button,
-      Icon
     },
     data() {
       return {
         selected: 1,
-        couriers: [{
-            text: 'lily-12580',
-            value: 1
-          },
-          {
-            text: 'alice-10096',
-            value: 2
-          },
-          {
-            text: 'jack-22234',
-            value: 3
-          },
-        ],
+        couriers: [],
         orderTotal: 112,
-        orderStatus: '已对账',
-        orderSum: '1000w',
+        orderStatus: '',
         orderDetail: '详情',
-        orderPromot: 100,
-        cusAmount: 110,
-        fees: 10,
-        paidAmount: 200,
+
+        couriers: [],
+        billLists: [],
+        id: ''
       }
-    }
+    },
+    methods: {
+      filterDate (x){
+        const regexp=/(?:\.0*|(\.\d+?)0+)$/
+        return x.toString().replace(regexp,'$1')
+      },
+      handleSelect(id) {
+        // this.id = id
+        console.log(id);
+        getMonthDetails(this.$route.query.departmentBillId, id).then(res => {
+          console.log(res);
+          if (res.data.code == 0) {
+            this.billLists = res.data.data.content
+          } else {
+            this.billLists = null
+          }
+        })
+      },
+      handleComfirm() {
+        changeHandler(this.$route.query.departmentBillId, 'Confirmed').then(res => {
+          Toast.success({message:'对账成功',duration:1000});
+          this.$router.go(-1)
+        })
+      },
+      handleConfuse() {
+        changeHandler(this.$route.query.departmentBillId, 'Confuse').then(res => {
+          Toast.success({message:'提交成功',duration:1000});
+          this.$router.go(-1)
+        })
+      },
+      handleCheckOrder(sn) {
+        console.log(sn);
+        this.$router.push({path:'/CheckoutOrderDetail',query:{sn:sn}})
+      }
+    },
+    mounted() {
+      getMonthDetails(this.$route.query.departmentBillId).then(res => {
+        console.log('montsh',res);
+        this.billLists = res.data.data.content
+        console.log(this.billLists);
+      }),
+      getAllCouriers().then(res => {
+        console.log('getAllCouriers',res);
+        this.couriers = res.data.data.serverList
+        this.couriers.unshift({name:'全部配送员',id:''})
+      })
+    },
   }
+  
 </script>
 
 <style lang="less">
   .fontBold {
     font-weight: bold;
   }
-  
   .comment-header {
     color: #999999;
     display: flex;
@@ -183,6 +198,7 @@
     align-items: center;
     font-size: .75rem;
     margin-top: .75rem;
+    margin-bottom: 1rem
   }
   
   .orderDetail-list__upIcon {
@@ -196,10 +212,20 @@
     margin-right: .25rem;
     // top: .12rem;
   }
-  .order-footer {
-    position: absolute;
-    width: 100%;
+  .order-footer__comfirmed {
+    // color: red
+    // display: flex;
+    // justify-content: space-between;
+    // position: absolute;
+    // width: 100%;
+    // bottom: 0;
+    // font-size: 1rem;
+  }
+  .order-footer__comfuse {
+    // position: absolute;
     bottom: 0;
-    font-size: 1rem;
+  }
+  .page-bottom {
+    // display: flex;
   }
 </style>

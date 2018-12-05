@@ -18,25 +18,32 @@
                          width="90"
                          align="center">
           <template slot-scope="scope">
-            <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:12px" >未处理</span>
-            <span v-if="scope.row.orderStatus == 'Refuse'" style="color: red; font-size:12px" >已拒绝</span>
-            <span v-if="scope.row.orderStatus == 'OnDelivery'" style="color: green; font-size:12px">已派单</span>
+            <span v-if="scope.row.orderStatus == 'Collaging'" style="color: green; font-size:14px">拼团中</span>
+            <span v-if="scope.row.orderStatus == 'OnDelivery'" style="color: green; font-size:14px">正常派送</span>
+            <span v-if="scope.row.orderStatus == 'HoldDelivery'" style="color: red; font-size:14px" >暂停派送</span>
+            <span v-if="scope.row.orderStatus == 'UnSettle'" style="color: red; font-size:14px" >未分配</span>
+            <span v-if="scope.row.orderStatus == 'UnDeal'" style="color: red; font-size:14px" >未处理</span>
+            <span v-if="scope.row.orderStatus == 'Refuse'" style="color: red; font-size:14px" >已拒绝</span>
+            <span v-if="scope.row.orderStatus == 'completed'" style="color: green; font-size:14px">已完成</span>
+            <span v-if="scope.row.orderStatus == 'cancelled'" style="color: red; font-size:14px" >已取消</span>
+            <span v-if="scope.row.orderStatus == 'Finish'" style="color: green; font-size:14px">已评价</span>
+            <span v-if="scope.row.orderStatus == 'Closed'" style="color: red; font-size:14px" >已关闭</span>
           </template>
         </el-table-column>
         <el-table-column label="操作"
                          width="90"
                          align="center">
           <template slot-scope="scope">
-            <div v-if="scope.row.orderStatus == 'UnDeal'"  class="tableWrap">
-              <span  @click="handleCancle(scope.row.id)" style="color: red; font-size:12px">拒绝</span>
-              <span @click="handleAccept(scope.row.id)" style="color: green; font-size:12px">接受</span>
+            <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
+              <span  @click="handleCancle(scope.row.sn)" style="color: red; font-size:14px">拒绝</span>
+              <span @click="handleAccept(scope.row.sn)" style="color: green; font-size:14px">接受</span>
             </div>
-            <span @click="handleCheck(scope.row.id)" v-else style="color: green; font-size:12px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
+            <span v-else @click="handleCheck(scope.row.sn)" style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
         </el-table-column>
       </el-table>
       </div>
-      <p class="search-button"><a  @click="next" >加载更多</a></p>
+      <p v-if="tableData !== null" class="search-button"><a @click="next" >加载更多</a></p>
     </page-content>
   </div>
 </template>
@@ -131,7 +138,6 @@ export default {
       this.$router.push({path:'/AcceptOrder',query:{sn:id}})
     },
     handleCheck(id) {
-      console.log(~~id);
       this.$router.push({path:'/checkout',query:{sn:id}})
     },
     next() {

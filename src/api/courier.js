@@ -9,7 +9,8 @@ const urls = {
   unbind: '/app/service_department/unbind.htm',
   change: '/app/service_department/update.htm?WX_TYPE=OfficialAccount',
   add: '/app/service_department/save.htm?WX_TYPE=OfficialAccount',
-  count: '/app/service_department/count_server_item.htm'
+  count: '/app/service_department/count_server_item.htm',
+  milkCount: '/app/service_department/count_server_item.htm'
 }
 
 // 合并请求链接
@@ -78,7 +79,7 @@ export const addCourier = (param) => {
 };
 
 // 获取统计
-export const getCount = (id,beginDate,endDate) => {
+export const getMilkCount = (id,beginDate,endDate) => {
   return axios({
     url: apis.count,
     method: 'get',

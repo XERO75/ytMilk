@@ -21,7 +21,7 @@
                      type="text"
                      v-model="searchKey"
                      @input="search"
-                     placeholder="搜索关键字和号码">
+                     placeholder="关键字或号码">
             </form>
             <i class="courier-subHeader__searchIcon"></i>
           </div>
@@ -33,7 +33,7 @@
           </router-link>
         </div>
         <div class="courier-infoWrap">
-          <div @click="handleGetDetail(item.id)" v-for="item in couriers" :key="item.index" class="courier-info">
+          <div v-if="item.id !== ''" @click="handleGetDetail(item.id)" v-for="item in couriers" :key="item.index" class="courier-info">
             <p>{{item.name}} — {{item.phone}}</p>
             <i class="iconfont icon-more"></i>
           </div>
@@ -42,12 +42,11 @@
       <div v-if="type === 2"
            class="courier-countWrap">
         <div class="courier-count__header">
-          <select @change="handleSelect(selected)" class="courier-count__selectbox" v-model="selected.name">
-            <option selected>全部配送员</option>
-            <option v-for="item in couriers" :key="item.value" :value="item.name">{{item.name}}</option>
+          <select @change="handleSelect(id)" class="courier-count__selectbox" v-model="id">
+            <option v-for="item in couriers" :key="item.name" :value="item.id">{{item.name}}</option>
           </select>
-          <div @click="timePickerOne = true;" class="item-input" style="font-size:12px">
-            {{beginDate}}
+          <div @click="timePickerOne = true;" class="item-input" style="font-size:14px">
+            {{filterBegin}}
           </div>
             <van-popup
               v-model="timePickerOne"
@@ -61,8 +60,8 @@
             />
             </van-popup>
           <span>—</span>
-          <div @click="timePickerTwo = true;" class="item-input" style="font-size:12px">
-            {{endDate}}
+          <div @click="timePickerTwo = true;" class="item-input" style="font-size:14px">
+            {{filterEnd}}
           </div>
             <van-popup
               v-model="timePickerTwo"
@@ -78,28 +77,29 @@
         </div>
         <div class="courier-count__grids">
           <el-table
-        :data="tableData"
-        border
-        :header-cell-style='styleObj'
-        style="width: 100%">
-        <el-table-column
-          prop="product"
-          label="产品"
-          align="center">
-          <template slot-scope="scope">
-            <div class="del-productWrap">
-              <img src="../assets/images/u505.png" class="del-product__img">
-              <span>Lorem ipsum dolor sit amet.</span>
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="amount"
-          label="数量"
-          align="center"
-          width="100">
-        </el-table-column>
-      </el-table>
+            :data="tableData"
+            border
+            :header-cell-style='styleObj'
+            style="width: 100%">
+            <el-table-column
+              label="产品"
+              align="center">
+              <template slot-scope="scope">
+                <div class="del-productWrap">
+                  <img :src="scope.row.image" class="del-product__img">
+                  <span>{{scope.row.name}}{{scope.row.specifications}}</span>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column
+              label="数量"
+              align="center"
+              width="100">
+              <template slot-scope="scope">
+                <span>{{scope.row.number}}</span>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
       </div>
     </page-content>
@@ -113,7 +113,7 @@ import Content from '../components/content'
 import searchbar from '../components/searchbar'
 import Calendar from '../components/calendar'
 
-import { getAllCouriers, getCourierDetail, getCount } from '../api/courier.js'
+import { getAllCouriers, getCourierDetail, getMilkCount } from '../api/courier.js'
 import _ from 'lodash'; //引入lodash
 import axios from 'axios' //引入axios
 import Popup from '../../node_modules/vant/lib/popup';
@@ -132,9 +132,7 @@ export default {
   },
   data () {
     return {
-      selected: {
-        name:'全部配送员'
-      },
+      id:'',
       type: 1,
       searchKey: '',
       couriers: [],
@@ -144,10 +142,15 @@ export default {
       beginDate: '',
       endDate: '',
       styleObj: {'background': '#F2F2F2'},
-      tableData: [{
-        product: '2016-05-02',
-        amount: '王小虎'
-      }]
+      tableData: []
+    }
+  },
+  computed: {
+    filterBegin: function() {
+      return this.dateLong2String(this.beginDate.toString())
+    },
+    filterEnd: function() {
+      return this.dateLong2String(this.endDate.toString())
     }
   },
   methods: {
@@ -185,8 +188,10 @@ export default {
           //请求成功
           sc.source = null; //置空请求canceltoken
           console.log('搜索成功');
+          if (res.data.code == 1) {
+            that.couriers = null
+          } else 
           that.couriers = res.data.data.serverList
-
         }).catch((thrown) => { 
           sc.source = null; //置空请求canceltoken
         })
@@ -196,7 +201,17 @@ export default {
     handleGetDetail(id) {
       this.$router.push({path:'/CourierDetail',query:{expressServerId:id}})
     },
-    handleSelect(selected) {
+    handleSelect(id) {
+      this.id = id
+      let beginDate = this.dateLong2String(this.beginDate)
+      let endDate = this.dateLong2String(this.endDate)
+      getMilkCount(this.id, beginDate, endDate).then(res => {
+        if (res.data.code == 0) {
+          this.tableData = res.data.data.content
+        } else {
+          this.tableData = null
+        }
+      })
     },
     onCancel() {
       this.timePickerOne = false
@@ -204,21 +219,55 @@ export default {
     },
     confirmOne(picker, value, index) {
       this.beginDate = picker
+      // console.log(this.dateLong2String(this.beginDate))
+      let beginDate = this.dateLong2String(this.beginDate)
+      let endDate = this.dateLong2String(this.endDate)
       this.timePickerOne = false
+      getMilkCount(this.id, beginDate, endDate).then(res => {
+        if (res.data.code == 0) {
+          this.tableData = res.data.data.content
+        } else {
+          this.tableData = null
+        }
+      })
     },
     confirmTwo(picker, value, index) {
       this.endDate = picker
+      let beginDate = this.dateLong2String(this.beginDate)
+      let endDate = this.dateLong2String(this.endDate)
       this.timePickerTwo= false
+      getMilkCount(this.id, beginDate, endDate).then(res => {
+        if (res.data.code == 0) {
+          this.tableData = res.data.data.content
+        } else {
+          this.tableData = null
+        }
+      })
     },
     onChange(picker, value, index) {
+    },
+    dateLong2String(time){
+      var date = new Date(time);
+      var year = date.getFullYear();
+      var month = date.getMonth()+1;
+      var day = date.getDate();
+      month = month < 10 ? "0"+month:month;
+      day = day < 10 ? "0"+day:day;
+      return year+"-"+month+"-"+day;
     }
   },
-  mounted() {
+  created() {
     this.beginDate = new Date()
     this.endDate = new Date()
+  },
+  mounted() {
     getAllCouriers().then(res => {
       this.couriers = res.data.data.serverList
-      // this.selected = this.couriers[0]
+      this.couriers.unshift({name:'全部配送员',id:''})
+    }),
+    getMilkCount().then(res => {
+      console.log(res);
+      this.tableData = res.data.data.content
     })
   },
 }
@@ -346,14 +395,16 @@ export default {
   align-items: center;
 }
 .courier-count__selectbox {
-  width: 6rem;
+  width: 5rem;
   padding: 0.4rem;
   border-radius: 5px;
 }
 .item-input {
-  width: 4rem;
+  width: 5rem;
   border: 1px solid #e0e0e0;
-  padding: 0.2rem;
+  padding: 0.3rem;
+  border-radius: 5px;
+  text-align: center;
 }
 .courier-count__grids {
   margin: 0 0.4rem;

@@ -30,11 +30,6 @@
             </div>
             <span class="fr">共{{item.totalCount}}/剩{{item.remain}}/日送{{item.number}}</span>
           </div>
-          <!-- <div class="order-product__detail">
-            <img class="order-product__img" src="../assets/images/accept/u250.png" alt="">
-            <span class="order-product__desc">{{productDescription}}</span>
-          </div>
-          <span>共{{total}}/剩{{left}}/日送{{daily}}</span> -->
         </div>
         <div class="order-product__startData">
           <span class="boldFont">起送日期</span>
@@ -49,7 +44,7 @@
           <span>{{filterHalfDateType}}</span>
         </div>
       </div>
-      <van-button  @click="show = true" class="order-footer" type="primary" size="large" square>接受订单</van-button>
+      <van-button  @click="show = true" class="order-footerWrap" type="primary" size="large" square>接受订单</van-button>
       <van-dialog
         v-model="show"
         show-cancel-button
@@ -251,7 +246,7 @@ export default {
 .order-product__deliveryTime {
   border-bottom: 1px solid rgb(226, 226, 226);
 }
-.order-footer {
+.order-footerWrap {
   position: fixed;
   bottom: 0;
 }

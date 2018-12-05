@@ -8,8 +8,8 @@
       </div>
       <div class="comment-courierList">
         <p>优鲜达人</p>
-        <el-select @change="handleChange(name)" v-model="name" size="mini">
-          <el-option v-for="item in courierLists" :key="item.value" :value="item.name" :label="item.name"><span style="font-size:14px">{{item.name}}-{{item.phone}}</span></el-option>
+        <el-select @change="handleChange(id)" v-model="id" size="mini">
+          <el-option v-for="item in courierLists" :key="item.value" :value="item.name"><span style="font-size:14px">{{item.name}}&nbsp;&nbsp;{{item.phone}}</span></el-option>
         </el-select>
         <!-- <el-select @change="handleChange(selected)" v-model="selected" size="mini" placeholder="选择优鲜达人">
           <el-option v-for="item in courierLists" :key="item.value" :value="item.id" :label="item.name"><span style="font-size:12px">{{item.name}}-{{item.phone}}</span></el-option>
@@ -49,7 +49,7 @@ export default {
   },
   data () {
     return {
-      name: null,
+      id: '全部',
       commentsData: {},
       commentLists: [],
       courierLists: []
@@ -57,6 +57,11 @@ export default {
   },
   methods: {
     handleChange(name) {
+      if (name == '全部') {
+        name = ''
+      } else {
+        name = name
+      }
       getComments(name).then(res => {
         this.commentsData = res.data.data
         this.commentLists = res.data.data.content
@@ -74,6 +79,7 @@ export default {
       })
       getCouriers().then(res => {
         this.courierLists = res.data.data.serverList
+        this.courierLists.unshift({id:'',name:'全部',phone:''})
       })
     })
   },

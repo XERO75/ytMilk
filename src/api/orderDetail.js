@@ -3,6 +3,7 @@ const baseUrl = process.env.BASE_API;
 
 const urls = {
   month: '/app/service_department/monthly_payment.htm',
+  day: '/app/service_department/day_detail.htm'
 }
 
 // 合并请求链接
@@ -12,12 +13,21 @@ const apis = Object.keys(urls)
     return acc
   }, {});
   
-// 获取所有订单 
-export const getMonthDetail = () => {
+// 获取月订单 
+export const getMonthDetail = (pageNumber,status) => {
   return axios({
     url: apis.month,
     method: 'get',
-    params: axios.getData({})
+    params: axios.getData({pageNumber:pageNumber, status:status})
+  })
+}
+
+// 获取日订单 
+export const getDayDetail = (date) => {
+  return axios({
+    url: apis.day,
+    method: 'get',
+    params: axios.getData({date:date})
   })
 }
 

@@ -162,7 +162,7 @@ export default {
         formdata.append('sn', id)
         rejectOrder(formdata).then(res => {
           console.log('order cancled');
-        }).then(this.$router.go(0))
+        }).then(this.handleRefresh())
       }).catch(() => {
         console.log('u cancled');
       });

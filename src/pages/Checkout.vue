@@ -80,7 +80,7 @@
           <span>{{filterHalfDateType}}</span>
         </div>
       </div>
-      <van-button class="order-footer" type="default" size="large" square>已暂停</van-button>
+      <van-button v-if="originStatus == 'HoldDelivery'" class="order-footer" type="default" size="large" square>已暂停</van-button>
     </page-content>
   </div>
 </template>
@@ -305,6 +305,6 @@ export default {
   position: fixed;
   bottom: 0;
   background : #F2F2F2;
-color : #999999
+  color : #999999
 }
 </style>
