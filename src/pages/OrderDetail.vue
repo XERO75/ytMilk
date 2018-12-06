@@ -146,7 +146,7 @@ export default {
       type: 1,
       id: '',
       options: [
-        { id: "", value: '全部' },
+        { id: "", value: ' 全部' },
         { id: "Unconfirmed", value: '未对账' },
         { id: "Confirmed", value: '已对账' },
         { id: "Confuse", value: '有异议' }

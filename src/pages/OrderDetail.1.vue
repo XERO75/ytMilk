@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <page-content>
-      
+
         <div class="orderDetail">
           <div class="orderDetail-list">
             <div :class="{'orderDetail-list__active ': type == 1}"
@@ -9,7 +9,7 @@
                 class="orderDetail-list__month">月账单</div>
             <div :class="{'orderDetail-list__active ': type == 2}"
                 @click="getDaily()"
-                class="orderDetail-list__day">日细明</div>
+                class="orderDetail-list__day">日明细</div>
           </div>
           <div v-if="type === 1" class="orderDetail-monthWrap">
             <div class="orderDetail-list__status">
@@ -18,41 +18,39 @@
                 <option v-for="item in options" :key="item.value" :value="item.id">{{item.value}}</option>
               </select>
             </div>
-              <div ref="mescroll" class="mescroll">
-                <div>
-                  <div v-for="item in orderLists"
-                      :key="item.index"
-                      class="orderDetail-list__detail">
-                    <div class="orderDetail-list__total">
-                      <p><span class="fontBold">订单总数:&nbsp;&nbsp;</span>{{item.totalOrder}}</p>
-                      <span v-if="item.status == 'Unconfirmed'"
-                            style="align-self:center; color:#54A93E">未对账</span>
-                      <span v-if="item.status == 'Confirmed'"
-                            style="align-self:center; color:#54A93E">已确认</span>
-                      <span v-if="item.status == 'Confuse'"
-                            style="align-self:center; color:#54A93E">有异议</span>
-                    </div>
-                    <div class="orderDetail-list__sum">
-                      <p><span class="fontBold">订单总额:&nbsp;&nbsp;</span>￥{{item.totalPrice}}</p>
-                      <a @click="handleDetail(item.id, item.status)"
-                        style="align-self:center">详情</a>
-                    </div>
-                    <div class="orderDetail-list__promot">
-                      <p><span class="fontBold">优惠金额:&nbsp;&nbsp;</span>￥{{item.discountedPrice}}</p>
-                    </div>
-                    <div class="orderDetail-list__cusAmount">
-                      <p><span class="fontBold">客户应收金额:&nbsp;&nbsp;</span>￥{{item.receivablePrice}}</p>
-                    </div>
-                    <div class="orderDetail-list__fees">
-                      <p><span class="fontBold">手续费:&nbsp;&nbsp;</span>￥{{item.handlingFee}}</p>
-                    </div>
-                    <div class="orderDetail-list__paidAmount">
-                      <p><span class="fontBold">实收金额:&nbsp;&nbsp;</span>￥{{item.receivablePrice}}</p>
-                      <span style="align-self:center">{{dateLong2String(item.createDate)}}</span>
-                    </div>
-                  </div>
+            
+              <div v-for="item in orderLists"
+                  :key="item.index"
+                  class="orderDetail-list__detail">
+                <div class="orderDetail-list__total">
+                  <p><span class="fontBold">订单总数:&nbsp;&nbsp;</span>{{item.totalOrder}}</p>
+                  <span v-if="item.status == 'Unconfirmed'"
+                        style="align-self:center; color:#54A93E">未对账</span>
+                  <span v-if="item.status == 'Confirmed'"
+                        style="align-self:center; color:#54A93E">已确认</span>
+                  <span v-if="item.status == 'Confuse'"
+                        style="align-self:center; color:#54A93E">有异议</span>
+                </div>
+                <div class="orderDetail-list__sum">
+                  <p><span class="fontBold">订单总额:&nbsp;&nbsp;</span>￥{{item.totalPrice}}</p>
+                  <a @click="handleDetail(item.id, item.status)"
+                    style="align-self:center">详情</a>
+                </div>
+                <div class="orderDetail-list__promot">
+                  <p><span class="fontBold">优惠金额:&nbsp;&nbsp;</span>￥{{item.discountedPrice}}</p>
+                </div>
+                <div class="orderDetail-list__cusAmount">
+                  <p><span class="fontBold">客户应收金额:&nbsp;&nbsp;</span>￥{{item.receivablePrice}}</p>
+                </div>
+                <div class="orderDetail-list__fees">
+                  <p><span class="fontBold">手续费:&nbsp;&nbsp;</span>￥{{item.handlingFee}}</p>
+                </div>
+                <div class="orderDetail-list__paidAmount">
+                  <p><span class="fontBold">实收金额:&nbsp;&nbsp;</span>￥{{item.receivablePrice}}</p>
+                  <span style="align-self:center">{{handleFilterDate(item.createDate)}}</span>
                 </div>
               </div>
+            
           </div>
           <div v-if="type === 2"
             class="order-dailyWrap">
@@ -75,6 +73,18 @@
               <div v-for="item in dayLists"
                   :key="item.index"
                   class="order-daily__info">
+                <div class="order-daily__sn">
+                  <span class="">订单号：{{item.sn}}</span>
+                  <span v-if="item.orderStatus == 'OnDelivery'" style="align-self:center; color:#54A93E">正常派送</span>
+                  <span v-if="item.orderStatus == 'HoldDelivery'" style="align-self:center; color:red">暂停派送</span>
+                  <span v-if="item.orderStatus == 'UnSettle'" style="align-self:center; color:red">未分配</span>
+                  <span v-if="item.orderStatus == 'UnDeal'" style="align-self:center; color:red">未处理</span>
+                  <span v-if="item.orderStatus == 'Refuse'" style="align-self:center; color:red">已拒绝</span>
+                  <span v-if="item.orderStatus == 'completed'" style="align-self:center; color:#54A93E">已完成</span>
+                  <span v-if="item.orderStatus == 'cancelled'" style="align-self:center; color:red">已取消</span>
+                  <span v-if="item.orderStatus == 'Finish'" style="align-self:center; color:#54A93E">已评价</span>
+                  <span v-if="item.orderStatus == 'Closed'" style="align-self:center; color:red">已关闭</span>
+                </div>
                 <div class="order-daily__user">
                   <span class="">用户：</span>{{item.memberName}}
                 </div>
@@ -92,11 +102,15 @@
                       alt="">
                   <span class="order-daily__desc">{{n.productName}}{{n.specifications}}<br>X{{n.number}}</span>
                 </div>
+                <div class="order-daily__user">
+                  <span class="">订单总价</span>￥{{item.totalPrice}}
+                </div>
               </div>
             </div>
 
           </div>
         </div>
+
     </page-content>
     <!-- <calendar :date="date2" @change="(d) => {(date2 = d) && $refs.c2.close()}"></calendar> -->
     <!-- <div class="orderDetail-list__loadMore">
@@ -114,14 +128,16 @@ import Popup from '../../node_modules/vant/lib/popup';
 import '../../node_modules/vant/lib/popup/style';
 import DatetimePicker from '../../node_modules/vant/lib/datetime-picker';
 import '../../node_modules/vant/lib/datetime-picker/style';
-import MeScroll from 'mescroll.js'
-import 'mescroll.js/mescroll.min.css'
+import List from '../../node_modules/vant/lib/list';
+import '../../node_modules/vant/lib/list/style';
 import axios from 'axios' //引入axios
 
 // Vue.use(VueBetterScroll)
 Vue.use(Popup);
 Vue.use(DatetimePicker);
+Vue.use(List);
 export default {
+  name: 'xxx',
   components: {
     'page-content': Content,
   },
@@ -143,27 +159,83 @@ export default {
       beginDate: '',
       dayLists: [],
       productList: [],
-      mescroll: null,
-      pageNumber: '1'
+      pageNumber: '1',
+      // mescroll: null,
+      // mescrollUp: {
+      //   callback: this.upCallback,
+      // },
+      // dataList: [] // 列表数据
+      list: [],
+      loading: false,
+      finished: false
     }
   },
   computed: {
     filterBegin: function () {
       return this.dateLong2String(this.beginDate.toString())
-    }
+    },
+    
   },
   methods: {
     getMonth () {
       this.type = 1
+      getMonthDetail().then(res => {
+        let Res = res.data.data
+        this.orderLists = Res.content
+      }).catch((err) => {
+        console.log(err);
+      })
     },
     getDaily () {
       this.type = 2
+      getDayDetail(this.dateLong2String(this.beginDate)).then(res => {
+        this.dayLists = res.data.data.content
+        this.productList = res.data.data.content.orderItems
+      }).catch((err) => {
+        console.log(err);
+      })
     },
     next () {
       this.pageNumber++
       getMonthDetail(this.pageNumber).then(res => {
         this.dataList.push(res.data.data.content)
       })
+    },
+    filterStatus (val) {
+      switch (val) {
+        case "Collaging":
+          return "拼团中";
+          break;
+        case "OnDelivery":
+          return "正常派送";
+          break;
+        case "HoldDelivery":
+          return "暂停派送";
+          break;
+        case "UnSettle":
+          return "未分配";
+          break;
+        case "UnDeal":
+          return "未处理";
+          break;
+        case "Refuse":
+          return "已拒绝";
+          break;
+        case "completed":
+          return "已完成";
+          break;
+        case "cancelled":
+          return "已取消";
+          break;
+        case "Finish":
+          return "已评价";
+          break;
+        case "Closed":
+          return "已关闭";
+          break;
+        default: "unknown"
+          break;
+      }
     },
     handleDetail (id, status) {
       this.$router.push({ path: 'billDetail', query: { departmentBillId: id, status: status } })
@@ -201,56 +273,15 @@ export default {
       day = day < 10 ? "0" + day : day;
       return year + "-" + month + "-" + day;
     },
-    upCallback(page){
-      // $.ajax({
-      //     url: 'api/app/service_department/monthly_payment.htm?num='+ page.num +"&size="+ page.size,
-      //     success: function(data){
-      //       mescroll.endSuccess(data.length);
-      //     },
-      //     error: function(data){
-      //       //联网失败的回调,隐藏下拉刷新和上拉加载的状态
-      //       mescroll.endErr();
-      //     }
-      // });
-      axios.get("api/app/service_department/monthly_payment.htm?WX_TYPE=OfficialAccount", {
-        params: {
-          pageNumber: this.pageNumber, //页码
-          status: this.id,
-          // WX_TYPE: OfficialAccount
-        }
-      }).then((response)=> {
-        // let arr = response.data;
-        //如果是第一页需手动制空列表
-        // if (page.num == 1) this.dataList = [];
-        //把请求到的数据添加到列表
-        // this.dataList = this.dataList.concat(arr);
-        //数据渲染成功后,隐藏下拉刷新的状态
-        this.$nextTick(() => {
-          this.mescroll.endSuccess(arr.length);
-        })
-      }).catch((e)=> {
-        //联网失败的回调,隐藏下拉刷新和上拉加载的状态;
-        this.mescroll.endErr();
-      })
+    handleFilterDate(val){
+      if(val){
+        let arr = val + ''
+        return arr.slice(0,10)
+      }
     }
-
   },
   mounted () {
-    getMonthDetail().then(res => {
-      let Res = res.data.data
-      this.orderLists = Res.content
-      console.log(this.orderLists);
-    }),
-    getDayDetail(this.dateLong2String(this.beginDate)).then(res => {
-      this.dayLists = res.data.data.content
-      this.productList = res.data.data.content.orderItems
-    }),
-    this.mescroll = new MeScroll(this.$refs.mescroll, {
-      up: {
-        callback: this.upCallback //上拉加载回调,简写callback:function(page){upCallback(page);}
-      }
-    });
-
+    this.getMonth()
   },
   created () {
     this.beginDate = new Date()
@@ -305,6 +336,9 @@ export default {
   border-bottom: 1px solid rgb(226, 226, 226);
   color: rgb(131, 131, 131);
 }
+.orderDetail-list__detail:nth-last-child(1) {
+  margin-bottom: 10em;
+}
 
 .orderDetail-list__status,
 .orderDetail-list__total,
@@ -356,6 +390,7 @@ export default {
   margin: 1rem 0.8rem;
   font-size: 14px;
   border-bottom: 1px solid rgb(226, 226, 226);
+  padding-bottom: .8rem;
 }
 .item-input {
   border: 1px solid rgb(226, 226, 226);
@@ -392,6 +427,10 @@ export default {
   .van-popup {
     z-index: 99999999!important;
   }
+}
+.order-daily__sn {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
 

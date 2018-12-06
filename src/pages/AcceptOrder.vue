@@ -13,7 +13,7 @@
         </div>
         <div class="order-client__address">
           <span class="boldFont">地址</span>
-          <span>{{orderData.memberDistrict}}{{orderData.gaodeAddress}}{{orderData.memberAddress}}{{orderData.memberRoom}}</span>
+          <span style="width:80%; text-align:right;">{{orderData.memberDistrict}}{{orderData.gaodeAddress}}{{orderData.memberAddress}}{{orderData.memberRoom}}</span>
         </div>
         <div class="order-client__status">
           <span class="boldFont">状态</span>
@@ -23,7 +23,7 @@
       <div class="order-productWrap">
         <span style="font-weight:bold; font-size:.8rem">产品</span>
         <div class="order-product__detailWrap">
-          <div style="height:3rem;" v-for="item in itemLists" :key="item.keys">
+          <div style="" v-for="item in itemLists" :key="item.keys">
             <div class="order-product__detail fl">
               <img class="order-product__img" :src="item.image" alt="">
               <span class="order-product__desc">{{item.productName}}{{item.specifications}}</span>
