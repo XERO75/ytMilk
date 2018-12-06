@@ -2,12 +2,12 @@
   <div :class="'search-bar ' + (focus ? 'focus' : '')" @click="onClick">
     <form class="search-outer">
       <div class="search-inner">
-        <i class="icon icon-search"></i>
+        <i class="iconfont icon-search"></i>
         <input type="search" class="search-input" id="search-input" :placeholder="searchText" v-model="mutableInput" @blur="blur">
         <a href="javascript:" class="icon icon-clear" id="search-clear" @click="clear"></a>
       </div>
       <label for="search-input" class="search-text" id="search-text">
-        <i class="icon icon-search"></i>
+        <i class="iconfont icon-search"></i>
         <span>{{searchText}}</span>
       </label>
     </form>
@@ -24,7 +24,7 @@ export default {
     },
     searchText: {
       type: String,
-      default: '输入手机号码、姓名、地址搜索订单'
+      default: '搜索'
     },
     cancelText: {
       type: String,

@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <page-content>
-      <div v-if="courierData.name != null"
-           class="order-courierWrap">
+      <div v-if="clientData.orderStatus == 'completed' || clientData.orderStatus == 'Finish' || clientData.orderStatus == 'OnDelivery'" class="order-courierWrap">
+      <!-- <div v-if="courierData.name !== null" class="order-courierWrap"> -->
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
           <div class="order-courier__detail">
@@ -35,8 +35,8 @@
           <span style="color:#54A93E">{{clientData.memberPhone}}</span>
         </div>
         <div class="order-client__address">
-          <span class="boldFont" style="width:100px">地址</span>
-          <span >{{clientData.memberDistrict}}{{clientData.gaodeAddress}}{{clientData.memberAddress}}{{clientData.memberRoom}}</span>
+          <span class="boldFont" >地址</span>
+          <span style="width:80%; text-align:right;">{{clientData.memberDistrict}}{{clientData.gaodeAddress}}{{clientData.memberAddress}}{{clientData.memberRoom}}</span>
         </div>
         <div class="order-client__status">
           <span class="boldFont">状态</span>
@@ -47,7 +47,7 @@
       <div class="order-productWrap">
         <span style="font-weight:bold; font-size:.8rem">产品</span>
         <div class="order-product__detailWrap">
-          <div style="height:3rem;"
+          <div style=""
                v-for="item in itemLists"
                :key="item.keys">
             <div class="order-product__detail fl">
@@ -115,6 +115,9 @@ export default {
       originHalfDateType: ''
     }
   },
+  watch: {
+    
+  },
   computed: {
     filterStatus: function() {
       switch (this.originStatus) {
@@ -169,29 +172,19 @@ export default {
       } else {
         return "下午"
       }
-    }
+    },
+    handleRefresh() {
+      this.$router.replace({
+        path: '/supplierAllBack',
+        name: 'supplierAllBack'
+      })
+    },
   },
   methods: {
     getExpressId (id) {
       this.expressServerId = id
     },
-    beforeClose (action, done) {
-      if (action === 'confirm') {
-        let formdata = new FormData()
-        formdata.append('sn', this.$route.query.sn)
-        formdata.append('expressServerId', this.expressServerId)
-        changeCourier(formdata).then(res => {
-          setTimeout(done, 100)
-          console.log('done');
-        }).then(this.$router.go(0))
-      } else {
-        console.log('cancle')
-        done()
-      }
-    }
-  },
-  mounted () {
-    handleLogin().then((res) => {
+    handleGetDetail() {
       getDetails(this.$route.query.sn).then((res) => {
         this.courierData = res.data.data
         this.clientData = res.data.data.order
@@ -201,6 +194,26 @@ export default {
         this.originDeliverType = res.data.data.order.deliverType
         this.originHalfDateType = res.data.data.order.halfDateType
       })
+    },
+    beforeClose (action, done) {
+      if (action === 'confirm') {
+        let formdata = new FormData()
+        formdata.append('sn', this.$route.query.sn)
+        formdata.append('expressServerId', this.expressServerId)
+        changeCourier(formdata).then(res => {
+          this.handleGetDetail()
+          setTimeout(done, 100)
+          console.log('done');
+        })
+      } else {
+        console.log('cancle')
+        done()
+      }
+    }
+  },
+  mounted () {
+    handleLogin().then((res) => {
+      this.handleGetDetail()
     })
   }
 }

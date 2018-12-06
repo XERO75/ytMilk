@@ -2,8 +2,7 @@
   <div class="search-page">
     <page-content>
       <form action="/">
-        <!-- <van-search placeholder="请输入搜索关键词" show-action @search="search" v-model="searchKey" /> -->
-        <searchbar v-model="searchKey" @input="search"></searchbar>
+        <van-search placeholder="请输入搜索关键词" show-action @search="search" v-model="searchKey" />
           <!-- <div slot="action" @click="search">搜索</div>
         </van-search> -->
       </form>
@@ -38,8 +37,8 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
-              <van-button @click="handleCancle(scope.row.sn)" size="small" type="primary" style="margin:4px">接受</van-button>
-              <van-button @click="handleAccept(scope.row.sn)" size="small" type="" style="background:#FF8001; color:white">拒绝</van-button>
+              <span  @click="handleCancle(scope.row.sn)" style="color: red; font-size:14px">拒绝</span>
+              <span @click="handleAccept(scope.row.sn)" style="color: green; font-size:14px">接受</span>
             </div>
             <span v-else @click="handleCheck(scope.row.sn)" style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
@@ -61,19 +60,14 @@ import { handleLogin } from "@/api/login.js";
 import { getAllOrder, searchOrder, rejectOrder } from '@/api/search.js'
 import _ from 'lodash'; //引入lodash
 import axios from 'axios' //引入axios
-import Searchbar from '../components/searchbar'
-import Button from '../../node_modules/vant/lib/button';
-import '../../node_modules/vant/lib/button/style';
 
 //请求canceltoken列表
 let sources = [];
 Vue.use(Search);
 Vue.use(Toast)
-Vue.use(Button)
 export default {
   components: {
-    'page-content': Content,
-    Searchbar
+    'page-content': Content
   },
   data () {
     return {
@@ -81,18 +75,14 @@ export default {
       tableData: [],
       listData: {},
       searchKey: '',
-      pageNumber: 1,
-      searchInput: ''
+      pageNumber: 1
     }
   },
   methods: {
     //准备搜索
     search: _.debounce(
       function () {
-        let that = this
-        let api = ''
-        let api1 = '/app/service_department/search.htm'
-        let api2 = 'api/app/service_department/search.htm'
+        let that = this;
         _.remove(sources, function (n) {
           return n.source === null;
         });
@@ -107,8 +97,7 @@ export default {
           status: 1 //状态1：请求中，0:取消中
         };
         sources.push(sc);
-        this.searchKey == '' ? api=api2 : api = api1
-        axios.get(api, {
+        axios.get('/api/app/service_department/search.htm', {
           cancelToken: sc.source.token,
           params: {
             keyword: this.searchKey,
@@ -178,9 +167,6 @@ export default {
           }
         })
       }
-    },
-    input (v) {
-      console.log(v)
     }
   },
   mounted () {

@@ -1,14 +1,12 @@
 <template>
   <page-content>
     <div class="del-order__header">
-      <a @click="handlePrev" class="del-order__prev"><span v-if="this.dayList.length !== 1">前一天</span></a>
-      <!-- <a @click="handlePrev" class="del-order__prev"><span v-if="this.status !== 0">前一天</span></a> -->
+      <a @click="handlePrev" class="del-order__prev"><span v-show="this.dayList.length !== 1">前一天</span></a>
       <div class="del-order__date">
         <i class="del-order__dateIcon"></i>
         {{filterDate}}
       </div>
-      <a @click="handleNext" class="del-order__next"><span v-if="this.dayList.length !==3" >后一天</span></a>
-      <!-- <a @click="handleNext" class="del-order__next"><span v-if="this.status !== 2" >后一天</span></a> -->
+      <a @click="handleNext" class="del-order__next"><span v-show="this.dayList.length !==3" >后一天</span></a>
     </div>
     <div class="del-grids">
       <el-table
@@ -114,10 +112,17 @@
     padding: 0 .375rem;
     font-size: .75rem;
   }
+  .del-order__date {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+  }
   .del-order__header a{
     display: block;
     color: #eee;
-    width: 50px;
+    width: 20%;
+    text-align: center;
+    // width: 50px;
   }
   .del-order__dateIcon{
     display: inline-block;

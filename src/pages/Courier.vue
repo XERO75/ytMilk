@@ -39,25 +39,22 @@
           </div>
         </div>
       </div>
-      <div v-if="type === 2"
-           class="courier-countWrap">
+      <div v-if="type === 2" class="courier-countWrap">
         <div class="courier-count__header">
           <select @change="handleSelect(id)" class="courier-count__selectbox" v-model="id">
-            <option v-for="item in couriers" :key="item.name" :value="item.id">{{item.name}}</option>
+            <option v-for="item in milkCourier" :key="item.name" :value="item.id">{{item.name}}</option>
           </select>
           <div @click="timePickerOne = true;" class="item-input">
             {{filterBegin}}
           </div>
             <van-popup
               v-model="timePickerOne"
-              position="bottom"
-            >
+              position="bottom">
             <van-datetime-picker
               v-model="beginDate"
               type="date"
               @cancel="onCancel"
-              @confirm="confirmOne"
-            />
+              @confirm="confirmOne"/>
             </van-popup>
           <span style="color:gray">—</span>
           <div @click="timePickerTwo = true;" class="item-input">
@@ -136,13 +133,14 @@ export default {
       type: 1,
       searchKey: '',
       couriers: [],
-      date2: '',
+      milkCourier: [],
+      // searchCouriers: [],
       timePickerOne: false,
       timePickerTwo: false,
       beginDate: '',
       endDate: '',
-      styleObj: {'background': '#F2F2F2'},
-      tableData: []
+      tableData: [],
+      styleObj: {'background': '#F2F2F2'}
     }
   },
   computed: {
@@ -156,14 +154,28 @@ export default {
   methods: {
     getList () {
       this.type = 1
+      getAllCouriers().then(res => {
+        this.couriers = res.data.data.serverList
+        this.couriers.unshift({name:'全部配送员',id:''})
+      })
     },
     getCount () {
       this.type = 2
+      getAllCouriers().then(res => {
+        this.milkCourier = res.data.data.serverList
+        this.milkCourier.unshift({name:'全部配送员',id:''})
+      })
+      getMilkCount().then(res => {
+        console.log(res);
+        this.tableData = res.data.data.content
+      })
     },
-    //准备搜索
     search: _.debounce(
       function () {
         let that = this;
+        let api = ''
+        let api1 = '/app/service_department/servers.htm'
+        let api2 = 'api/app/service_department/servers.htm'
         _.remove(sources, function (n) {
           return n.source === null;
         });
@@ -178,7 +190,8 @@ export default {
           status: 1 //状态1：请求中，0:取消中
         };
         sources.push(sc);
-        axios.get('api/app/service_department/servers.htm', {
+        this.searchKey == '' ? api=api2 : api = api1
+        axios.get(api, {
           cancelToken: sc.source.token,
           params: {
             keyword: this.searchKey,
@@ -219,7 +232,6 @@ export default {
     },
     confirmOne(picker, value, index) {
       this.beginDate = picker
-      // console.log(this.dateLong2String(this.beginDate))
       let beginDate = this.dateLong2String(this.beginDate)
       let endDate = this.dateLong2String(this.endDate)
       this.timePickerOne = false
@@ -244,8 +256,6 @@ export default {
         }
       })
     },
-    onChange(picker, value, index) {
-    },
     dateLong2String(time){
       var date = new Date(time);
       var year = date.getFullYear();
@@ -261,14 +271,7 @@ export default {
     this.endDate = new Date()
   },
   mounted() {
-    getAllCouriers().then(res => {
-      this.couriers = res.data.data.serverList
-      this.couriers.unshift({name:'全部配送员',id:''})
-    }),
-    getMilkCount().then(res => {
-      console.log(res);
-      this.tableData = res.data.data.content
-    })
+    this.getList()
   },
 }
 </script>

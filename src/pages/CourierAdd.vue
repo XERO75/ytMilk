@@ -2,15 +2,15 @@
     <page-content>
       <div class="courier-addWrap">
         <i class="iconfont icon-userplus"></i>
-        <el-form :label-position="labelPosition" label-width="80px" :model="form">
+        <el-form style="width:14rem" :label-position="labelPosition" label-width="80px" size="medium" :model="form">
           <el-form-item label="姓名">
-            <el-input v-model="form.name"></el-input>
+            <el-input placeholder="请输入优鲜达人姓名" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item label="手机">
-            <el-input type="number" v-model="form.phone" oninput="if(value.length>11)value=value.slice(0,11)"></el-input>
+            <el-input placeholder="请输入优鲜达人手机号码" type="number" v-model="form.phone" oninput="if(value.length>11)value=value.slice(0,11)"></el-input>
           </el-form-item>
         </el-form>
-        <btn @click.native="handleChange" style="margin-top:40px" class="btn" size="medium">确认添加</btn>
+        <btn @click.native="handleChange" style="margin-top:40px" class="btn" size="large">确认添加</btn>
       </div>
     </page-content>
 </template>
@@ -31,11 +31,11 @@ export default {
   components: {
     'page-content': Content,
     'btn': Button,
-    'm-button': Button,
+    // 'm-button': Button,
   },
   data() {
     return {
-     labelPosition: 'left',
+     labelPosition: 'top',
       form: {
         name: '',
         phone: ''
@@ -73,8 +73,16 @@ export default {
     align-items: center;
     margin-top: 2rem;
     .iconfont {
-      font-size: 6rem;
-      color: #24AD24;
+      font-size: 4rem;
+      color: rgb(70, 187, 70);
+      margin-bottom: 2rem;
+    }
+    .el-input--medium .el-input__inner {
+      height: 45px;
+      line-height: 45px;
+    }
+    .el-form--label-top .el-form-item__label {
+      padding: 0;
     }
   }
   .courier-input {
@@ -90,6 +98,6 @@ export default {
   }
   .btn {
     width: 14rem;
-    // margin-top: 50px;
   }
+  
 </style>

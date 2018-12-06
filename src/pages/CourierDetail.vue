@@ -81,7 +81,7 @@ export default {
         title: '确定解绑吗'
       }).then(() => {
         unbindCourier(this.$route.query.expressServerId).then(res => {}).then(res => {
-          Toast.success('解绑成功');
+          Toast.success({message:'解绑成功', duration:1000});
           this.$router.go(0)
         })
       }).catch(() => {

@@ -2,7 +2,7 @@
   <div class="signUp">
     <div class="signUp-detail">
       <icon icon="success-fill icons"></icon>
-      <span class="signUp-detail__depart">绑定{{department}}服务部</span>
+      <span class="signUp-detail__depart">绑定{{department}}</span>
       <span class="signUp-detail__comfirmOne">联系人：{{contact}}</span>
       <span class="signUp-detail__comfirmTwo">联系电话：{{contactWay1}}/{{contactWay2}}</span>
       <span class="signUp-detail__comfirmThree">联系地址：{{address}}</span>
@@ -74,6 +74,7 @@
     display: flex;
     height: 100%;
     margin: 20px;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;

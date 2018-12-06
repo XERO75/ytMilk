@@ -60,8 +60,8 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
-              <span  @click="handleCancle(scope.row.sn)" style="color: red; font-size:14px">拒绝</span>
-              <span @click="handleAccept(scope.row.sn)" style="color: green; font-size:14px">接受</span>
+              <van-button @click="handleCancle(scope.row.sn)" size="small" type="primary" style="margin:4px">接受</van-button>
+              <van-button @click="handleAccept(scope.row.sn)" size="small" type="" style="background:#FF8001; color:white">拒绝</van-button>
             </div>
             <span @click="handleCheck(scope.row.sn)" v-else style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
@@ -92,9 +92,12 @@ import Dialog from '../../node_modules/vant/lib/dialog';
 import '../../node_modules/vant/lib/dialog/style';
 import Pagination from '../../node_modules/vant/lib/pagination';
 import '../../node_modules/vant/lib/pagination/style';
+import Button from '../../node_modules/vant/lib/button';
+import '../../node_modules/vant/lib/button/style';
 
 Vue.use(Dialog);
 Vue.use(Pagination);
+Vue.use(Button);
 export default {
   components: {
     'page-content': Content
@@ -105,7 +108,7 @@ export default {
       styleObj: {'background': '#F2F2F2'},
       tableData: [],
       listData: {},
-      commentTotal: null,
+      commentTotal: 0,
       currentPage: 1,
       totalPage: 1,
       status: ''
@@ -140,12 +143,15 @@ export default {
     },
     handleOrder(type) {
       this.type = type
-      // this.currentPage = 1
       getOrder(type, this.currentPage).then((res) => {
-        this.tableData = res.data.data.content
-        this.listData = res.data.data
-        this.currentPage = res.data.data.pageNumber
-        this.totalPage = res.data.data.totalPage
+        if(res.data.code == 0 && res.data.data.content !== null) {
+          this.tableData = res.data.data.content
+          this.listData = res.data.data
+          this.currentPage = res.data.data.pageNumber
+          this.totalPage = res.data.data.totalPage
+        } else {
+          this.tableData = null
+        }
       });
     },
     handelDealing() {

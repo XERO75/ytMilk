@@ -47,7 +47,7 @@
                 </div>
                 <div class="orderDetail-list__paidAmount">
                   <p><span class="fontBold">实收金额:&nbsp;&nbsp;</span>￥{{item.receivablePrice}}</p>
-                  <span style="align-self:center">{{dateLong2String(item.createDate)}}</span>
+                  <span style="align-self:center">{{handleFilterDate(item.createDate)}}</span>
                 </div>
               </div>
             
@@ -75,7 +75,6 @@
                   class="order-daily__info">
                 <div class="order-daily__sn">
                   <span class="">订单号：{{item.sn}}</span>
-                  <!-- <span class="" style="color:green">{{filterStatus(item.orderStatus)}}</span> -->
                   <span v-if="item.orderStatus == 'OnDelivery'" style="align-self:center; color:#54A93E">正常派送</span>
                   <span v-if="item.orderStatus == 'HoldDelivery'" style="align-self:center; color:red">暂停派送</span>
                   <span v-if="item.orderStatus == 'UnSettle'" style="align-self:center; color:red">未分配</span>
@@ -180,9 +179,21 @@ export default {
   methods: {
     getMonth () {
       this.type = 1
+      getMonthDetail().then(res => {
+        let Res = res.data.data
+        this.orderLists = Res.content
+      }).catch((err) => {
+        console.log(err);
+      })
     },
     getDaily () {
       this.type = 2
+      getDayDetail(this.dateLong2String(this.beginDate)).then(res => {
+        this.dayLists = res.data.data.content
+        this.productList = res.data.data.content.orderItems
+      }).catch((err) => {
+        console.log(err);
+      })
     },
     next () {
       this.pageNumber++
@@ -262,19 +273,15 @@ export default {
       day = day < 10 ? "0" + day : day;
       return year + "-" + month + "-" + day;
     },
-    
- 
+    handleFilterDate(val){
+      if(val){
+        let arr = val + ''
+        return arr.slice(0,10)
+      }
+    }
   },
   mounted () {
-    getMonthDetail().then(res => {
-      let Res = res.data.data
-      this.orderLists = Res.content
-      console.log(this.orderLists);
-    }),
-    getDayDetail(this.dateLong2String(this.beginDate)).then(res => {
-      this.dayLists = res.data.data.content
-      this.productList = res.data.data.content.orderItems
-    })
+    this.getMonth()
   },
   created () {
     this.beginDate = new Date()
@@ -383,6 +390,7 @@ export default {
   margin: 1rem 0.8rem;
   font-size: 14px;
   border-bottom: 1px solid rgb(226, 226, 226);
+  padding-bottom: .8rem;
 }
 .item-input {
   border: 1px solid rgb(226, 226, 226);

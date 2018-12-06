@@ -4,7 +4,7 @@ const baseUrl = process.env.BASE_API;
 
 const urls = {
   details: '/app/order/delivering_details.htm',
-  changeCourier: '/app/order/change_express.htm',
+  changeCourier: '/app/order/change_express.htm?WX_TYPE=OfficialAccount',
   orderStatus: '/app/service_department/bill_order_details.htm'
 }
 
