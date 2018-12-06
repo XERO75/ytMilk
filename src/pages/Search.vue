@@ -38,8 +38,8 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
-              <van-button @click="handleCancle(scope.row.sn)" size="small" type="primary" style="margin:4px">接受</van-button>
-              <van-button @click="handleAccept(scope.row.sn)" size="small" type="" style="background:#FF8001; color:white">拒绝</van-button>
+              <van-button @click="handleAccept(scope.row.sn)" size="small" type="primary" style="margin-bottom:4px">接受</van-button>
+              <van-button @click="handleCancle(scope.row.sn)" size="small" type="" style="background:#FF8001; color:white">拒绝</van-button>
             </div>
             <span v-else @click="handleCheck(scope.row.sn)" style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>

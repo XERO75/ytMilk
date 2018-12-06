@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <page-content>
-      <div v-if="clientData.orderStatus == 'completed' || clientData.orderStatus == 'Finish' || clientData.orderStatus == 'OnDelivery'" class="order-courierWrap">
+      <div v-if="clientData.orderStatus == 'completed' || clientData.orderStatus == 'Finish' || clientData.orderStatus == 'HoldDelivery' ||clientData.orderStatus == 'OnDelivery'" class="order-courierWrap">
       <!-- <div v-if="courierData.name !== null" class="order-courierWrap"> -->
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
