@@ -9,7 +9,7 @@
                    :value="item.id"
                    :label="item.name"
                    >
-          <span>{{ item.name }} - {{ item.phone }}</span>
+          <span style="font-size:16px">{{ item.name }} - {{ item.phone }}</span>
         </el-option>
       </el-select>
     </div>

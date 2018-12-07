@@ -8,9 +8,9 @@
       </div>
       <div class="comment-courierList">
         <p>优鲜达人</p>
-        <el-select @change="handleChange(id)" v-model="id" size="medium">
-          <el-option v-for="item in courierLists" :key="item.value" :value="item.name"><span style="font-size:16px">{{item.name}}&nbsp;&nbsp;{{item.phone}}</span></el-option>
-        </el-select>
+          <el-select @change="handleChange(id)" v-model="id" size="medium">
+            <el-option v-for="item in courierLists" :key="item.value" :value="item.name"><span style="font-size:16px">{{item.name}}&nbsp;&nbsp;{{item.phone}}</span></el-option>
+          </el-select>
         <!-- <el-select @change="handleChange(selected)" v-model="selected" size="mini" placeholder="选择优鲜达人">
           <el-option v-for="item in courierLists" :key="item.value" :value="item.id" :label="item.name"><span style="font-size:12px">{{item.name}}-{{item.phone}}</span></el-option>
         </el-select> -->
@@ -25,7 +25,7 @@
           评价星级：<i v-for="n in Number(item.stars)"
              :key="n.id"
              class="iconfont icon-xing1"
-             style="color:#F3E857"></i>
+             style="color:#f47565"></i>
         </div>
         <div class="comment-detail__tag">
           评价标签：{{item.tag.split('#').reverse().join(' ')}}

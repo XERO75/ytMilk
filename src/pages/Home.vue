@@ -31,6 +31,7 @@
          style="margin:.6rem .6rem 3rem; font-size: 12px;">
       <el-table :data="tableData"
                 border
+                :highlight-current-row="lineObj"
                 :header-cell-style='styleObj'
                 style="width: 100%">
         <el-table-column label="用户地址">
@@ -52,7 +53,6 @@
             <span v-if="scope.row.orderStatus == 'cancelled'" style="color: red; font-size:14px" >已取消</span>
             <span v-if="scope.row.orderStatus == 'Finish'" style="color: green; font-size:14px">已评价</span>
             <span v-if="scope.row.orderStatus == 'Closed'" style="color: red; font-size:14px" >已关闭</span>
-            <!-- <span>{{scope.row.state === -1? '冻结': (scope.row.state === 0? '未认证': '已认证')}}</span> -->
           </template>
         </el-table-column>
         <el-table-column label="操作"
@@ -60,8 +60,10 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
-              <van-button @click="handleAccept(scope.row.sn)" size="small" type="primary" style="margin-bottom:4px">接受</van-button>
-              <van-button @click="handleCancle(scope.row.sn)" size="small" type="" style="background:#FF8001; color:white">拒绝</van-button>
+              <!-- <van-button @click="handleAccept(scope.row.sn)" size="small" type="primary" style="margin-bottom:4px">接受</van-button>
+              <van-button @click="handleCancle(scope.row.sn)" size="small" type="" style="background:#FF8001; color:white">拒绝</van-button> -->
+              <button @click="handleAccept(scope.row.sn)" class="table-button__accept" style="">接受</button>
+              <button @click="handleCancle(scope.row.sn)" class="table-button__reject" style="">拒绝</button>
             </div>
             <span @click="handleCheck(scope.row.sn)" v-else style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
@@ -106,6 +108,7 @@ export default {
     return {
       type: null,
       styleObj: {'background': '#F2F2F2'},
+      lineObj: false,
       tableData: [],
       listData: {},
       commentTotal: 0,
@@ -237,6 +240,7 @@ export default {
   background: rgba(255, 209, 0, 1);
   color: black;
   padding: 0.2rem;
+  // border-radius: 5px;
 }
 
 .home-data {
@@ -319,5 +323,26 @@ export default {
   // display: flex;
   // justify-content: center;
   margin-top: 0.3rem;
+}
+.tableWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .table-button__accept{
+    margin-bottom:4px; 
+    background: rgb(103, 182, 55); 
+    width:3rem;
+    color:white;
+    border-radius: 5px;
+    padding: .2rem;
+  }
+  .table-button__reject {
+    background:#FF8001; 
+    color:white;
+    width:3rem;
+    border-radius: 5px;
+    padding: .2rem;
+  }
 }
 </style>

@@ -2,8 +2,8 @@
   <div class="search-page">
     <page-content>
       <form action="/">
-        <!-- <van-search placeholder="请输入搜索关键词" show-action @search="search" v-model="searchKey" /> -->
-        <searchbar v-model="searchKey" @input="search"></searchbar>
+        <van-search placeholder="请输入搜索关键词" show-action @search="search" v-model="searchKey" />
+        <!-- <searchbar v-model="searchKey" @input="search"></searchbar> -->
           <!-- <div slot="action" @click="search">搜索</div>
         </van-search> -->
       </form>
@@ -14,7 +14,7 @@
                 style="width: 100%">
         <el-table-column label="用户地址">
           <template slot-scope="scope">
-            <span>{{scope.row.memberDistrict}}{{scope.row.memberAddress}}{{scope.row.memberRoom}}</span>
+            <span>{{scope.row.memberDistrict}}{{scope.row.gaodeAddress}}{{scope.row.memberAddress}}{{scope.row.memberRoom}}</span>
           </template>               
         </el-table-column>
         <el-table-column label="状态"
@@ -38,8 +38,8 @@
                          align="center">
           <template slot-scope="scope">
             <div v-if="scope.row.orderStatus == 'UnSettle'"  class="tableWrap">
-              <van-button @click="handleAccept(scope.row.sn)" size="small" type="primary" style="margin-bottom:4px">接受</van-button>
-              <van-button @click="handleCancle(scope.row.sn)" size="small" type="" style="background:#FF8001; color:white">拒绝</van-button>
+              <button @click="handleAccept(scope.row.sn)" class="table-button__accept" style="">接受</button>
+              <button @click="handleCancle(scope.row.sn)" class="table-button__reject" style="">拒绝</button>
             </div>
             <span v-else @click="handleCheck(scope.row.sn)" style="color: green; font-size:14px"><i style="font-size:16px" class="iconfont icon-065chakandingdan"></i>查看</span>
           </template>
@@ -195,9 +195,18 @@ export default {
 }
 
 </script>
-<style lang="less" scoped>
+<style lang="less" >
   .search-page{
     font-size: .75rem;
+    .vertical-align:middle{
+      font-size: 19px;
+    }
+    .van-field__control {
+      padding: 6px 0 ;
+    }
+    .van-cell__left-icon {
+      padding: 6px;
+    }
   }
   .search-grids {
     // margin:.6rem .6rem 4rem; 
@@ -215,5 +224,27 @@ export default {
       text-decoration:none;
       color:rgb(122, 121, 121); 
     }
+  }
+  
+  .tableWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .table-button__accept{
+    margin-bottom:4px; 
+    background: rgb(103, 182, 55); 
+    width:3rem;
+    color:white;
+    border-radius: 5px;
+    padding: .2rem;
+  }
+  .table-button__reject {
+    background:#FF8001; 
+    color:white;
+    width:3rem;
+    border-radius: 5px;
+    padding: .2rem;
+  }
   }
 </style>

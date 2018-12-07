@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <page-content>
-      <div class="order-courierWrap">
+      <div v-if="originStatus == 'completed' || originStatus == 'Finish' || originStatus == 'HoldDelivery' ||originStatus == 'OnDelivery'" class="order-courierWrap">
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
           <div class="order-courier__detail">
@@ -26,7 +26,7 @@
           <p><span class="fontBold">姓名:&nbsp;&nbsp;</span>{{orderData.memberName}}</p>
         </div>
         <div class="orderDetail-list__cusAmount">
-          <p><span class="fontBold">联系方式:&nbsp;&nbsp;</span>{{orderData.memberPhone}}</p>
+          <p @click="onCall(orderData.memberPhone)"><span class="fontBold">联系方式:&nbsp;&nbsp;</span>{{orderData.memberPhone}}</p>
         </div>
         <div class="orderDetail-list__fees clearFix">
           <p><span class="fontBold">地址:&nbsp;&nbsp;</span>{{orderData.memberDistrict}}{{orderData.gaodeAddress}}{{orderData.memberAddress}}{{orderData.memberRoom}}</p>
@@ -40,7 +40,7 @@
         <div class="order-daily__product">
           <span class="fontBold">商品：</span>
         </div>
-        <div class="order-product__detailWrap">
+        <div class="order-product__detailWraper">
           <div v-for="item in orderItemLists" :key="item.index" style="height:3rem;">
             <div class="order-product__detail fl">
               <!-- <img class="order-product__img" :src="xxx" alt=""> -->
@@ -151,6 +151,9 @@ export default {
     }
   },
   methods: {
+    onCall(value) {
+      window.location.href = `tel:${value}`;
+    },
     filterDate (x){
       const regexp=/(?:\.0*|(\.\d+?)0+)$/
       return x.toString().replace(regexp,'$1')
@@ -163,6 +166,7 @@ export default {
         this.orderData = res.data.data.order
         this.orderItemLists = res.data.data.orderItemList
         this.originStatus = res.data.data.order.orderStatus
+        // this.clientData = res.data.data.order
       })
     })
   }
@@ -243,7 +247,7 @@ export default {
       margin-bottom: -1.2rem;
     }
   }
-  .order-product__detailWrap {
+  .order-product__detailWraper {
     // display: flex;
     // justify-content: space-between;
     // padding: 0.4rem;

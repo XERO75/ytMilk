@@ -2,20 +2,20 @@
   <div class="page">
     <page-content>
       <div v-if="clientData.orderStatus == 'completed' || clientData.orderStatus == 'Finish' || clientData.orderStatus == 'HoldDelivery' ||clientData.orderStatus == 'OnDelivery'" class="order-courierWrap">
-      <!-- <div v-if="courierData.name !== null" class="order-courierWrap"> -->
-        <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
+        <span style="font-weight:bold; font-size:.8rem; ">配送员</span> 
         <div class="order-courier">
           <div class="order-courier__detail">
             <img :src="courierData.image"
                  class="order-courier__avatar">
             <div class="order-courier__desc">
               {{courierData.name}}<br>
-              <span style="color:#54A93E">{{courierData.phone}}</span>
+              <span @click="onCall(courierData.phone)" style="color:#54A93E">{{courierData.phone}}</span>
             </div>
           </div>
           <van-button @click="show = true"
                       type="primary"
                       size="small"
+                      v-if="clientData.orderStatus !== 'completed' && clientData.orderStatus !== 'Finish'"
                       square>更换配送员</van-button>
           <van-dialog v-model="show"
                       show-cancel-button
@@ -32,7 +32,8 @@
         </div>
         <div class="order-client__tel">
           <span class="boldFont">电话</span>
-          <span style="color:#54A93E">{{clientData.memberPhone}}</span>
+          <span @click="onCall(clientData.memberPhone)" style="color:#54A93E">{{clientData.memberPhone}}</span>
+          <!-- <a :href="'tel:' + clientData.memberPhone" style="color:#54A93E">{{clientData.memberPhone}}</a> -->
         </div>
         <div class="order-client__address">
           <span class="boldFont" >地址</span>
@@ -59,13 +60,6 @@
             <span class="fr">共{{item.totalCount}}/剩{{item.remain}}/日送{{item.number}}</span>
           </div>
         </div>
-        <!-- <div v-for="item in itemLists" :key="item.keys" class="order-product__detailWrap">
-          <div class="order-product__detail">
-            <img class="order-product__img" src="../assets/images/accept/u250.png" alt="">
-            <span class="order-product__desc">{{productDescription}}</span>
-          </div>
-          <span>共{{total}}/剩{{left}}/日送{{daily}}</span>
-        </div> -->
         <div class="order-product__startData">
           <span class="boldFont">起送日期</span>
           <!-- <span>{{clientData.beginDate}}</span> -->
@@ -184,6 +178,9 @@ export default {
     getExpressId (id) {
       this.expressServerId = id
     },
+    onCall(value) {
+      window.location.href = `tel:${value}`;
+    },
     handleGetDetail() {
       getDetails(this.$route.query.sn).then((res) => {
         this.courierData = res.data.data
@@ -266,7 +263,7 @@ export default {
 .order-productWrap {
   display: flex;
   flex-direction: column;
-  margin: 0.8rem 0.6rem;
+  margin: 0.8rem 0.6rem 5rem;
   font-size: 0.75rem;
 }
 .order-product__detail {
@@ -315,9 +312,9 @@ export default {
   padding: 0 0.5rem;
 }
 .order-footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background : #F2F2F2;
-  color : #999999
+  color : #999999;
 }
 </style>

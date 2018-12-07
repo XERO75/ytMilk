@@ -25,7 +25,7 @@
         <footer-item v-bind:class="{ 'active' : activeView === 'order-detail' }"
                      @click.native="changeView('order-detail')">
           <i class="iconfont icon-order_icon"></i>
-          <label>订单明细</label>
+          <label>账单明细</label>
         </footer-item>
         <footer-item v-bind:class="{ 'active' : activeView === 'courier' }"
                      @click.native="changeView('courier')">

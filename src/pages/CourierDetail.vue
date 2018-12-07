@@ -8,7 +8,7 @@
             <img :src="courierData.image" class="order-courier__avatar">
             <div class="order-courier__desc">
               {{courierData.name}}<br>
-              <span style="color:#54A93E">{{courierData.phone}}</span>
+              <span @click="onCall(courierData.phone)" style="color:#54A93E">{{courierData.phone}}</span>
             </div>
           </div>
           <!-- <router-link :to="{path:'courierEdit'}"> -->
@@ -63,6 +63,9 @@ export default {
     }
   },
   methods: {
+    onCall(value) {
+      window.location.href = `tel:${value}`;
+    },
     handleDelete() {
       this.$dialog.confirm({
         title: '确定删除吗'
@@ -149,7 +152,7 @@ export default {
     width: 7.5rem;
     // position: relative;
     margin: 50px auto;
-    border: 1px solid gray;
+    // border: 1px solid gray;
     border-radius: 5px;
     padding: .5rem;
   }

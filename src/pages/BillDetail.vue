@@ -28,7 +28,7 @@
           <p><span class="fontBold">姓名:&nbsp;&nbsp;</span>{{item.memberName}}</p>
         </div>
         <div class="orderDetail-list__cusAmount">
-          <p><span class="fontBold">联系方式:&nbsp;&nbsp;</span>{{item.memberPhone}}</p>
+          <p @click="onCall(item.memberPhone)"><span class="fontBold">联系方式:&nbsp;&nbsp;</span>{{item.memberPhone}}</p>
         </div>
         <div class="orderDetail-list__fees">
           <p><span class="fontBold">地址:&nbsp;&nbsp;</span>{{item.memberDistrict}}{{item.gaodeAddress}}{{item.memberAddress}}{{item.memberRoom}}</p>
@@ -85,6 +85,9 @@
       }
     },
     methods: {
+      onCall(value) {
+        window.location.href = `tel:${value}`;
+      },
       filterDate (x){
         const regexp=/(?:\.0*|(\.\d+?)0+)$/
         return x.toString().replace(regexp,'$1')
@@ -217,11 +220,15 @@
     // bottom: 0;
     // font-size: 1rem;
   }
+  .order-footer__comfirmed,
   .order-footer__comfuse {
-    // position: absolute;
+    position: fixed;
     bottom: 0;
   }
   .bill-bottom {
     display: flex;
+    // bottom: 0;
+    // width: 100%;
+    // position: absolute;
   }
 </style>

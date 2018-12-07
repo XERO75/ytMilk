@@ -141,6 +141,23 @@ body {
     sans-serif;
 } */
 
+body {
+    line-height: 1;
+    background: white;
+    /* /* color: #333; */
+    font-family: PingFangSC-Regular,
+    '思源黑体',
+    Noto SansCJK,
+    Roboto,
+    PingFangSC-Medium,
+    Helvetica,
+    sans-serif,
+    Helvetica,
+    Microsoft Yahei,
+    Hiragino Sans GB,
+    WenQuanYi Micro Hei,
+    sans-serif;
+} 
 ul,
 li {
     list-style: none;

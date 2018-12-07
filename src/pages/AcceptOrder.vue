@@ -248,7 +248,7 @@ export default {
   border-bottom: 1px solid rgb(226, 226, 226);
 }
 .order-footerWrap {
-  position: fixed;
+  position: absolute;
   bottom: 0;
 }
 </style>
