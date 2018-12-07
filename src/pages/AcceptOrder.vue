@@ -178,6 +178,11 @@ export default {
       this.originDeliverType = res.data.data.order.deliverType
       this.originHalfDateType = res.data.data.order.halfDateType
     })
+    if (this.originStatus === 'OnDelivery') {
+      this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
+    } else {
+      // console.log(2222);
+    }
   }
 }
 </script>
