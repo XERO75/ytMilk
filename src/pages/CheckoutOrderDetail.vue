@@ -5,8 +5,9 @@
         <span style="font-weight:bold; font-size:.8rem; ">配送员</span>
         <div class="order-courier">
           <div class="order-courier__detail">
-            <img :src="courierData.expressImage"
-                 class="order-courier__avatar">
+            <div class="order-avatarWrap">
+              <img v-if="courierData.expressImage" :src="courierData.expressImage" class="order-courier__avatar">
+            </div>
             <div class="order-courier__desc">
               {{courierData.expressName}}<br>
               <span style="color:#54A93E">{{courierData.expressPhone}}</span>
@@ -185,11 +186,17 @@ export default {
 .order-courier__detail {
   display: flex;
 }
-.order-courier__avatar {
-  width: 2.5rem;
-  height: 2.5rem;
-  background: rgb(199, 199, 199);
+.order-avatarWrap {
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
+  overflow: hidden;
+  background: url(../assets/images/avatar.png) center no-repeat;
+  background-size:3rem 3rem;
+}
+.order-courier__avatar {
+  width: 100%;
+  height: auto;
 }
 .order-courier__desc {
   margin-left: 0.5rem;

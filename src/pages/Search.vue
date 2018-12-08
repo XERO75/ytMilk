@@ -207,6 +207,9 @@ export default {
     .van-cell__left-icon {
       padding: 6px;
     }
+    .van-field {
+      margin-bottom: 0!important;
+    }
   }
   .search-grids {
     // margin:.6rem .6rem 4rem; 

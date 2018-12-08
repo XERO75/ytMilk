@@ -90,7 +90,8 @@ export default {
       originDate: '',
       originStatus: '',
       originDeliverType: '',
-      originHalfDateType: ''
+      originHalfDateType: '',
+      code: 0
     }
   },
   computed: {
@@ -171,18 +172,21 @@ export default {
   },
   mounted() {
     getDetails(this.$route.query.sn).then((res) => {
-      this.orderData = res.data.data.order
-      this.itemLists = res.data.data.orderItemList
-      this.originDate = res.data.data.order.beginDate
-      this.originStatus = res.data.data.order.orderStatus
-      this.originDeliverType = res.data.data.order.deliverType
-      this.originHalfDateType = res.data.data.order.halfDateType
+      if (res.data.code == 0) {
+        this.orderData = res.data.data.order
+        this.itemLists = res.data.data.orderItemList
+        this.originDate = res.data.data.order.beginDate
+        this.originStatus = res.data.data.order.orderStatus
+        this.originDeliverType = res.data.data.order.deliverType
+        this.originHalfDateType = res.data.data.order.halfDateType
+        if (this.originStatus === 'OnDelivery') {
+          this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
+        }
+      }
+      else if (res.data.code == 12) {
+        this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
+      }
     })
-    if (this.originStatus === 'OnDelivery') {
-      this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
-    } else {
-      // console.log(2222);
-    }
   }
 }
 </script>

@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 var state={
-  // isLogin: false  
   currentView: 'home'
 };
 
