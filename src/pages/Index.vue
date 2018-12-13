@@ -78,7 +78,6 @@ export default {
     changeView (view) {
       this.currentView = view
       this.$store.state.currentView = view
-      // this.currentView = changeView
     }
   }
 }

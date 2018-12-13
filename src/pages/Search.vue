@@ -188,7 +188,6 @@ export default {
       getAllOrder().then((res) => {
         this.tableData = res.data.data.content
         this.listData = res.data.data
-        console.log(res.data);
       });
     })
   }
