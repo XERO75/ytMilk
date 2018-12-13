@@ -17,13 +17,6 @@
               <option v-for="item in options" :key="item.value" :value="item.id">{{item.value}}</option>
             </select>
           </div>
-          <vue-better-scroll
-          style="height: 250px"  
-          class="wrapper addressWrap"
-          ref="scroll"
-          :pullUpLoad="pullUpLoadObj"
-          :startY="parseInt(startY)"
-          @pullingUp="onPullingUp">
             <div v-for="item in orderLists" :key="item.index" class="orderDetail-list__detail ">
               <div class="orderDetail-list__total">
                 <p><span class="fontBold">订单总数:&nbsp;&nbsp;</span>{{item.totalOrder}}</p>
@@ -52,7 +45,7 @@
                 <span style="align-self:center">{{handleFilterDate(item.createDate)}}</span>
               </div>
             </div>
-          </vue-better-scroll>
+          
         </div>
         <div v-if="type === 2" class="orderDetail-dailyWrap">
           <div class="order-daily__slecetDay">
@@ -119,10 +112,10 @@ import Popup from '../../node_modules/vant/lib/popup';
 import '../../node_modules/vant/lib/popup/style';
 import DatetimePicker from '../../node_modules/vant/lib/datetime-picker';
 import '../../node_modules/vant/lib/datetime-picker/style';
+// import List from '../../node_modules/vant/lib/list';
+// import '../../node_modules/vant/lib/list/style';
 import axios from 'axios' //引入axios
 import Scroll from '../components/scroll'
-import VueBetterScroll from 'vue2-better-scroll'
-
 
 Vue.use(Popup);
 Vue.use(DatetimePicker);
@@ -131,8 +124,7 @@ Vue.use(DatetimePicker);
 export default {
   components: {
     'page-content': Content,
-    Scroll,
-    VueBetterScroll
+    Scroll
   },
   data () {
     return {
@@ -155,22 +147,7 @@ export default {
       pageNumber: '1',
       list: [],
       loading: false,
-      finished: false,
-
-      pageNow: 1,
-      pageTotal: 1,
-      pullUpLoadObj: {
-      threshold: 0,
-        txt: {
-          more: '加载更多',
-          noMore: '暂无更多'
-        }
-      },
-      startY: 0,  // 纵轴方向初始化位置
-      scrollToX: 0,
-      scrollToY: 0,
-      scrollToTime: 700,
-      items: []
+      finished: false
     }
   },
   computed: {
@@ -187,8 +164,6 @@ export default {
       getMonthDetail().then(res => {
         let Res = res.data.data
         this.orderLists = Res.content
-        this.pageNow = res.data.data.pageNumber
-        this.pageTotal = res.data.data.totalPage
       }).catch((err) => {
         console.log(err);
       })
@@ -201,6 +176,12 @@ export default {
       }).catch((err) => {
         console.log(err);
         this.dayLists = null
+      })
+    },
+    next () {
+      this.pageNumber++
+      getMonthDetail(this.pageNumber).then(res => {
+        this.dataList.push(res.data.data.content)
       })
     },
     filterStatus (val) {
@@ -265,7 +246,6 @@ export default {
       getMonthDetail(this.pageNumber, id).then(res => {
         if (res.data.code == 0) {
           this.orderLists = res.data.data.content
-          
         } else {
           this.orderLists = null
         }
@@ -303,22 +283,6 @@ export default {
         done()
       })
     },
-    onPullingUp () {
-      console.log('上拉加载')
-      setTimeout(() => {
-      this.pageNow ++
-      if(this.pageTotal >= this.pageNow) {
-        getMonthDetail(this.pageNow, this.id).then(res => {
-          console.log(111);
-          this.orderLists = this.orderLists.concat(res.data.data.content)
-          this.$refs.scroll.forceUpdate(true)
-        })
-      } else {
-        this.$refs.scroll.forceUpdate(false)
-        console.log(222);
-      }
-      }, 500);
-    }
   },
   mounted () {
     this.getMonth()
@@ -330,7 +294,7 @@ export default {
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .fontBold {
   font-weight: bold;
 }
@@ -339,33 +303,13 @@ export default {
   display: flex;
   text-align: center;
   justify-content: space-around;
-  padding-top: 1.2rem;
+  margin-top: 1.2rem;
   font-size: 0.75rem;
-  position: relative;
-  z-index: 11111;
-  background: #fff;
 }
 
 .orderDetail-list__status {
   margin: 0 1rem;
   align-items: center;
-  position: relative;
-  background: #fff;
-  z-index: 100;
-}
-.orderDetail-monthWrap {
-  z-index: 1;
-}
-.addressWrap {
-  height: 200px;
-  background: #fff;
-  position: relative;
-}
-.scroll {
-.before-trigger {
-  font-size: 14px;
-  color: #7a7979;
-}
 }
 
 .orderDetail-list__month,

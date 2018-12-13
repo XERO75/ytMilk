@@ -184,7 +184,10 @@ export default {
         }
       }
       else if (res.data.code == 12) {
-        this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
+        Toast.fail({message:'无法查看',duration:1000});
+        setTimeout(() => {
+          this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
+        }, 500);
       }
     })
   }

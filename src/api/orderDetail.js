@@ -14,11 +14,11 @@ const apis = Object.keys(urls)
   }, {});
   
 // 获取月订单 
-export const getMonthDetail = (pageNumber,status) => {
+export const getMonthDetail = (pageNumber, status) => {
   return axios({
     url: apis.month,
     method: 'get',
-    params: axios.getData({pageNumber:pageNumber, status:status})
+    params: axios.getData({pageNumber, status})
   })
 }
 

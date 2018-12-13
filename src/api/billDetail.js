@@ -16,11 +16,11 @@ const apis = Object.keys(urls)
   }, {});
   
 // 
-export const getMonthDetails = (departmentBillId, expressId) => {
+export const getMonthDetails = (departmentBillId, expressId , pageNumber) => {
   return axios({
     url: apis.monthDetails,
     method: 'get',
-    params: axios.getData({ departmentBillId : departmentBillId, expressId:expressId })
+    params: axios.getData({ departmentBillId : departmentBillId, expressId: expressId, pageNumber: pageNumber})
   })
 }
 

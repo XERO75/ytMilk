@@ -7,6 +7,13 @@
           <option v-for="item in couriers" :key="item.name" :value="item.id" >{{item.name}}</option>
         </select>
       </div>
+      <vue-better-scroll
+          style="height: 400px"  
+          class="wrapper addressWrap"
+          ref="scroll"
+          :pullUpLoad="pullUpLoadObj"
+          :startY="parseInt(startY)"
+          @pullingUp="onPullingUp">
       <div v-for="item in billLists" :key="item.index" class="orderDetail-list__detail">
         <div class="orderDetail-list__total">
           <p><span class="fontBold">接单日期:&nbsp;&nbsp;</span>{{filterDate(item.departmentDate)}}</p>
@@ -40,10 +47,7 @@
           <p><span class="fontBold">订单总价:&nbsp;&nbsp;</span>￥{{item.totalPrice}}</p>
         </div>
       </div>
-      <div class="orderDetail-list__loadMore">
-        <!-- <i class="orderDetail-list__upIcon"></i> -->
-        <!-- <span style="font-size:14px">加载更多</span> -->
-      </div>
+      </vue-better-scroll>
         <!-- <btn size="large">确认对账</btn>
         <btn size="large">有异议</btn> -->
         <div v-if="this.$route.query.status == 'Unconfirmed'" class="bill-bottom">
@@ -64,24 +68,39 @@
   import '../../node_modules/vant/lib/button/style';
   import Toast from '../../node_modules/vant/lib/toast';
   import '../../node_modules/vant/lib/toast/style';
+  import VueBetterScroll from 'vue2-better-scroll'
+
 
   Vue.use(Toast)
   Vue.use(Button);
   export default {
     components: {
       'page-content': Content,
+      VueBetterScroll
     },
     data() {
       return {
         selected: 1,
-        couriers: [],
-        orderTotal: 112,
         orderStatus: '',
-        orderDetail: '详情',
-
         couriers: [],
         billLists: [],
-        id: ''
+        id: '',
+        orderDetail: '详情',
+
+        pageNumber: 1,
+        pageTotal: 1,
+        pullUpLoadObj: {
+        threshold: 0,
+          txt: {
+            more: '加载更多',
+            noMore: '暂无更多'
+          }
+        },
+        startY: 0,  // 纵轴方向初始化位置
+        scrollToX: 0,
+        scrollToY: 0,
+        scrollToTime: 700,
+        items: []
       }
     },
     methods: {
@@ -90,10 +109,11 @@
       },
       filterDate (x){
         const regexp=/(?:\.0*|(\.\d+?)0+)$/
-        return x.toString().replace(regexp,'$1')
+        if (x) {
+          return x.toString().replace(regexp,'$1')
+        }
       },
       handleSelect(id) {
-        // this.id = id
         console.log(id);
         getMonthDetails(this.$route.query.departmentBillId, id).then(res => {
           console.log(res);
@@ -119,13 +139,31 @@
       handleCheckOrder(sn) {
         console.log(sn);
         this.$router.push({path:'/CheckoutOrderDetail',query:{sn:sn}})
+      },
+      onPullingUp () {
+        console.log('上拉加载')
+        this.pageNumber ++
+        setTimeout(() => {
+        if(this.pageTotal >= this.pageNumber) {
+          getMonthDetails(this.$route.query.departmentBillId, this.id, this.pageNumber).then(res => {
+            console.log(111);
+            this.billLists = this.billLists.concat(res.data.data.content)
+            this.$refs.scroll.forceUpdate(true)
+          })
+        } else {
+          this.$refs.scroll.forceUpdate(false)
+          console.log(222);
+        }
+        }, 500);
       }
     },
     mounted() {
       getMonthDetails(this.$route.query.departmentBillId).then(res => {
         console.log('montsh',res);
         this.billLists = res.data.data.content
-        console.log(this.billLists);
+        this.pageNumber = res.data.data.pageNumber
+        this.pageTotal = res.data.data.totalPage
+        console.log(this.pageNow,this.pageTotal);
       }),
       getAllCouriers().then(res => {
         console.log('getAllCouriers',res);
@@ -141,6 +179,12 @@
   .fontBold {
     font-weight: bold;
   }
+  .page {
+    .before-trigger {
+      font-size: 14px;
+      color: #7a7979;
+    }
+  }
   .comment-header {
     color: #999999;
     display: flex;
@@ -153,13 +197,19 @@
 
 <style lang="less" scoped>
   .comment-courierList {
-    margin: 1rem;
+    padding: 1rem 1rem 0;
     // margin-bottom: 1.5rem;
     font-size: .8rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: -.5rem;
+    position: relative;
+    background: #fff;
+    z-index: 100;
+  }
+  .addressWrap {
+    position: relative;
   }
   
   .comment-courierList__selectbox {
@@ -227,8 +277,9 @@
   }
   .bill-bottom {
     display: flex;
-    // bottom: 0;
-    // width: 100%;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
     // position: absolute;
   }
 </style>
