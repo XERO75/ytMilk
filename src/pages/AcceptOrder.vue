@@ -163,7 +163,6 @@ export default {
           setTimeout(done, 500)
         })
         this.$router.push({path:'/'})
-        // this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
       } else {
         Toast.fail({message:'请选择配送员',duration:1000});
         done()
