@@ -11,7 +11,7 @@ import BillDetail from './pages/BillDetail.vue'
 import CourierDetail from './pages/CourierDetail.vue'
 import CourierAdd from './pages/CourierAdd.vue'
 import CourierEdit from './pages/CourierEdit.vue'
-import LoginError from './pages/LoginError.vue'
+import Login from './pages/login.vue'
 import Bind from './pages/Bind.vue'
 import ServiceBind from './pages/serviceBind.vue'
 import SupplierAllBack from './pages/supplierAllBack.vue'
@@ -31,9 +31,9 @@ let router = new Router({
       component: Index
     },
     {
-      path: '/LoginError',
-      name: 'loginError',
-      component: LoginError
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/comment',

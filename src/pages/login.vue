@@ -12,7 +12,13 @@
   </div>
 </template>
 <script>
+  import Vue from 'vue'
+  import Toast from '../../node_modules/vant/lib/toast';
+  import '../../node_modules/vant/lib/toast/style';
   import { Button } from '../components/buttons'
+  import { departmentLogin, expressLogin } from "@/api/login.js"
+
+  Vue.use(Toast)
   export default {
     components: {
       'm-button': Button,
@@ -25,17 +31,28 @@
     },
     methods: {
       loginServer () {
-        this.$router.push({path: '/comment'})
+        window.location.href="http://yantang.ittun.com/app/department/dist/index.html?WX_TYPE=OfficialAccount@/"; 
+        // departmentLogin().then(res => {
+        //   if (res.data.code === 0) {
+        //     window.location.href="http://yantang.ittun.com/app/department/dist/index.html?WX_TYPE=OfficialAccount@/"; 
+        //   } else Toast.fail({message:res.data.errmsg,duration:3000});
+        // })
       },
       loginExpert () {
-        // this.$store.state.isLogin = true
-        // console.log(this.$store.state.isLogin);
-        // this.$router.go(0)
+        window.location.href="http://yantang.ittun.com/app/express/dist/index.html?WX_TYPE=OfficialAccount@/"; 
+        // expressLogin().then(res => {
+        //   if (res.data.code === 0) {
+        //     window.location.href="http://yantang.ittun.com/app/express/dist/index.html?WX_TYPE=OfficialAccount@/"; 
+        //   } else Toast.fail({message:res.data.errmsg,duration:3000});
+        // })
       }
     }
   }
 </script>
 <style lang="less">
+  .login-detail__img {
+    margin-top: 1rem;
+  }
   .login-detail {
     margin: .2rem 2rem;
     display: flex;
