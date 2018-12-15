@@ -199,17 +199,25 @@ export default {
   created () {
   },
   mounted () {
-    handleLogin().then((res) => {
+    // handleLogin().then((res) => {
       getComments().then((res) => {
-        this.commentTotal = res.data.data.total
+        if (res.data.code == 0 ) {
+          this.commentTotal = res.data.data.total
+        } else {
+          Toast.fail({message:res.data.errmsg, duration:5000});
+        }
       })
       getAllOrder().then((res) => {
-        this.tableData = res.data.data.content
-        this.listData = res.data.data
-        this.currentPage = res.data.data.pageNumber
-        this.totalPage = res.data.data.totalPage
+        if (res.data.code == 0) {
+          this.tableData = res.data.data.content
+          this.listData = res.data.data
+          this.currentPage = res.data.data.pageNumber
+          this.totalPage = res.data.data.totalPage
+        } else {
+          Toast.fail({message:res.data.errmsg, duration:5000});
+        }
       });
-    })
+    // })
   }
 }
 

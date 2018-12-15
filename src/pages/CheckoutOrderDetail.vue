@@ -161,7 +161,7 @@ export default {
     },
   },
   mounted () {
-    handleLogin().then((res) => {
+    // handleLogin().then((res) => {
       getOrderStatus(this.$route.query.sn).then((res) => {
         this.courierData = res.data.data
         this.orderData = res.data.data.order
@@ -169,7 +169,7 @@ export default {
         this.originStatus = res.data.data.order.orderStatus
         // this.clientData = res.data.data.order
       })
-    })
+    // })
   }
 }
 </script>

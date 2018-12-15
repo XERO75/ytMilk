@@ -39,10 +39,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Content from '../components/content'
 import { handleLogin } from "@/api/login.js";
 import { getAllComments, getComments, getCouriers } from '@/api/comment.js'
+import Toast from '../../node_modules/vant/lib/toast';
 
+Vue.use(Toast)
 export default {
   components: {
     'page-content': Content,
@@ -72,16 +75,20 @@ export default {
     }
   },
   mounted () {
-    handleLogin().then((res) => {
+    // handleLogin().then((res) => {
       getAllComments().then((res) => {
-        this.commentsData = res.data.data
-        this.commentLists = res.data.data.content
+        if (res.data.code == 0) {
+          this.commentsData = res.data.data
+          this.commentLists = res.data.data.content
+        } else {
+          Toast.fail({message:res.data.errmsg, duration:5000});
+        }
       })
       getCouriers().then(res => {
         this.courierLists = res.data.data.serverList
         this.courierLists.unshift({id:'',name:'全部',phone:''})
       })
-    })
+    // })
   },
 }
 </script>

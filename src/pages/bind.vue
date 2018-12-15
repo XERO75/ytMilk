@@ -55,7 +55,7 @@
       }
     },
     mounted () {
-      handleLogin().then(res => {
+      // handleLogin().then(res => {
         this.departmentId = this.$route.query.departmentId
         getDetails(this.departmentId).then(res => {
           console.log(res);
@@ -65,7 +65,7 @@
           this.contactWay1 = res.data.contactWay1
           this.contactWay2 = res.data.contactWay2
         })
-      })
+      // })
     }
   }
 </script>

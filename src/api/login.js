@@ -13,11 +13,11 @@ const apis = Object.keys(urls)
   }, {});
 // 登录
 export const handleLogin = () => {
-  return axios({
-    url: apis.login,
-    method: 'get',
-    params: {
-      WX_TYPE: "OfficialAccount"
-    },
-  });
+  // return axios({
+  //   url: apis.login,
+  //   method: 'get',
+  //   params: {
+  //     WX_TYPE: "OfficialAccount"
+  //   },
+  // });
 };

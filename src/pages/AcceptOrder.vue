@@ -60,7 +60,6 @@
 import Vue from 'vue'
 import { Footer } from '../components/footer'
 import Content from '../components/content'
-import { handleLogin } from "@/api/login.js";
 import { getDetails, getCouriers, acceptOrder } from '@/api/acceptOrder.js'
 import Button from '../../node_modules/vant/lib/button';
 import '../../node_modules/vant/lib/button/style';
@@ -187,6 +186,8 @@ export default {
         setTimeout(() => {
           this.$router.push({path:'/checkout',query:{sn:this.$route.query.sn}})
         }, 500);
+      } else {
+        Toast.fail({message:res.data.errmsg, duration:5000});
       }
     })
   }

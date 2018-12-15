@@ -177,7 +177,7 @@ export default {
   created () {
   },
   mounted () {
-    handleLogin().then((res) => {
+    // handleLogin().then((res) => {
       getComments().then((res) => {
         this.commentTotal = res.data.data.total
       })
@@ -188,7 +188,7 @@ export default {
         this.currentPage = res.data.data.pageNumber
         this.totalPage = res.data.data.totalPage
       });
-    })
+    // })
   }
 }
 

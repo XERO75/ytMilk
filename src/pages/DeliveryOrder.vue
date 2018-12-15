@@ -89,7 +89,7 @@
     },
     mounted() {
       this.date = this.getNowFormatDate()
-      handleLogin().then(res => {
+      // handleLogin().then(res => {
         getDay().then(res => {
           this.filterDate = res.data.data.chooseDate
           console.log(this.filterDate);
@@ -97,7 +97,7 @@
           this.dayList.push(this.tableData)
           console.log(this.dayList);
         })
-      })
+      // })
     },
   }
 </script>

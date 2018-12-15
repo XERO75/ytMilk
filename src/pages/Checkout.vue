@@ -89,7 +89,9 @@ import { getDetails, changeCourier } from '@/api/checkout.js'
 import VanField from '../components/van-field/van-field'
 import Button from '../../node_modules/vant/lib/button';
 import '../../node_modules/vant/lib/button/style';
+import Toast from '../../node_modules/vant/lib/toast';
 
+Vue.use(Toast)
 Vue.use(Button);
 export default {
   components: {
@@ -184,13 +186,17 @@ export default {
     },
     handleGetDetail() {
       getDetails(this.$route.query.sn).then((res) => {
-        this.courierData = res.data.data
-        this.clientData = res.data.data.order
-        this.itemLists = res.data.data.orderItemList
-        this.originDate = res.data.data.order.beginDate
-        this.originStatus = res.data.data.order.orderStatus
-        this.originDeliverType = res.data.data.order.deliverType
-        this.originHalfDateType = res.data.data.order.halfDateType
+        if (res.data.code == 0) {
+          this.courierData = res.data.data
+          this.clientData = res.data.data.order
+          this.itemLists = res.data.data.orderItemList
+          this.originDate = res.data.data.order.beginDate
+          this.originStatus = res.data.data.order.orderStatus
+          this.originDeliverType = res.data.data.order.deliverType
+          this.originHalfDateType = res.data.data.order.halfDateType
+        } else {
+          Toast.fail({message:res.data.errmsg, duration:5000});
+        }
       })
     },
     beforeClose (action, done) {
@@ -210,9 +216,9 @@ export default {
     }
   },
   mounted () {
-    handleLogin().then((res) => {
+    // handleLogin().then((res) => {
       this.handleGetDetail()
-    })
+    // })
   }
 }
 </script>
